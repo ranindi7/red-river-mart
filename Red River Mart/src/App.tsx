@@ -1,11 +1,16 @@
-
 import "./App.css";
 import Header from "./headerComponent/header";
+import LandingPageMain from './components/LandingPageMainComponent/LandingPageMain'
+import Footer from './components/footer'
 
-export default function App() {
+function App() {
   return (
-    <div>
+    <>
       <Header />
-    </div>
-  );
+      <LandingPageMain />
+      <Footer />
+    </>
+  )
 }
+
+export default App
