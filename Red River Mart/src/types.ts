@@ -10,6 +10,7 @@ export interface ActiveFilters {
   category: string;
   sort: string;
 }
+
 // vscode fixed this automatically ie. FilterItemsProps
 export interface FilterItemsProps {
   activeFilters: ActiveFilters;
