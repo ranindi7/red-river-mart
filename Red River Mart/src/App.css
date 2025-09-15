@@ -5,48 +5,17 @@
   text-align: center;
 }
 
+.signInComponent img {
+  height: 60px;
+  width: auto;
+}
 
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  background-color: #e4c09d;
-}
-
-.header {
-  position: fixed;          
-  top: 0;
-  left: 0;
-  right: 0;                
-  height: 100px;
-  background-color: #550000;
-  color: #f9f3ed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-sizing: border-box;
-}
-
-.header ul {
-  list-style: none;
-  display: flex;
-  gap: 50px;
-  margin: 0;
-  padding: 0;
-}
-
-.header li {
-  cursor: pointer;
-}
-
-.header li:hover {
-  text-decoration: underline;
-}
-
-.header img {
-  height: 60px;
+  background-color: #f9f3ed;
 }
 
 form {
@@ -59,4 +28,51 @@ form {
   margin: 150px auto; 
   padding: 2rem;    
   color: white;
+  padding-top: 0%;
 }
+
+footer {
+  color: #550000;
+}
+
+.emailContainer,
+.passwordContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.emailContainer label,
+.passwordContainer label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.emailContainer input,
+.passwordContainer input {
+  width: 95%;
+  padding: 0.6rem;
+  background-color: white;
+  color: white;
+  border-radius: 2px;
+  border-color: white;
+}
+
+.loginButtonContainer {
+  text-align: center;
+}
+
+.loginButtonContainer button {
+  width: 95%;
+  border: none;
+  border-radius: 6px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.loginButtonContainer button:hover {
+  background-color: #333;
+}
+

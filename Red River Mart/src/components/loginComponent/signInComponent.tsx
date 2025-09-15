@@ -1,17 +1,10 @@
 import rrmLogo from '../../assets/rrmLogo.png'
 
 export default function SignIn() {
-    const passwordConditions = [
-        "At least 8 characters long",
-        "At least 1 upper case character",
-        "At least 1 special character",
-        "At least 1 number",
-    ];
-
     return (
         <section className="signInComponent">
-            <form>
-                <img src={rrmLogo} alt="Red River Mart Logo" className='logo'/>      
+            <img src={rrmLogo} alt="Red River Mart Logo" className='logo'/>   
+            <form>   
                 <h1>Sign In</h1>
                 <div className="emailContainer">
                     <label htmlFor="email">Email: </label>
@@ -20,11 +13,6 @@ export default function SignIn() {
                 <div className="passwordContainer">
                     <label htmlFor="password">Password: </label>
                     <input type="password"></input>
-                    <ul>
-                        {passwordConditions.map((condition, index) => (
-                            <li key={index}>{condition}</li>
-                        ))}
-                    </ul>
                 </div>
                 <div className="loginButtonContainer">
                     <button type="submit">Sign In</button>
