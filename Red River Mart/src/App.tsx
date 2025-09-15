@@ -1,16 +1,15 @@
-import "./App.css";
-import Header from "./headerComponent/header";
-import LandingPageMain from './components/LandingPageMainComponent/LandingPageMain'
-import Footer from './components/footer'
+import Header from "./components/common/header";
+import Inbox from "./components/pages/inboxPage";
+
 
 function App() {
   return (
     <>
+      <Inbox />
       <Header />
-      <LandingPageMain />
-      <Footer />
+      
     </>
   )
 }
 
-export default App
+export default App  
