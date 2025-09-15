@@ -1,4 +1,11 @@
 export default function SignIn() {
+    const passwordConditions = [
+        "At least 8 characters long",
+        "At least 1 upper case character",
+        "At least 1 special character",
+        "At least 1 number",
+    ];
+
     return (
         <section className="signInComponent">
             <form>
@@ -10,6 +17,11 @@ export default function SignIn() {
                 <div className="passwordContainer">
                     <label htmlFor="password">Password: </label>
                     <input type="password"></input>
+                    <ul>
+                        {passwordConditions.map((condition, index) => (
+                            <li key={index}>{condition}</li>
+                        ))}
+                    </ul>
                 </div>
                 <div className="loginButtonContainer">
                     <button type="submit">Sign In</button>
