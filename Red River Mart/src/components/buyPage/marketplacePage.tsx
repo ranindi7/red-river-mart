@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FilterItems from "./FilterPage";
+import FilterItems from "./filterPage";
 import ItemPage from "./ItemPage";
 import placeholder from "../../assets/placeholder.png";
 
@@ -24,6 +24,20 @@ export default function MarketplacePage() {
         { id: 14, name: "Keychain Lanyard", category: "accessories", price: 5.00, src: placeholder },
         { id: 15, name: "Backpack", category: "accessories", price: 45.00, src: placeholder },
         { id: 16, name: "Phone Case", category: "accessories", price: 12.50, src: placeholder },
+        { id: 17, name: "Laptop Sleeve", category: "electronics", price: 25.00, src: placeholder },
+        { id: 18, name: "Smartwatch", category: "electronics", price: 150.00, src: placeholder },
+        { id: 19, name: "USB-C Cable", category: "electronics", price: 8.00, src: placeholder },
+        { id: 20, name: "Denim Jeans", category: "clothing", price: 45.00, src: placeholder },
+        { id: 21, name: "Winter Scarf", category: "clothing", price: 22.00, src: placeholder },
+        { id: 22, name: "Gym Shorts", category: "clothing", price: 28.00, src: placeholder },
+        { id: 23, name: "Fleece Joggers", category: "clothing", price: 38.00, src: placeholder },
+        { id: 24, name: "Science Textbook", category: "books", price: 65.00, src: placeholder },
+        { id: 25, name: "Fantasy Novel", category: "books", price: 18.00, src: placeholder },
+        { id: 26, name: "Cookbook", category: "books", price: 25.00, src: placeholder },
+        { id: 27, name: "Digital Stylus", category: "accessories", price: 50.00, src: placeholder },
+        { id: 28, name: "Laptop Stand", category: "accessories", price: 35.00, src: placeholder },
+        { id: 29, name: "Sunglasses", category: "accessories", price: 20.00, src: placeholder },
+        { id: 30, name: "Notebook", category: "books", price: 8.00, src: placeholder },
     ]);
 
     // state for active filters
