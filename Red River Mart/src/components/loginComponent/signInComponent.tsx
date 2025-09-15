@@ -1,7 +1,10 @@
+import rrmLogo from '../../assets/rrmLogo.png'
+
 export default function SignIn() {
     return (
         <section className="signInComponent">
             <form>
+                <img src={rrmLogo} alt="Red River Mart Logo" className='logo'/>      
                 <h1>Sign In</h1>
                 <div className="emailContainer">
                     <label htmlFor="email">Email: </label>
