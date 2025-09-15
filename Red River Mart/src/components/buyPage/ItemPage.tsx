@@ -6,7 +6,7 @@ export default function ItemPage({ items }: { items: Item[] }) {
       <h2>Marketplace</h2>
       <div>
         {items.map((item) => (
-          <article key={item.id}>
+          <article key={item.id} className="itemOption">
             <img src={item.src} alt={item.name} height="100" />
             <h3>{item.name}</h3>
             <p>${item.price.toFixed(2)}</p>

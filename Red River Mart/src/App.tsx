@@ -1,13 +1,14 @@
-import "./App.css";
-import Header from "./components/headerComponent/header";
-import LandingPageMain from './components/buyComponent/buyPage'
-import Footer from './components/footerComponent/Footer';
+import './App.css'
+import './components/buyPage/buyPage.css'
+import MarketplacePage from './components/buyPage/marketplacePage'
+import Header from './components/common/headerPage'
+import Footer from './components/common/footerPage'
 
 function App() {
   return (
     <>
       <Header />
-      <LandingPageMain />
+      <MarketplacePage />
       <Footer />
     </>
   )
