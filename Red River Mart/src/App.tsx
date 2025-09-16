@@ -1,5 +1,6 @@
 import "./App.css";
 
+import UserAccount from "./components/userAccountComponent/userAccountComponent";
 import Login from "./components/loginComponent/signInComponent";
 import MarketplacePage from './components/buyComponent/marketplacePage';
 import Header from "./components/common/headerPage";
@@ -11,6 +12,7 @@ function App() {
     <>
       <Header />
       <Login />
+      <UserAccount />
       <MarketplacePage />
       <Inbox />
       <Footer />

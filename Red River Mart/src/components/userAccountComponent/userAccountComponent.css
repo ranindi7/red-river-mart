@@ -1,0 +1,46 @@
+body {
+    background-color: #f9f3ed;
+    color: black;
+}
+
+.userInfo img {
+    height: 200px;
+    width: auto;
+}
+
+.userProducts ul {
+  list-style: none;      
+  display: flex;          
+  justify-content: flex-start;
+  gap: 20px;   
+  padding: 20px;                       
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;           
+  padding: 20px; 
+  border-bottom: 2px solid #550000; 
+}
+
+.userText {
+  display: flex;
+  flex-direction: column; 
+}
+
+.userContent {
+  display: flex;
+  justify-content: space-between;       
+  gap: 20px;                     
+  padding: 20px;
+}
+
+.editProfile {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background-color: #550000;
+  color: white;
+}
