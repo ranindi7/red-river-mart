@@ -1,3 +1,9 @@
+export interface Message {
+  id: number;
+  user: string;
+  text: string;
+}
+
 export interface Item {
   id: number;
   name: string;
@@ -15,4 +21,13 @@ export interface ActiveFilters {
 export interface FilterItemsProps {
   activeFilters: ActiveFilters;
   setActiveFilters: React.Dispatch<React.SetStateAction<ActiveFilters>>;
+}
+
+export interface productInfo {
+  id: number;
+  title: string;
+  name: string;
+  category: string;
+  price: number;
+  info: string;
 }

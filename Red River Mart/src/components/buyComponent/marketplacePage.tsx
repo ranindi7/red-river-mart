@@ -1,6 +1,8 @@
+import './buyPage.css';
+
 import { useState } from "react";
 import FilterItems from "./filterPage";
-import ItemPage from "./itemPage";
+import ItemPage from "./ItemPage";
 import placeholder from "../../assets/placeholder.png";
 
 import type { Item, ActiveFilters } from "../../types";
