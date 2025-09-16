@@ -1,3 +1,9 @@
+export interface Message {
+  id: number;
+  user: string;
+  text: string;
+}
+
 export interface Item {
   id: number;
   name: string;
