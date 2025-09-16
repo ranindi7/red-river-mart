@@ -25,5 +25,9 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - I.1.I User Profile Component 
 - T.5 : App Stylesheet
 
+=======
 
-
+### Alex Carlos
+- I.1.B : Landing page filter - component for a section in main for filtering products
+- I.1.D. Item Page Component
+- I.1.F Marketplace Page Component
