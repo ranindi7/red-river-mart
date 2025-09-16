@@ -5,6 +5,7 @@ import MarketplacePage from './components/buyComponent/marketplacePage';
 import Header from "./components/common/headerPage";
 import Inbox from "./components/inboxComponent/inboxPage";
 import Footer from './components/common/footerPage';
+import Info from "./components/productInfoComponent/productInfo";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Login />
       <MarketplacePage />
       <Inbox />
+      <Info />
       <Footer />
     </>
   )
