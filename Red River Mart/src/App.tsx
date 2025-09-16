@@ -1,5 +1,6 @@
 import './App.css'
 import './components/buyPage/buyPage.css'
+import './components/sellPage/sellPage.css'
 import MarketplacePage from './components/buyPage/marketplacePage'
 import SellPage from './components/sellPage/sellPage'
 import Header from './components/common/headerPage'
