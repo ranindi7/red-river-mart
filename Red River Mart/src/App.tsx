@@ -1,12 +1,10 @@
 import "./App.css";
-import Footer from './components/footerComponent/Footer';
-import Login from "./components/loginComponent/signInComponent";
+import UserAccount from "./components/userAccountComponent/userAccountComponent";
 
 function App() {
   return (
     <>
-      <Login />
-      <Footer />
+      <UserAccount />
     </>
   )
 }

@@ -1,0 +1,28 @@
+body {
+    background-color: #f9f3ed;
+    color: black;
+}
+
+.userInfo img {
+    height: 200px;
+    width: auto;
+}
+
+.userProducts ul {
+  list-style: none;      
+  display: flex;          
+  justify-content: flex-start;
+  gap: 2rem;   
+  padding: 1rem;                       
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;            
+  padding: 20px; 
+}
+
+.userText {
+  display: flex;
+  flex-direction: column; 
+}
