@@ -12,17 +12,26 @@ body {
   list-style: none;      
   display: flex;          
   justify-content: flex-start;
-  gap: 2rem;   
-  padding: 1rem;                       
+  gap: 20px;   
+  padding: 20px;                       
 }
 
 .userInfo {
   display: flex;
-  align-items: center;            
+  align-items: center;           
   padding: 20px; 
+  border-bottom: 2px solid #550000; 
 }
 
 .userText {
   display: flex;
   flex-direction: column; 
 }
+
+.userContent {
+  display: flex;
+  justify-content: space-between;       
+  gap: 20px;                     
+  padding: 20px;
+}
+
