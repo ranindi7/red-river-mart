@@ -1,5 +1,7 @@
 import type { productInfo } from "../../types";
 import "./productInfo.css";
+import usedMouse from "../../assets/usedMouse.png";
+
 
 const Info = () => {
   const product: productInfo = {
@@ -9,7 +11,7 @@ const Info = () => {
   return (
 <section className="product">
   <div className="productImageBox">
-    <img src="/usedMouse.png" alt="Used Mouse" />
+    <img src={usedMouse} alt="Used Mouse" />
   </div>
 
   <div className="productInfoContainer">
