@@ -1,6 +1,19 @@
+/* Color palette
+Primary Colors
+- #550000
+- #f9f3ed
+
+Secondary Colors
+- White (#ffffff)
+- #d3d3d3
+- #440000
+*/
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
+
+
