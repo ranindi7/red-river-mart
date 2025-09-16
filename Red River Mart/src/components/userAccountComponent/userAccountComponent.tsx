@@ -19,6 +19,10 @@ export default function UserAccount() {
 
     return(
         <main>
+            <div className="editProfile">
+                <button type="submit">Edit Profile</button>
+            </div>
+
             <section className="userInfo">
                 <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
                 <div className="userText">
@@ -43,7 +47,7 @@ export default function UserAccount() {
                             </li>
                         ))}
                     </ul>
-                </section> 
+                </section>
 
                 <section className="contactSection">
                     <h3>Contact Information</h3>
