@@ -1,8 +1,8 @@
 import './App.css'
-import './components/buyPage/buyPage.css'
-import './components/sellPage/sellPage.css'
-import MarketplacePage from './components/buyPage/marketplacePage'
-import SellPage from './components/sellPage/sellPage'
+import './components/buyComponent/buyPage.css'
+import './components/sellComponent/sellPage.css'
+import MarketplacePage from './components/buyComponent/marketplacePage'
+import SellPage from './components/sellComponent/sellPage'
 import Header from './components/common/headerPage'
 import Footer from './components/common/footerPage'
 import UserAccount from "./components/userAccountComponent/userAccountComponent";
