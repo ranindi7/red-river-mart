@@ -32,6 +32,8 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - I.1.D. Item Page Component
 - I.1.F Marketplace Page Component
 
+=======
+
 ### Heuone Castillo
 
 - I.1.J Inbox Page Component
