@@ -9,11 +9,11 @@ export default function SignIn() {
                 <h1>Sign In</h1>
                 <div className="emailContainer">
                     <label htmlFor="email">Email: </label>
-                    <input type="email"></input>
+                    <input type="email" id="email" name="email"></input>
                 </div>
                 <div className="passwordContainer">
                     <label htmlFor="password">Password: </label>
-                    <input type="password"></input>
+                    <input type="password" id="password" name="password"></input>
                 </div>
                 <div className="loginButtonContainer">
                     <button type="submit">Sign In</button>
