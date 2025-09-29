@@ -1,5 +1,5 @@
 import "./signInComponent.css";
-import rrmLogo from '../../assets/rrmLogo.png'
+import rrmLogo from '../../../assets/rrmLogo.png'
 
 export default function SignIn() {
     return (

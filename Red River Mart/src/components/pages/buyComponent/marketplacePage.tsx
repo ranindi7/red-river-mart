@@ -3,9 +3,9 @@ import './buyPage.css';
 import { useState } from "react";
 import FilterItems from "./filterPage";
 import ItemPage from "./ItemPage";
-import placeholder from "../../assets/placeholder.png";
+import placeholder from "../../../assets/placeholder.png";
 
-import type { Item, ActiveFilters } from "../../types";
+import type { Item, ActiveFilters } from "../../../types";
 
 export default function MarketplacePage() {
     // sample data for itmems

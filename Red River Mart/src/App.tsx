@@ -1,28 +1,29 @@
 import './App.css'
-import './components/buyComponent/buyPage.css'
-import './components/sellComponent/sellPage.css'
-import MarketplacePage from './components/buyComponent/marketplacePage'
-import SellPage from './components/sellComponent/sellPage'
-import Header from './components/common/headerPage'
-import Footer from './components/common/footerPage'
-import UserAccount from "./components/userAccountComponent/userAccountComponent";
-import Login from "./components/loginComponent/signInComponent";
-import Inbox from "./components/inboxComponent/inboxPage";
-import Info from "./components/productInfoComponent/productInfo";
+import './components/pages/buyComponent/buyPage.css'
+import './components/pages/sellComponent/sellPage.css'
+import SellPage from './components/pages/sellComponent/sellPage'
+import UserAccount from "./components/pages/userAccountComponent/userAccountComponent";
+import Login from "./components/pages/loginComponent/signInComponent";
+import Info from "./components/pages/productInfoComponent/productInfo";
+import Inbox from './components/pages/inboxComponent/inboxPage'
+import MarketplacePage from './components/pages/buyComponent/marketplacePage'
+import { Routes, Route } from "react-router-dom"; 
+import { Layout } from './components/layout/layout';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Login />
-      <UserAccount />
-      <MarketplacePage />
-      <SellPage />
-      <Inbox />
-      <Info />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MarketplacePage />} />
+
+        <Route path="/sell" element={<SellPage />} />
+        <Route path="/account" element={<UserAccount />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/inbox" element={<Inbox />} />
+      </Route>
+    </Routes>
   )
 }
 
-export default App  
+export default App

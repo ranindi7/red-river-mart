@@ -1,5 +1,5 @@
-import ProfilePicturePlaceholder from "../../assets/ProfilePicPlaceholder.png"
-import placeholder from "../../assets/placeholder.png"
+import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
+import placeholder from "../../../assets/placeholder.png"
 import "./userAccountComponent.css"
 
 export default function UserAccount() {
