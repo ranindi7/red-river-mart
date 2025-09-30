@@ -1,6 +1,6 @@
-import type { productInfo } from "../../types";
+import type { productInfo } from "../../../types";
 import "./productInfo.css";
-import usedMouse from "../../assets/usedMouse.png";
+import usedMouse from "../../../assets/usedMouse.png";
 
 
 const Info = () => {

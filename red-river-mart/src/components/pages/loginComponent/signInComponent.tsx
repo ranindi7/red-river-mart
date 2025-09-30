@@ -1,5 +1,5 @@
 import "./signInComponent.css";
-import rrmLogo from '../../assets/rrmLogo.png'
+import rrmLogo from '../../../assets/rrmLogo.png'
 
 export default function SignIn() {
     return (
@@ -9,11 +9,11 @@ export default function SignIn() {
                 <h1>Sign In</h1>
                 <div className="emailContainer">
                     <label htmlFor="email">Email: </label>
-                    <input type="email" id="email" name="email"></input>
+                    <input type="email"></input>
                 </div>
                 <div className="passwordContainer">
                     <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" name="password"></input>
+                    <input type="password"></input>
                 </div>
                 <div className="loginButtonContainer">
                     <button type="submit">Sign In</button>
