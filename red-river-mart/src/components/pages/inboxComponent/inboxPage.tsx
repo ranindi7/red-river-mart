@@ -1,5 +1,5 @@
 import "./inboxPage.css";
-import type { Message } from "../../types";
+import type { Message } from "../../../types";
 
 const Inbox = () => {
   const messages: Message[] = [
