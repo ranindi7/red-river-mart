@@ -1,6 +1,8 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
 import placeholder from "../../../assets/placeholder.png"
 import "./userAccountComponent.css"
+import { useState } from "react";
+import type { Item } from "../../../types";
 
 export default function UserAccount() {
     const userDetails = {
@@ -15,7 +17,17 @@ export default function UserAccount() {
         { id: 1, name: "USB Flash Drive 32GB", category: "Electronics", price: 25.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
         { id: 2, name: "Bracelet", category: "Accessories", price: 40.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
         { id: 3, name: "GAP Hoodie", category: "Clothing", price: 10.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
+        { id: 4, name: "Headphones", category: "electronics", price: 45.00, src: placeholder, seller: "XYZ", status: "listed" },
+        { id: 5, name: "School Hoodie", category: "clothing", price: 35.00, src: placeholder, seller: "XYZ", status: "listed"},
+        { id: 6, name: "Graphic T-Shirt", category: "clothing", price: 20.00, src: placeholder, seller: "XYZ", status: "listed" }
     ]
+
+    const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
+
+    const removeWishlistItem = (id: number) => {
+        setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
+    };
+
 
     return(
         <main>
@@ -26,16 +38,21 @@ export default function UserAccount() {
             <section className="userInfo">
                 <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
                 <div className="userText">
-                    <h1>{userDetails.userName}</h1>
-                    <p>{userDetails.bio}</p>
+                        <h1>{userDetails.userName}</h1>
+                        <p>{userDetails.bio}</p>
+                        
+                        <div className="contactInfo">
+                        <h4>Contact Information: </h4> 
+                        <p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>
+                    </div>
                 </div>
             </section>
 
             <section className="userContent">
-                <section className="userProducts">
+                <div className="userProducts">
                     <h3>Listed Products</h3>
                     <ul>
-                        {itemDetails.map(item => (
+                        {itemDetails.slice(0,3).map(item => (
                             <li key={item.id} className="productsDisplay"> 
                                 <img src={item.src} alt={item.name} height="100"/>
                                 <div>
@@ -47,14 +64,22 @@ export default function UserAccount() {
                             </li>
                         ))}
                     </ul>
-                </section>
+                </div>
 
-                <section className="contactSection">
-                    <h3>Contact Information</h3>
-                    <p>Email: {userDetails.email}</p>
-                    <p>Phone: {userDetails.phone}</p>
-                    <p>Preferred Method of Contact: {userDetails.preferredContact}</p>
-                </section>
+                <div className="userWishlist">
+                    <h3>Wishlist</h3>
+                    <ul className="wishlistProducts">
+                        {wishlist.slice(0,6).map(item => (
+                            <li key={item.id} className="wishlistDisplay"> 
+                                <img src={item.src} alt={item.name} height="65"/>
+                                <div>
+                                    <h4>{item.name}</h4>
+                                    <button onClick={() => removeWishlistItem(item.id)}>Remove</button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </section>
         </main>
     )
