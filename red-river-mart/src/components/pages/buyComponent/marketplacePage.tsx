@@ -1,14 +1,12 @@
 import './buyPage.css';
-import itemData from "../../../jsonData/itemData.json";
 import { useState } from "react";
 import FilterItems from "./filterPage";
 import ItemPage from "./ItemPage";
 import filterOptionsData from "../../../jsonData/filterOptions.json";
 import type { Item, ActiveFilters, FilterOption } from "../../../types";
 
-export default function MarketplacePage() {
-    // sample data for itmems
-    const [items] = useState<Item[]>(itemData);
+export default function MarketplacePage({items}: { items: Item[] }) {
+    // state for filter options
     const [filterOptions] = useState<FilterOption[]>(filterOptionsData);
 
     // state for active filters

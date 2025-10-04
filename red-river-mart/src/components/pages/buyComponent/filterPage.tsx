@@ -1,5 +1,4 @@
 import type { FilterItemsProps, FilterOption } from "../../../types";
-// import filterOptions from "../../../jsonData/filterOptions.json";
 
 // vscode fixed this import automatically ie. FilterItemsProps
 export default function FilterItems({ activeFilters, setActiveFilters, filterOptions }: FilterItemsProps & { filterOptions: FilterOption[] }) {

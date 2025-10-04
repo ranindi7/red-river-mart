@@ -1,10 +1,10 @@
-import type { productInfo } from "../../../types";
+import type { ProductInfo } from "../../../types";
 import "./productInfo.css";
 import usedMouse from "../../../assets/usedMouse.png";
 
 
 const Info = () => {
-  const product: productInfo = {
+  const product: ProductInfo = {
     id: 1,name: "Bayle Castillo", title: "Used Mouse", category: "Electronics", price: 15.0, info: "I dont need this mouse anymore selling for $15 OBO",
   };
 
