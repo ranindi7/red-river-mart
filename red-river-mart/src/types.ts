@@ -4,6 +4,13 @@ export interface Message {
   text: string;
 }
 
+export interface messageRequest {
+  id: number;
+  user: string;
+  text: string;
+}
+
+
 export interface Item {
   id: number;
   name: string;
