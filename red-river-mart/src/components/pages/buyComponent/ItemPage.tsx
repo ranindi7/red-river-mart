@@ -1,4 +1,4 @@
-import type { Item } from "../../types";
+import type { Item } from "../../../types";
 
 export default function ItemPage({ items }: { items: Item[] }) {
   return (

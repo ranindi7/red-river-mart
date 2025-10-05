@@ -1,15 +1,15 @@
 import "./inboxPage.css";
 import type { Message } from "../../../types";
+import { useState } from "react";
+import messagesData from "../../../jsonData/messageData.json";
 
 const Inbox = () => {
-  const messages: Message[] = [
-    { id: 1, user: "Aleca", text: "Is this available?" },
-    { id: 2, user: "Bayle", text: "Would you take $10?" },
-    { id: 3, user: "Riven", text: "What is the pick up address?" },
-    { id: 4, user: "Zed", text: "I am outside to pick up your item" },
-    { id: 5, user: "George", text: "Yo do you want to trade instead?" },
-    { id: 6, user: "Rengar", text: "I will have to pass sorry." }
-  ];
+  const [messages, setMessage] = useState<Message[]>(messagesData);
+
+  const removeMessage = (id:Number) => {
+    setMessage(messages.filter(msg => msg.id !== id));
+  };
+
 
   return (
     <section className="inboxContainer">
@@ -31,6 +31,7 @@ const Inbox = () => {
               <div className="messageBox">
                 <p>{msg.user}: {msg.text}</p>
               </div>
+              <button onClick={() => removeMessage(msg.id)}>Remove</button>
             </li>
           ))}
         </ul>
