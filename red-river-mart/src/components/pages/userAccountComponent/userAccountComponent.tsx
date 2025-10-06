@@ -53,7 +53,21 @@ export default function UserAccount() {
                                     onChange={(e) => 
                                         setUserDetails({...userDetails, email: e.target.value})
                                     }
-                                />   
+                                />  
+
+                                <input
+                                    value={userDetails.phone}
+                                    onChange={(e) => 
+                                        setUserDetails({...userDetails, phone: e.target.value})
+                                    }
+                                /> 
+
+                                <input
+                                    value={userDetails.preferredContact}
+                                    onChange={(e) => 
+                                        setUserDetails({...userDetails, preferredContact: e.target.value})
+                                    }
+                                /> 
                             </>
                         ) : (<p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>)}
                         
