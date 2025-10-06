@@ -9,6 +9,7 @@ export interface Item {
   name: string;
   category: string;
   price: number;
+  description?: string;
   src: string;
 }
 
@@ -42,4 +43,8 @@ export interface ProductInfo {
 
 export interface FormItem {
     onAddItem: (newItem: Item) => void;
+}
+
+export interface MarketplaceContainerProp {
+    path: string;
 }

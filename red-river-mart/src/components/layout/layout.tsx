@@ -8,7 +8,6 @@ export function Layout() {
         <Nav />
         <Outlet />
         <Footer />
-        
         </>
     )
 }

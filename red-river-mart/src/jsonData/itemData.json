@@ -1,5 +1,5 @@
 [
-  { "id": 1, "name": "USB Flash Drive 32GB", "category": "electronics", "price": 25.00, "src": "placeholder" },
+  { "id": 1, "name": "USB Flash Drive 32GB", "category": "electronics", "price": 25.00, "src": "placeholder.png" },
   { "id": 2, "name": "Wireless Mouse", "category": "electronics", "price": 18.50, "src": "placeholder" },
   { "id": 3, "name": "Portable Power Bank", "category": "electronics", "price": 30.00, "src": "placeholder" },
   { "id": 4, "name": "Headphones", "category": "electronics", "price": 45.00, "src": "placeholder" },
