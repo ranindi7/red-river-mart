@@ -1,8 +1,8 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
-import placeholder from "../../../assets/placeholder.png"
 import "./userAccountComponent.css"
 import { useState } from "react";
 import type { Item } from "../../../types";
+import itemDetails from "../../../jsonData/itemDetails.json"
 
 export default function UserAccount() {
     const userDetails = {
@@ -11,16 +11,7 @@ export default function UserAccount() {
         email: "ranindi@rrc.ca",
         phone: "657-576-3756",
         preferredContact: "Email/ In-app"
-    };
-
-    const itemDetails = [
-        { id: 1, name: "USB Flash Drive 32GB", category: "Electronics", price: 25.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
-        { id: 2, name: "Bracelet", category: "Accessories", price: 40.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
-        { id: 3, name: "GAP Hoodie", category: "Clothing", price: 10.00, src: placeholder, seller: "Ranindi Gunasekera", status: "sold" },
-        { id: 4, name: "Headphones", category: "electronics", price: 45.00, src: placeholder, seller: "XYZ", status: "listed" },
-        { id: 5, name: "School Hoodie", category: "clothing", price: 35.00, src: placeholder, seller: "XYZ", status: "listed"},
-        { id: 6, name: "Graphic T-Shirt", category: "clothing", price: 20.00, src: placeholder, seller: "XYZ", status: "listed" }
-    ]
+    }; 
 
     const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
 
