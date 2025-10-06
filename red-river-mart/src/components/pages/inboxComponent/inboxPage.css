@@ -12,7 +12,7 @@ html, body {
   height: 100%;
 }
 
-.inboxContainer {
+.messageContainer {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -30,8 +30,7 @@ html, body {
   background: #f9f3ed;
 }
 
-
-.inboxList {
+.messageList {
   flex: 0 0 320px;            
   min-width: 200px;           
   background: #f9f3ed;
@@ -45,18 +44,18 @@ html, body {
   color: #333;                
 }
 
-.inboxList ul {
+.messageList ul {
   width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.inboxList li {
+.messageList li {
   margin-bottom: 0.5rem;
 }
 
-.inboxList .messageBox {
+.messageList .messageBox {
   border: 1px solid #ccc;
   background-color: #fff;
   width: 100%;
@@ -65,7 +64,7 @@ html, body {
   border-radius: 7px;
 }
 
-.inboxList .messageBox:hover {
+.messageList .messageBox:hover {
   background-color: #f0f0f0;
 }
 
@@ -108,5 +107,57 @@ h2 {
 }
 
 .messageInput button:hover {
+  background-color: #770000;
+}
+
+.requestList {
+  flex: 0 0 320px;
+  min-width: 200px;
+  background: #f9f3ed;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-left: 2px solid #ddd;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.requestList ul {
+  padding: 0;
+}
+
+.requestList li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.requestList input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.requestList p {
+  margin: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  flex: 1;
+  border-radius: 7px;
+  padding: 0.5rem;
+}
+
+.requestList button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #550000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.requestList button:hover {
   background-color: #770000;
 }
