@@ -5,13 +5,15 @@ import type { Item } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
 
 export default function UserAccount() {
-    const userDetails = {
+    const [userDetails, setUserDetails] = useState({
         userName: "Ranindi Gunasekera",
         bio: "Hello! I am a student in the AD&D program and I am interested in buying and selling computer parts",
         email: "ranindi@rrc.ca",
         phone: "657-576-3756",
         preferredContact: "Email/ In-app"
-    }; 
+    }); 
+
+    const [isEditing, setIsEditing] = useState(false);
 
     const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
 
@@ -23,18 +25,42 @@ export default function UserAccount() {
     return(
         <main>
             <div className="editProfile">
-                <button type="submit">Edit Profile</button>
             </div>
 
             <section className="userInfo">
                 <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
                 <div className="userText">
                         <h1>{userDetails.userName}</h1>
-                        <p>{userDetails.bio}</p>
+
+                        {isEditing ? (
+                            <textarea
+                                value={userDetails.bio}
+                                onChange={(e) => 
+                                    setUserDetails({...userDetails, bio: e.target.value})}
+                            />
+                        ) : (
+                            <p>{userDetails.bio}</p>
+                        )} 
+
                         
                         <div className="contactInfo">
                         <h4>Contact Information: </h4> 
-                        <p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>
+
+                        {isEditing ? (
+                            <>
+                                <input
+                                    value={userDetails.email}
+                                    onChange={(e) => 
+                                        setUserDetails({...userDetails, email: e.target.value})
+                                    }
+                                />   
+                            </>
+                        ) : (<p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>)}
+                        
+                        <button type="submit" onClick={() => setIsEditing(!isEditing)}>
+                            {isEditing ? "Save" : "Edit"} Profile
+                        </button>
+
                     </div>
                 </div>
             </section>
