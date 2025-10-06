@@ -1,0 +1,74 @@
+.sellPage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 500px;
+  height: auto;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: calc(100px + 2rem); 
+}
+
+.sellPage h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.sellPage label {
+  color: black;
+  margin-top: 0.5rem;
+}
+
+.sellPage input[type="text"], 
+.sellPage input[type="number"], 
+.sellPage select,
+.sellPage textarea,
+.sellPage input[type="file"]
+{
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.sellPage input[type="text"]:focus, 
+.sellPage select:focus, 
+.sellPage input[type="number"]:focus, 
+.sellPage textarea:focus,
+.sellPage input[type="file"]:focus
+{
+  outline: none;
+  border-color: #550000;
+}
+
+.sellPage textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.sellPage button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #550000;
+  color: #f9f3ed;
+  border: 1px solid #550000;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+}
+
+.sellPage button[type="submit"]:hover {
+  background-color: #440000;
+  border-color: #440000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
