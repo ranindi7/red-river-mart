@@ -1,18 +1,44 @@
 import "./inboxPage.css";
 import type { Message } from "../../../types";
+import type { messageRequest } from "../../../types";
+import { useState } from "react";
+import messagesData from "../../../jsonData/messageData.json";
+import requestData from "../../../jsonData/requestData.json";
 
-const Inbox = () => {
-  const messages: Message[] = [
-    { id: 1, user: "Aleca", text: "Is this available?" },
-    { id: 2, user: "Bayle", text: "Would you take $10?" },
-    { id: 3, user: "Riven", text: "What is the pick up address?" },
-    { id: 4, user: "Zed", text: "I am outside to pick up your item" },
-    { id: 5, user: "George", text: "Yo do you want to trade instead?" },
-    { id: 6, user: "Rengar", text: "I will have to pass sorry." }
-  ];
+const message = () => {
+  const [messages, setMessage] = useState<Message[]>(messagesData);
+  const [requests, setRequest] = useState<messageRequest[]>(requestData);
+
+  const removeMessage = (id:number) => {
+    setMessage(messages.filter(msg => msg.id !== id));
+  };
+
+  const [selectedReq, setSelectedReq] = useState<number[]>([]);
+
+  const checkSelectedReq = (id: number) => {
+    if (selectedReq.includes(id)) {
+      setSelectedReq(selectedReq.filter((reqId) => reqId !== id));
+
+    } else {
+      setSelectedReq([...selectedReq, id]);
+    }
+  };
+
+  const acceptSelectedReq = () => {
+    const accept = requests.filter((req) =>
+    selectedReq.includes(req.id))
+
+    setMessage([...messages, ...accept]);
+    setRequest(requests.filter((req) => !selectedReq.includes(req.id)));
+  };
+
+  const declineSelectedReq = () => {
+    setRequest(requests.filter((req) => !selectedReq.includes(req.id)));
+  };
+
 
   return (
-    <section className="inboxContainer">
+    <section className="messageContainer">
       <div className="conversation">
         <h2>Conversation</h2>
         <div className="messagesContent">
@@ -23,20 +49,40 @@ const Inbox = () => {
           <button>Send</button>
         </div>
       </div>
-      <div className="inboxList">
-        <h2>Inbox</h2>
+      <div className="messageList">
+        <h2>Messages</h2>
         <ul>
           {messages.map((msg) => (
             <li key={msg.id}>
               <div className="messageBox">
                 <p>{msg.user}: {msg.text}</p>
               </div>
+              <button onClick={() => removeMessage(msg.id)}>Remove</button>
             </li>
           ))}
         </ul>
+      </div>
+      <div className="requestList">
+        <h2>Message Requests</h2>
+      <ul>
+          {requests.map((req) => (
+            <li key={req.id}>
+              <input
+                type="checkbox"
+                checked={selectedReq.includes(req.id)}
+                onChange={() => checkSelectedReq(req.id)}
+              />
+              <p>{req.user}: {req.text}</p>
+            </li>
+          ))}
+        </ul>
+      <div className="requestButtons">
+      </div>
+      <button onClick={acceptSelectedReq}>Accept</button>
+      <button onClick={declineSelectedReq}>Decline</button>
       </div>
     </section>
   );
 };
 
-export default Inbox;
+export default message;

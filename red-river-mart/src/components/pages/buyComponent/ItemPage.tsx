@@ -1,6 +1,7 @@
-import type { Item } from "../../types";
+import type { Item } from "../../../types";
 
 export default function ItemPage({ items }: { items: Item[] }) {
+
   return (
     <section className="ItemPage">
       <h2>Marketplace</h2>

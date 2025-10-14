@@ -1,15 +1,7 @@
-import type { FilterItemsProps } from "../../types";
+import type { FilterItemsProps, FilterOption } from "../../../types";
 
 // vscode fixed this import automatically ie. FilterItemsProps
-export default function FilterItems({ activeFilters, setActiveFilters }: FilterItemsProps) {
-    const filterOptions = [
-        { id: 1, name: "Price: Low to High", sort: "priceLowToHigh" },
-        { id: 2, name: "Price: High to Low", sort: "priceHighToLow" },
-        { id: 3, name: "Electronics", category: "electronics" },
-        { id: 4, name: "Clothing", category: "clothing" },
-        { id: 5, name: "Books", category: "books" },
-        { id: 6, name: "Accessories", category: "accessories" },
-    ];
+export default function FilterItems({ activeFilters, setActiveFilters, filterOptions }: FilterItemsProps & { filterOptions: FilterOption[] }) {
 
     // reset filters button
     const handleResetFilters = () => {
