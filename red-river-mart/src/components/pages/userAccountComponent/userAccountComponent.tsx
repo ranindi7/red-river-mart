@@ -2,16 +2,12 @@ import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png
 import "./userAccountComponent.css"
 import { useState } from "react";
 import type { Item } from "../../../types";
+import type { User } from "../../../types"
 import itemDetails from "../../../jsonData/itemDetails.json"
+import userInfo from "../../../jsonData/userInfo.json"
 
 export default function UserAccount() {
-    const [userDetails, setUserDetails] = useState({
-        userName: "Ranindi Gunasekera",
-        bio: "Hello! I am a student in the AD&D program and I am interested in buying and selling computer parts",
-        email: "ranindi@rrc.ca",
-        phone: "657-576-3756",
-        preferredContact: "Email/ In-app"
-    }); 
+    const [userDetails, setUserDetails] = useState<User>(userInfo[0]); 
 
     const [isEditing, setIsEditing] = useState(false);
 

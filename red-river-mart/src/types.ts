@@ -31,3 +31,12 @@ export interface productInfo {
   price: number;
   info: string;
 }
+
+export interface User {
+  id: string;
+  userName: string;
+  bio: string;
+  email: string;
+  phone: string;
+  preferredContact: string;
+};
