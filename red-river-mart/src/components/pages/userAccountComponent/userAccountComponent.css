@@ -1,11 +1,11 @@
 body {
-    background-color: #f9f3ed;
-    color: black;
+  background-color: #f9f3ed;
+  color: black;
 }
 
 .userInfo img {
-    height: 200px;
-    width: auto;
+  height: 200px;
+  width: auto;
 }
 
 .userProducts ul {
@@ -24,7 +24,15 @@ body {
 }
 
 .userWishlist {
-  border-left: 2px solid #550000;  
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userProducts {
+  border-right: 2px solid #550000;
+  padding: 20px;
+  padding-right: 5%;
 }
 
 .userText {
@@ -52,7 +60,17 @@ button {
 .userWishlist ul {
   list-style: none;      
   display: grid;          
-  grid-template-columns: repeat(3, 1fr); /*https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items*/
+  grid-template-columns: repeat(3, 1fr); /*https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items*/ 
   gap: 20px;   
-  padding: 20px;                       
+  padding: 20px;   
+  min-height: 300px;                    
+}
+
+main {
+  margin-top: 120px; 
+}
+
+.userProducts, .userWishlist {
+  flex: 1;
+  min-height: 450px;
 }
