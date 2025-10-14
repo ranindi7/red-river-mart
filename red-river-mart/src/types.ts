@@ -48,6 +48,14 @@ export interface ProductInfo {
   info: string;
 }
 
+export interface User {
+  id: string;
+  userName: string;
+  bio: string;
+  email: string;
+  phone: string;
+  preferredContact: string;
+};
 export interface FormItem {
     onAddItem: (newItem: Item) => void;
 }
