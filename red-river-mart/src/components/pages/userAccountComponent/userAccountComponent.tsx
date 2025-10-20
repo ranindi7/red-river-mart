@@ -47,6 +47,7 @@ export default function UserAccount() {
 
                         {isEditing ? (
                             <>
+                                <label><b>Email: </b></label>
                                 <input
                                     value={userDetails.email}
                                     onChange={(e) => 
@@ -54,6 +55,7 @@ export default function UserAccount() {
                                     }
                                 />  
 
+                                <label><b>Phone: </b></label>
                                 <input
                                     value={userDetails.phone}
                                     onChange={(e) => 
@@ -61,6 +63,7 @@ export default function UserAccount() {
                                     }
                                 /> 
 
+                                <label><b>Preferred Method of Contact: </b></label>
                                 <input
                                     value={userDetails.preferredContact}
                                     onChange={(e) => 

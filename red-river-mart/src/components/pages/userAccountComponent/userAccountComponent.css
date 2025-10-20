@@ -1,4 +1,4 @@
-body {
+body, html {
   background-color: #f8f9fa;
   color: black;
 }
@@ -73,4 +73,22 @@ main {
 .userProducts, .userWishlist {
   flex: 1;
   min-height: 450px;
+}
+
+/*https://blog.mathieu-leplatre.info/placeholder-for-empty-lists-in-css.html*/
+.wishlistProducts:empty::after { 
+  content: "No Items Available";
+}
+
+.wishlistProducts:empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  color: grey;
+}
+
+label { 
+  padding-left: 10px;
+  padding-right: 5px;
 }
