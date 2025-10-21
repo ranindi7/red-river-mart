@@ -13,10 +13,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<MarketplaceContainer path="" />} /> 
-        <Route path="/sell" element={<MarketplaceContainer path="sell" />} />
-
-        {/* <Route path="/sell" element={<SellPage />} /> */}
+        <Route index element={<MarketplaceContainer />} /> 
         <Route path="/account" element={<UserAccount />} />
         <Route path="/login" element={<Login />} />
         <Route path="/info" element={<Info />} />

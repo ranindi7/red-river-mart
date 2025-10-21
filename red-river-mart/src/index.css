@@ -2,9 +2,7 @@
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: white;
+  background-color: #F8F9FA;
   color: black;
   max-width: 100%;
 }
@@ -12,9 +10,9 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   color: black;
-  background-color: #f9f3ed;
   margin: 0;
   padding: 1rem;
+  background-color: #F8F9FA;
 }
 
 h1, h2, h3 {

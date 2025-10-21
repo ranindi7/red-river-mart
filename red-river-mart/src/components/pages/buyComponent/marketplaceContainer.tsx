@@ -1,12 +1,9 @@
-// src/components/MarketplaceContainer.tsx (New File)
 import { useState } from 'react';
-import MarketplacePage from '../../pages/buyComponent/marketplacePage'; 
-import SellPage from '../../pages/sellComponent/sellPage';             
+import MarketplacePage from '../../pages/buyComponent/marketplacePage';
 import itemData from "../../../jsonData/itemData.json";                 
 import type { Item } from '../../../types';
-import type { MarketplaceContainerProp } from '../../../types';
 
-export default function MarketplaceContainer({path}: MarketplaceContainerProp) {
+export default function MarketplaceContainer() {
     // add state to hold items, initialized with sample data
     const [items, setItems] = useState<Item[]>(itemData as Item[]);
 
@@ -15,9 +12,7 @@ export default function MarketplaceContainer({path}: MarketplaceContainerProp) {
         setItems(prevItems => [...prevItems, newItem]);
     };
 
-    if (path === "sell") {
-        return <SellPage onAddItem={handleAddItem} />;
-    } else {
-        return <MarketplacePage items={items} />;
-    };
+    return (
+        <MarketplacePage items={items} onAddItem={handleAddItem} />
+    );
 }
