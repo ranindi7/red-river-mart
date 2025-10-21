@@ -3,11 +3,6 @@
   width: auto;
 }
 
-html, body {
-  width: 100%;
-  background-color: #f9f3ed;
-}
-
 form {
   background-color: #550000;
   display: flex;

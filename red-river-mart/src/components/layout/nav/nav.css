@@ -1,5 +1,5 @@
 .header {
-  background-color: #550000;
+  background-color: #F8F9FA;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +8,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
+  z-index: 50;
+  border-bottom: 3px solid #9C102D;
 }
 
 .header ul {
