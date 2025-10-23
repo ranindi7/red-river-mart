@@ -1,5 +1,5 @@
 /*
-This is a hook that hadnles form input functionality - it manages the state of multiple
+This is a hook that handles form input functionality - it manages the state of multiple
 input fields in one object. It allows us to update any field dynamically without needing 
 separate useState calls for each input.  
 */
@@ -34,6 +34,5 @@ export function useFormInputs(
         }
     }  
     
-    return { fields, handleChange }
-    
+    return { fields, handleChange }  
 }
