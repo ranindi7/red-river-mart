@@ -2,12 +2,18 @@ import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png
 import "./userAccountComponent.css"
 import { useState } from "react";
 import type { Item } from "../../../types";
-import type { User } from "../../../types"
 import itemDetails from "../../../jsonData/itemDetails.json"
 import userInfo from "../../../jsonData/userInfo.json"
+import { useFormInputs } from "../../../hooks/useFormInputs";
 
 export default function UserAccount() {
-    const [userDetails, setUserDetails] = useState<User>(userInfo[0]); 
+    const{fields, handleChange} = useFormInputs({
+        userName: userInfo[0].userName,
+        bio: userInfo[0].bio,
+        email: userInfo[0].email,
+        phone: userInfo[0].phone,
+        preferredContact: userInfo[0].preferredContact
+    })
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -17,7 +23,6 @@ export default function UserAccount() {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
 
-
     return(
         <main>
             <div className="editProfile">
@@ -26,16 +31,16 @@ export default function UserAccount() {
             <section className="userInfo">
                 <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
                 <div className="userText">
-                        <h1>{userDetails.userName}</h1>
+                        <h1>{fields.userName as string}</h1>
 
                         {isEditing ? (
                             <textarea
-                                value={userDetails.bio}
-                                onChange={(e) => 
-                                    setUserDetails({...userDetails, bio: e.target.value})}
+                                id="bio"
+                                value={fields.bio as string}
+                                onChange={handleChange}
                             />
                         ) : (
-                            <p>{userDetails.bio}</p>
+                            <p>{fields.bio as string}</p>
                         )} 
 
                         
@@ -45,27 +50,24 @@ export default function UserAccount() {
                         {isEditing ? (
                             <>
                                 <input
-                                    value={userDetails.email}
-                                    onChange={(e) => 
-                                        setUserDetails({...userDetails, email: e.target.value})
-                                    }
+                                    id="email"
+                                    value={fields.email as string}
+                                    onChange={handleChange}
                                 />  
 
                                 <input
-                                    value={userDetails.phone}
-                                    onChange={(e) => 
-                                        setUserDetails({...userDetails, phone: e.target.value})
-                                    }
+                                    id="phone"
+                                    value={fields.phone as string}
+                                    onChange={handleChange}
                                 /> 
 
                                 <input
-                                    value={userDetails.preferredContact}
-                                    onChange={(e) => 
-                                        setUserDetails({...userDetails, preferredContact: e.target.value})
-                                    }
+                                    id="preferredContact"
+                                    value={fields.preferredContact as string}
+                                    onChange={handleChange}
                                 /> 
                             </>
-                        ) : (<p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>)}
+                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}
                         
                         <button type="submit" onClick={() => setIsEditing(!isEditing)}>
                             {isEditing ? "Save" : "Edit"} Profile
