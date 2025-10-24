@@ -6,7 +6,7 @@ import filterOptionsData from "../../../jsonData/filterOptions.json";
 import type { Item, ActiveFilters, FilterOption } from "../../../types";
 import SellPage from '../sellComponent/sellPage';
 
-export default function MarketplacePage({ items, onAddItem }: { items: Item[]; onAddItem: (item: Item) => void }) {
+export default function MarketplacePage({ items, onAddItem }: { items: Item[]; onAddItem: (item: Omit<Item, 'id'>) => void }) {
     // state for filter options
     const [filterOptions] = useState<FilterOption[]>(filterOptionsData);
     

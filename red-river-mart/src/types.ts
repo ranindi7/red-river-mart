@@ -57,7 +57,7 @@ export interface User {
   preferredContact: string;
 };
 export interface FormItem {
-    onAddItem: (newItem: Item) => void;
+    onAddItem: (newItem: Omit<Item, 'id'>) => void;
 }
 
 export interface MarketplaceContainerProp {
