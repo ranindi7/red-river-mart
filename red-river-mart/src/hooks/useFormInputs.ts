@@ -5,18 +5,25 @@ separate useState calls for each input.
 */
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-
-interface FieldsType {
-    [inputField: string]: string | File | null 
-}
+import type { FieldsType, ErrorsType } from "../types";
+import { validateForm } from "../service/validationService";
 
 export function useFormInputs(
     initialState: FieldsType
 ): {
     fields: FieldsType;
+    errors: ErrorsType;
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    validate: () => boolean;
 } {
     const [fields, setFields] = useState(initialState);
+    const [errors, setErrors] = useState<ErrorsType>({})
+
+    const validate = (): boolean => {
+        const newErrors = validateForm(fields);
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { id, type, value, files } = event.target as HTMLInputElement;
@@ -34,5 +41,5 @@ export function useFormInputs(
         }
     }  
     
-    return { fields, handleChange }  
+    return { fields, handleChange, errors, validate }  
 }

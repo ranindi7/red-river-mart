@@ -63,3 +63,11 @@ export interface FormItem {
 export interface MarketplaceContainerProp {
     path: string;
 }
+
+export interface FieldsType {
+    [key: string]: string | File | null;
+}
+
+export interface ErrorsType {
+    [key: string]: string;
+}
