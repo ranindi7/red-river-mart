@@ -3,16 +3,16 @@ import "./userAccountComponent.css"
 import { useState } from "react";
 import type { Item } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
-import userInfo from "../../../jsonData/userInfo.json"
+import { userData } from "../../../apis/userTestData";
 import { useFormInputs } from "../../../hooks/useFormInputs";
 
 export default function UserAccount() {
     const{fields, handleChange} = useFormInputs({
-        userName: userInfo[0].userName,
-        bio: userInfo[0].bio,
-        email: userInfo[0].email,
-        phone: userInfo[0].phone,
-        preferredContact: userInfo[0].preferredContact
+        userName: userData[0].userName,
+        bio: userData[0].bio,
+        email: userData[0].email,
+        phone: userData[0].phone,
+        preferredContact: userData[0].preferredContact
     })
 
     const [isEditing, setIsEditing] = useState(false);
