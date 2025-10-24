@@ -21,6 +21,9 @@ export default function UserAccount() {
     return(
         <main>
             <div className="editProfile">
+                <button type="submit" onClick={() => setIsEditing(!isEditing)}>
+                    {isEditing ? "Save" : "Edit"} Profile
+                </button>
             </div>
 
             <section className="userInfo">
@@ -44,6 +47,7 @@ export default function UserAccount() {
 
                         {isEditing ? (
                             <>
+                                <label><b>Email: </b></label>
                                 <input
                                     value={userDetails.email}
                                     onChange={(e) => 
@@ -51,6 +55,7 @@ export default function UserAccount() {
                                     }
                                 />  
 
+                                <label><b>Phone: </b></label>
                                 <input
                                     value={userDetails.phone}
                                     onChange={(e) => 
@@ -58,6 +63,7 @@ export default function UserAccount() {
                                     }
                                 /> 
 
+                                <label><b>Preferred Method of Contact: </b></label>
                                 <input
                                     value={userDetails.preferredContact}
                                     onChange={(e) => 
@@ -65,12 +71,7 @@ export default function UserAccount() {
                                     }
                                 /> 
                             </>
-                        ) : (<p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>)}
-                        
-                        <button type="submit" onClick={() => setIsEditing(!isEditing)}>
-                            {isEditing ? "Save" : "Edit"} Profile
-                        </button>
-
+                        ) : (<p> <b>Email:</b> {userDetails.email} <b>| Phone: </b>{userDetails.phone} <b>| Preferred Method of Contact: </b>{userDetails.preferredContact}</p>)}                      
                     </div>
                 </div>
             </section>
