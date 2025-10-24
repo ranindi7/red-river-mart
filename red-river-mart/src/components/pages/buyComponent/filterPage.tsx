@@ -1,14 +1,12 @@
 import type { FilterItemsProps, FilterOption } from "../../../types";
 
-// vscode fixed this import automatically ie. FilterItemsProps
-export default function FilterItems({ activeFilters, setActiveFilters, filterOptions }: FilterItemsProps & { filterOptions: FilterOption[] }) {
-
+export default function FilterItems({ activeFilters, setActiveFilters, filterOptions, onOpenModal }: FilterItemsProps & { filterOptions: FilterOption[]; onOpenModal: () => void }) {
+    
     // reset filters button
     const handleResetFilters = () => {
         setActiveFilters({ category: "all", sort: "none" });
     };
 
-    
     return (
         <section className="FilterPage">
             
@@ -35,6 +33,10 @@ export default function FilterItems({ activeFilters, setActiveFilters, filterOpt
                     );
                 })}
             </ul>
+            <div className="SellToggle">
+                <h4>Want to sell an item?</h4>
+                <button onClick={onOpenModal}>Sell</button>
+            </div>
         </section>
     );
 };
