@@ -1,18 +1,20 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
 import "./userAccountComponent.css"
 import { useState } from "react";
-import type { Item } from "../../../types";
+import type { Item, User } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
-import { userData } from "../../../apis/userTestData";
 import { useFormInputs } from "../../../hooks/useFormInputs";
+import { getUserById } from "../../../apis/userRepo";
 
 export default function UserAccount() {
+    const user: User = getUserById(1)
+
     const{fields, handleChange} = useFormInputs({
-        userName: userData[0].userName,
-        bio: userData[0].bio,
-        email: userData[0].email,
-        phone: userData[0].phone,
-        preferredContact: userData[0].preferredContact
+        userName: user.userName,
+        bio: user.bio,
+        email: user.email,
+        phone: user.phone,
+        preferredContact: user.preferredContact
     })
 
     const [isEditing, setIsEditing] = useState(false);
