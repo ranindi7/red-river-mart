@@ -19,7 +19,10 @@ export default function Nav() {
             <NavLink to="/account">Account</NavLink>
           </li>
            <li>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login">Login</NavLink> 
+          </li>
+           <li>
+            <NavLink to="/forum">Forum</NavLink>
           </li>
         </ul>
       </nav>

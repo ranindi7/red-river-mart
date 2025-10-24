@@ -1,3 +1,28 @@
+export interface Forum {
+  id: number;
+  subject?: string;
+  title: string;
+  date: string;
+  description: string;
+  comments?: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  text: string;
+  user: string; 
+}
+
+export interface ForumPost {
+    onAddForum: (newForum: Forum) => void;
+}
+
+export interface SearchFilter  {
+  searchFilter: string;
+  handleSearchChange: (newValue: string) => void;
+  handleSubmit: () => void;
+};
+
 export interface Message {
   id: number;
   user: string;
