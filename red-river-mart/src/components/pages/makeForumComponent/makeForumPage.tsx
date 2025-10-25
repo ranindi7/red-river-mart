@@ -1,15 +1,15 @@
-import { useState } from "react";
 import type { ForumPost } from "../../../types";
 import type { Forum } from "../../../types";
 import "./makeForumPage.css";
+import { useFormInputs } from "../../../hooks/useFormInputs";
 
 function MakeForum({ onAddForum }: ForumPost) {
-  // This state stores the subject in the input value
-  const [subject, setSubject] = useState("");
-  // This stores the title in the input value
-  const [title, setTitle] = useState("");
-  // This stores the description input value
-  const [description, setDescription] = useState("");
+  // Uses the useFormInput custom hook that manages the field states 
+  const { fields, handleChange } = useFormInputs({
+    subject: "",
+    title: "",
+    description: "",
+  });
 
   // This handles the submission of the new form
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,17 +18,14 @@ function MakeForum({ onAddForum }: ForumPost) {
     // This creates a new forum object
     const newForum: Forum = {
       id: Date.now(),
-      subject,
-      title,
-      description,
+      subject: fields.subject as string,
+      title: fields.title as string,
+      description: fields.description as string,
       date: new Date().toLocaleDateString(),
     };
     
     // This calls the  newForum function to add the forum on the list
     onAddForum(newForum);
-    setSubject("");
-    setTitle("");
-    setDescription("");
   };
 
   return (
@@ -36,21 +33,24 @@ function MakeForum({ onAddForum }: ForumPost) {
       <h2>Create your Forum</h2>
       <form className="makeForumForm" onSubmit={handleSubmit}>
         <input
+          id="subject"
           type="text"
           placeholder="Subject"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          value={fields.subject as string}
+          onChange={handleChange}
         />
         <input
+          id="title"
           type="text"
           placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={fields.title as string}
+          onChange={handleChange}
         />
         <textarea
+          id="description"
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={fields.description as string}
+          onChange={handleChange}
         />
         <button type="submit">Create Forum</button>
       </form>
