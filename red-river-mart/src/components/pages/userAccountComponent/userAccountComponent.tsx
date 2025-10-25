@@ -26,6 +26,9 @@ export default function UserAccount() {
     return(
         <main>
             <div className="editProfile">
+                <button type="submit" onClick={() => setIsEditing(!isEditing)}>
+                    {isEditing ? "Save" : "Edit"} Profile
+                </button>
             </div>
 
             <section className="userInfo">
@@ -49,29 +52,29 @@ export default function UserAccount() {
 
                         {isEditing ? (
                             <>
+                                <label><b>Email: </b></label>
                                 <input
                                     id="email"
                                     value={fields.email as string}
                                     onChange={handleChange}
                                 />  
 
+                                <label><b>Phone: </b></label>
                                 <input
                                     id="phone"
                                     value={fields.phone as string}
                                     onChange={handleChange}
                                 /> 
 
+                                <label><b>Preferred Method of Contact: </b></label>
                                 <input
                                     id="preferredContact"
                                     value={fields.preferredContact as string}
                                     onChange={handleChange}
                                 /> 
                             </>
+
                         ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}
-                        
-                        <button type="submit" onClick={() => setIsEditing(!isEditing)}>
-                            {isEditing ? "Save" : "Edit"} Profile
-                        </button>
 
                     </div>
                 </div>
