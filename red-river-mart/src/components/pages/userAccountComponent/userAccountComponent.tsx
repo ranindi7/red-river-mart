@@ -7,7 +7,7 @@ import userInfo from "../../../jsonData/userInfo.json"
 import { useFormInputs } from "../../../hooks/useFormInputs";
 
 export default function UserAccount() {
-    const{fields, handleChange} = useFormInputs({
+    const{fields, errors, handleChange, validate} = useFormInputs({
         userName: userInfo[0].userName,
         bio: userInfo[0].bio,
         email: userInfo[0].email,
@@ -23,12 +23,32 @@ export default function UserAccount() {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
 
+    const handleSaveEdit = () => {
+        if (isEditing) {
+            const isValid = validate();
+            if (isValid) {
+                console.log("Validation successful. Saving changes:", fields);
+                setIsEditing(false);
+            } else {
+                console.log("Validation failed. Errors:", errors);
+            }
+        } else {
+            setIsEditing(true);
+        }
+    };
+
+    const ErrorMessage = ({ fieldName }: { fieldName: string }) => (
+        errors[fieldName] 
+            ? <span style={{color: "red", display: "block", marginTop: "5px"}}>{errors[fieldName]}</span> 
+            : null
+    );
+
     return(
         <main>
             <div className="editProfile">
-                <button type="submit" onClick={() => setIsEditing(!isEditing)}>
-                    {isEditing ? "Save" : "Edit"} Profile
-                </button>
+                        <button type="submit" onClick={handleSaveEdit}>
+                            {isEditing ? "Save" : "Edit"} Profile
+                        </button>
             </div>
 
             <section className="userInfo">
@@ -44,9 +64,10 @@ export default function UserAccount() {
                             />
                         ) : (
                             <p>{fields.bio as string}</p>
-                        )} 
+                            
+                        )}
+                        {isEditing && <ErrorMessage fieldName="bio" />}
 
-                        
                         <div className="contactInfo">
                         <h4>Contact Information: </h4> 
 
@@ -58,13 +79,17 @@ export default function UserAccount() {
                                     value={fields.email as string}
                                     onChange={handleChange}
                                 />  
+                                {isEditing && <ErrorMessage fieldName="email" />}
 
                                 <label><b>Phone: </b></label>
+
                                 <input
                                     id="phone"
                                     value={fields.phone as string}
                                     onChange={handleChange}
                                 /> 
+                                {isEditing && <ErrorMessage fieldName="phone" />}
+
 
                                 <label><b>Preferred Method of Contact: </b></label>
                                 <input
@@ -72,10 +97,9 @@ export default function UserAccount() {
                                     value={fields.preferredContact as string}
                                     onChange={handleChange}
                                 /> 
+                                {isEditing && <ErrorMessage fieldName="preferredContact" />}
                             </>
-
-                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}
-
+                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}                        
                     </div>
                 </div>
             </section>
