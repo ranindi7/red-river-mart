@@ -1,5 +1,5 @@
 import type { Item } from "../types";
-import itemData from "../jsonData/itemData.json" 
+import { itemData } from "../apis/mockItemRepo"
 
 let items: Item[] = [...itemData];
 let nextId: number = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
