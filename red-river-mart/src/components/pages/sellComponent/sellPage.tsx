@@ -30,8 +30,7 @@ export default function SellPage ({onAddItem}: FormItem) {
     }
 
     // create a new item object
-    const newItem: Item = {
-      id: Date.now(),
+    const newItem: Omit<Item, 'id'> = {
       name: fields.name as string,
       category: fields.category as string,
       price: parseFloat(fields.price as string),

@@ -46,9 +46,9 @@ export default function UserAccount() {
     return(
         <main>
             <div className="editProfile">
-                        <button type="submit" onClick={handleSaveEdit}>
-                            {isEditing ? "Save" : "Edit"} Profile
-                        </button>
+                <button type="submit" onClick={handleSaveEdit}>
+                    {isEditing ? "Save" : "Edit"} Profile
+                </button>
             </div>
 
             <section className="userInfo">
@@ -90,7 +90,6 @@ export default function UserAccount() {
                                 /> 
                                 {isEditing && <ErrorMessage fieldName="phone" />}
 
-
                                 <label><b>Preferred Method of Contact: </b></label>
                                 <input
                                     id="preferredContact"
@@ -99,8 +98,9 @@ export default function UserAccount() {
                                 /> 
                                 {isEditing && <ErrorMessage fieldName="preferredContact" />}
                             </>
-                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}                        
-                    </div>
+                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)                      
+                        }   
+                        </div>
                 </div>
             </section>
 
