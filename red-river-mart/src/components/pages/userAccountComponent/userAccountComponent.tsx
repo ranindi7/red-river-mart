@@ -82,6 +82,7 @@ export default function UserAccount() {
                                 {isEditing && <ErrorMessage fieldName="email" />}
 
                                 <label><b>Phone: </b></label>
+
                                 <input
                                     id="phone"
                                     value={fields.phone as string}
