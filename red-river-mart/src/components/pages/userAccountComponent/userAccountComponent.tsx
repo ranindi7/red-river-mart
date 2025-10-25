@@ -98,7 +98,8 @@ export default function UserAccount() {
                                 {isEditing && <ErrorMessage fieldName="preferredContact" />}
                             </>
                         ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)                      
-                    </div>
+                        }   
+                        </div>
                 </div>
             </section>
 
