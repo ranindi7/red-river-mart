@@ -100,9 +100,9 @@
     text-align: left;
 }
 
-.forumPost p.category {
+.forumPost p.subject {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: grey;
     text-align: left;
 }
@@ -207,7 +207,7 @@
 }
 
 .commentInputSection textarea {
-    width: 325px;
+    width: 240px;
     height: 36px;
     padding: 6px 10px;
     border-radius: 8px;
