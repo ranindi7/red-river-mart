@@ -46,7 +46,7 @@ export default function UserAccount() {
     return(
         <main>
             <div className="editProfile">
-                <button type="submit" onClick={() => setIsEditing(!isEditing)}>
+                <button type="submit" onClick={handleSaveEdit}>
                     {isEditing ? "Save" : "Edit"} Profile
                 </button>
             </div>
