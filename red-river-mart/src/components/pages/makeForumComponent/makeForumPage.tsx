@@ -4,18 +4,22 @@ import "./makeForumPage.css";
 import { useFormInputs } from "../../../hooks/useFormInputs";
 
 function MakeForum({ onAddForum }: ForumPost) {
-  // Uses the useFormInput custom hook that manages the field states 
-  const { fields, handleChange } = useFormInputs({
+  // useFormInputs manages form state and validation
+  const { fields, handleChange, errors, validate } = useFormInputs({
     subject: "",
     title: "",
     description: "",
   });
 
-  // This handles the submission of the new form
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // This creates a new forum object
+    // runs the validateForm and returns true if there are no errors, stops the form submission if the field validaiton fails
+    if (!validate()) {
+      return; 
+    }
+
+    // create a new forum object
     const newForum: Forum = {
       id: Date.now(),
       subject: fields.subject as string,
@@ -23,8 +27,8 @@ function MakeForum({ onAddForum }: ForumPost) {
       description: fields.description as string,
       date: new Date().toLocaleDateString(),
     };
-    
-    // This calls the  newForum function to add the forum on the list
+
+    // add the new forum to the list
     onAddForum(newForum);
   };
 
@@ -39,6 +43,8 @@ function MakeForum({ onAddForum }: ForumPost) {
           value={fields.subject as string}
           onChange={handleChange}
         />
+        {errors.subject && <p className="error">{errors.subject}</p>}
+
         <input
           id="title"
           type="text"
@@ -46,12 +52,16 @@ function MakeForum({ onAddForum }: ForumPost) {
           value={fields.title as string}
           onChange={handleChange}
         />
+        {errors.title && <p className="error">{errors.title}</p>}
+
         <textarea
           id="description"
           placeholder="Description"
           value={fields.description as string}
           onChange={handleChange}
         />
+        {errors.description && <p className="error">{errors.description}</p>}
+
         <button type="submit">Create Forum</button>
       </form>
     </div>
