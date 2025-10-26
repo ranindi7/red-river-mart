@@ -1,13 +1,13 @@
 import "./forumPage.css";
 import { useState } from "react";
-import forumData from "../../../jsonData/forumData.json";
 import type { Forum, Comment } from "../../../types";
 import MakeForum from "../makeForumComponent/makeForumPage";
 import { SearchFilter } from "./searchFilter";
+import { getAllForums, createForum } from "../../../apis/mockForumRepo";
 
 export default function ForumPage() {
   // The state for the forums
-  const [forums, setForums] = useState<Forum[]>(forumData);
+  const [forums, setForums] = useState<Forum[]>(getAllForums());
   // This state tracks the user comment inputs on the forum
   const [commentInputs, setCommentInputs] = useState<{ [key: number]: string }>({});
   // The search input and the current active query search
@@ -162,9 +162,10 @@ return (
                     <div className="ModalForm" onClick={e => e.stopPropagation()}>
                         <button className="ModalClose" onClick={() => setShowModal(false)}>X</button>
                         <MakeForum
-                            onAddForum={newForum => {
-                                handleAddForum(newForum);
-                                setShowModal(false);
+                          onAddForum={(newForumData) => {
+                              const newForum = createForum(newForumData);
+                              handleAddForum(newForum);
+                              setShowModal(false);
                             }}
                         />
                     </div>
