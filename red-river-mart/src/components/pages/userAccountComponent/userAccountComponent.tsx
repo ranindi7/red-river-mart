@@ -4,10 +4,10 @@ import { useState } from "react";
 import type { Item, User } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
 import { useFormInputs } from "../../../hooks/useFormInputs";
-import { getUserById } from "../../../apis/userRepo";
+import { getUserById, updateUser } from "../../../apis/userRepo";
 
 export default function UserAccount() {
-    const user: User = getUserById(1)
+    const [user] = useState<User>(getUserById(1));
 
     const{fields, handleChange} = useFormInputs({
         userName: user.userName,
@@ -24,6 +24,28 @@ export default function UserAccount() {
     const removeWishlistItem = (id: number) => {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
+
+    const handleSaveEdit = async () => {
+        if(isEditing) {
+            const updatedUser: User = {
+                id: user.id,
+                userName: fields.userName as string,
+                bio: fields.bio as string,
+                email: fields.email as string,
+                phone: fields.phone as string,
+                preferredContact: fields.preferredContact as string,
+            };
+
+            try {
+                await updateUser(updatedUser);
+                setIsEditing(false);
+            } catch (error) {
+                alert("Something went wrong. Please try again.")
+            }
+        } else {
+            setIsEditing(true);
+        }
+    }
 
     return(
         <main>
@@ -71,7 +93,7 @@ export default function UserAccount() {
                             </>
                         ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)}
                         
-                        <button type="submit" onClick={() => setIsEditing(!isEditing)}>
+                        <button type="submit" onClick={handleSaveEdit}>
                             {isEditing ? "Save" : "Edit"} Profile
                         </button>
 
