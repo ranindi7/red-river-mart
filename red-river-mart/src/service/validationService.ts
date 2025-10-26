@@ -1,5 +1,5 @@
 /**
-This is a function called validateForm.
+This is a service function called validateForm.
 It validates the form fields based on defined business rules.
 The parameters are FieldType which is the object containing all form field values.
 This will return an object containing error messages, keyed by field name.
