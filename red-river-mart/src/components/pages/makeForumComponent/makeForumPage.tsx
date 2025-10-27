@@ -13,14 +13,15 @@ function MakeForum({ onAddForum }: ForumPost) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    if (!validate()) {
+      return; 
+    }
     // This calls the createForum from forumRepo to create a new forum
     const newForum = createForum ({
       subject: fields.subject as string,
       title: fields.title as string,
       description: fields.description as string,
     });
-    console.log(" Forum created:", newForum);
     
     // This calls the  newForum function to add the forum on the list
     onAddForum(newForum);

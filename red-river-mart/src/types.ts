@@ -23,19 +23,6 @@ export interface SearchFilter  {
   handleSubmit: () => void;
 };
 
-export interface Message {
-  id: number;
-  user: string;
-  text: string;
-}
-
-export interface messageRequest {
-  id: number;
-  user: string;
-  text: string;
-}
-
-
 export interface Item {
   id: number;
   name: string;
