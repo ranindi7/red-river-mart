@@ -1,7 +1,7 @@
 import type { ForumPost } from "../../../types";
-import type { Forum } from "../../../types";
 import "./makeForumPage.css";
 import { useFormInputs } from "../../../hooks/useFormInputs";
+import { createForum } from "../../../apis/mockForumRepo";
 
 function MakeForum({ onAddForum }: ForumPost) {
   // Uses the useFormInput custom hook that manages the field states 
@@ -15,14 +15,13 @@ function MakeForum({ onAddForum }: ForumPost) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // This creates a new forum object
-    const newForum: Forum = {
-      id: Date.now(),
+    // This calls the createForum from forumRepo to create a new forum
+    const newForum = createForum ({
       subject: fields.subject as string,
       title: fields.title as string,
       description: fields.description as string,
-      date: new Date().toLocaleDateString(),
-    };
+    });
+    console.log(" Forum created:", newForum);
     
     // This calls the  newForum function to add the forum on the list
     onAddForum(newForum);
