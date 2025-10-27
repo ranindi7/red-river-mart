@@ -7,6 +7,7 @@ import { useFormInputs } from "../../../hooks/useFormInputs";
 import { getUserById, updateUser } from "../../../apis/userRepo";
 
 export default function UserAccount() {
+    // uses getUserById method to get user with ID 1 from mock data
     const [user] = useState<User>(getUserById(1));
 
     const{fields, handleChange} = useFormInputs({
@@ -27,6 +28,7 @@ export default function UserAccount() {
 
     const handleSaveEdit = async () => {
         if(isEditing) {
+            // object with current field values (valies typed into inputs)
             const updatedUser: User = {
                 id: user.id,
                 userName: fields.userName as string,
@@ -36,11 +38,13 @@ export default function UserAccount() {
                 preferredContact: fields.preferredContact as string,
             };
 
+            // calls updateUser repo method to replace old user with new one, shows alert if something goes wrong and logs error for mroe details
             try {
                 await updateUser(updatedUser);
                 setIsEditing(false);
             } catch (error) {
                 alert("Something went wrong. Please try again.")
+                console.error(error)
             }
         } else {
             setIsEditing(true);
