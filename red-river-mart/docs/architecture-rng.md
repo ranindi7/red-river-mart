@@ -62,25 +62,25 @@ The logic to include in this implementation was being able to check the values f
 The service is mainly used in the hook whcih is then imported and implemented in specific components.
 For the user account page it is used in validating:
 - userName
-* Checked to ensure it is not empty.
-* Must be at least 3 characters.
-* Cannot exceed 20 characters.
+    * Checked to ensure it is not empty.
+    * Must be at least 3 characters.
+    * Cannot exceed 20 characters.
 
 - bio
-* Checked to ensure it is not empty.
-* Must be at least 3 characters.
-* Cannot exceed 200 characters.
+    * Checked to ensure it is not empty.
+    * Must be at least 3 characters.
+    * Cannot exceed 200 characters.
 
 - email
-* Checked to ensure it is not empty.
-* Validated using a regex pattern (/^\S+@\S+\.\S+$/) to ensure proper email format.
+    * Checked to ensure it is not empty.
+    * Validated using a regex pattern (/^\S+@\S+\.\S+$/) to ensure proper email format.
 
 - phone
-* Checked to ensure it is not empty.
-* Validated using a regex (/^\d{10}$/) to ensure it is exactly 10 digits.
+    * Checked to ensure it is not empty.
+    * Validated using a regex (/^\d{10}$/) to ensure it is exactly 10 digits.
 
 - preferredContact
-* Checked to ensure it is not empty.
-* Must be at least 3 characters.
-* Cannot exceed 20 characters.
+    * Checked to ensure it is not empty.
+    * Must be at least 3 characters.
+    * Cannot exceed 20 characters.
 
