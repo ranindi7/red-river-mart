@@ -1,18 +1,21 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
 import "./userAccountComponent.css"
 import { useState } from "react";
-import type { Item } from "../../../types";
+import type { Item, User } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
-import userInfo from "../../../jsonData/userInfo.json"
 import { useFormInputs } from "../../../hooks/useFormInputs";
+import { getUserById, updateUser } from "../../../apis/userRepo";
 
 export default function UserAccount() {
+    // uses getUserById method to get user with ID 1 from mock data
+    const [user] = useState<User>(getUserById(1));
+
     const{fields, errors, handleChange, validate} = useFormInputs({
-        userName: userInfo[0].userName,
-        bio: userInfo[0].bio,
-        email: userInfo[0].email,
-        phone: userInfo[0].phone,
-        preferredContact: userInfo[0].preferredContact
+        userName: user.userName,
+        bio: user.bio,
+        email: user.email,
+        phone: user.phone,
+        preferredContact: user.preferredContact
     })
 
     const [isEditing, setIsEditing] = useState(false);
@@ -23,12 +26,30 @@ export default function UserAccount() {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
 
-    const handleSaveEdit = () => {
-        if (isEditing) {
+    const handleSaveEdit = async () => {
+        if(isEditing) {
             const isValid = validate();
+          
             if (isValid) {
-                console.log("Validation successful. Saving changes:", fields);
-                setIsEditing(false);
+              // object with current field values (valies typed into inputs)
+              const updatedUser: User = {
+                  id: user.id,
+                  userName: fields.userName as string,
+                  bio: fields.bio as string,
+                  email: fields.email as string,
+                  phone: fields.phone as string,
+                  preferredContact: fields.preferredContact as string,
+              };
+
+              // calls updateUser repo method to replace old user with new one, shows alert if something goes wrong and logs error for mroe details
+              try {
+                  await updateUser(updatedUser);
+                  console.log("Validation successful. Saving changes:", fields);
+                  setIsEditing(false);
+              } catch (error) {
+                  alert("Something went wrong. Please try again.")
+                  console.error(error)
+              }
             } else {
                 console.log("Validation failed. Errors:", errors);
             }

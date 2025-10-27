@@ -74,7 +74,7 @@ export interface ProductInfo {
 }
 
 export interface User {
-  id: string;
+  id: number;
   userName: string;
   bio: string;
   email: string;
