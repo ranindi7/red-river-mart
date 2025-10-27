@@ -4,14 +4,13 @@ import { useFormInputs } from "../../../hooks/useFormInputs";
 import { createForum } from "../../../apis/mockForumRepo";
 
 function MakeForum({ onAddForum }: ForumPost) {
-  // Uses the useFormInput custom hook that manages the field states 
-  const { fields, handleChange } = useFormInputs({
+  // useFormInputs manages form state and validation
+  const { fields, handleChange, errors, validate } = useFormInputs({
     subject: "",
     title: "",
     description: "",
   });
 
-  // This handles the submission of the new form
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -38,6 +37,8 @@ function MakeForum({ onAddForum }: ForumPost) {
           value={fields.subject as string}
           onChange={handleChange}
         />
+        {errors.subject && <p className="error">{errors.subject}</p>}
+
         <input
           id="title"
           type="text"
@@ -45,12 +46,16 @@ function MakeForum({ onAddForum }: ForumPost) {
           value={fields.title as string}
           onChange={handleChange}
         />
+        {errors.title && <p className="error">{errors.title}</p>}
+
         <textarea
           id="description"
           placeholder="Description"
           value={fields.description as string}
           onChange={handleChange}
         />
+        {errors.description && <p className="error">{errors.description}</p>}
+
         <button type="submit">Create Forum</button>
       </form>
     </div>
