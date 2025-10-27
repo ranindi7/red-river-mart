@@ -1,7 +1,7 @@
 import type { ForumPost } from "../../../types";
-import type { Forum } from "../../../types";
 import "./makeForumPage.css";
 import { useFormInputs } from "../../../hooks/useFormInputs";
+import { createForum } from "../../../apis/mockForumRepo";
 
 function MakeForum({ onAddForum }: ForumPost) {
   // useFormInputs manages form state and validation
@@ -14,21 +14,15 @@ function MakeForum({ onAddForum }: ForumPost) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // runs the validateForm and returns true if there are no errors, stops the form submission if the field validaiton fails
-    if (!validate()) {
-      return; 
-    }
-
-    // create a new forum object
-    const newForum: Forum = {
-      id: Date.now(),
+    // This calls the createForum from forumRepo to create a new forum
+    const newForum = createForum ({
       subject: fields.subject as string,
       title: fields.title as string,
       description: fields.description as string,
-      date: new Date().toLocaleDateString(),
-    };
-
-    // add the new forum to the list
+    });
+    console.log(" Forum created:", newForum);
+    
+    // This calls the  newForum function to add the forum on the list
     onAddForum(newForum);
   };
 
