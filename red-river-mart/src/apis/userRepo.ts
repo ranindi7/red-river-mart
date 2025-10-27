@@ -3,7 +3,7 @@ Data repository to handle logic related to user data
 */
 
 import type { User } from "../types";
-import { userData } from "./userTestData";
+import { userData } from "./userMockRepo";
 
 // Determines what the next user ID would be to ensure new created users get their own unique ID
 let nextId: number = userData.length > 0 ? Math.max(...userData.map(user => user.id)) + 1 : 1;
