@@ -4,7 +4,6 @@ export default function ItemPage({ items }: { items: Item[] }) {
 
   return (
     <section className="ItemPage">
-      <h2>Marketplace</h2>
       <div>
         {items.map((item) => (
           <article key={item.id} className="itemOption">

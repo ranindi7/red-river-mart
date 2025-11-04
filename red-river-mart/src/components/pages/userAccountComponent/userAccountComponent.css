@@ -1,11 +1,6 @@
-body {
-    background-color: #f9f3ed;
-    color: black;
-}
-
 .userInfo img {
-    height: 200px;
-    width: auto;
+  height: 200px;
+  width: auto;
 }
 
 .userProducts ul {
@@ -20,11 +15,19 @@ body {
   display: flex;
   align-items: center;           
   padding: 20px; 
-  border-bottom: 2px solid #550000; 
+  border-bottom: 2px solid #9c102d; 
 }
 
 .userWishlist {
-  border-left: 2px solid #550000;  
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userProducts {
+  border-right: 2px solid #9c102d;
+  padding: 20px;
+  padding-right: 5%;
 }
 
 .userText {
@@ -45,14 +48,42 @@ body {
 }
 
 button {
-  background-color: #550000;
+  background-color: #9c102d;
   color: white;
 }
 
 .userWishlist ul {
   list-style: none;      
   display: grid;          
-  grid-template-columns: repeat(3, 1fr); /*https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items*/
+  grid-template-columns: repeat(3, 1fr); /*https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items*/ 
   gap: 20px;   
-  padding: 20px;                       
+  padding: 20px;   
+  min-height: 300px;                    
+}
+
+main {
+  margin-top: 120px; 
+}
+
+.userProducts, .userWishlist {
+  flex: 1;
+  min-height: 450px;
+}
+
+/*https://blog.mathieu-leplatre.info/placeholder-for-empty-lists-in-css.html*/
+.wishlistProducts:empty::after { 
+  content: "No Items Available";
+}
+
+.wishlistProducts:empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  color: grey;
+}
+
+label { 
+  padding-left: 10px;
+  padding-right: 5px;
 }

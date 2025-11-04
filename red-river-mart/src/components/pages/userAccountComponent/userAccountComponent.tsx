@@ -1,17 +1,24 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
 import "./userAccountComponent.css"
 import { useState } from "react";
-import type { Item } from "../../../types";
+import type { Item, User } from "../../../types";
 import itemDetails from "../../../jsonData/itemDetails.json"
+import { useFormInputs } from "../../../hooks/useFormInputs";
+import { getUserById, updateUser } from "../../../apis/userRepo";
 
 export default function UserAccount() {
-    const userDetails = {
-        userName: "Ranindi Gunasekera",
-        bio: "Hello! I am a student in the AD&D program and I am interested in buying and selling computer parts",
-        email: "ranindi@rrc.ca",
-        phone: "657-576-3756",
-        preferredContact: "Email/ In-app"
-    }; 
+    // uses getUserById method to get user with ID 1 from mock data
+    const [user] = useState<User>(getUserById(1));
+
+    const{fields, errors, handleChange, validate} = useFormInputs({
+        userName: user.userName,
+        bio: user.bio,
+        email: user.email,
+        phone: user.phone,
+        preferredContact: user.preferredContact
+    })
+
+    const [isEditing, setIsEditing] = useState(false);
 
     const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
 
@@ -19,23 +26,102 @@ export default function UserAccount() {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
 
+    const handleSaveEdit = async () => {
+        if(isEditing) {
+            const isValid = validate();
+          
+            if (isValid) {
+              // object with current field values (valies typed into inputs)
+              const updatedUser: User = {
+                  id: user.id,
+                  userName: fields.userName as string,
+                  bio: fields.bio as string,
+                  email: fields.email as string,
+                  phone: fields.phone as string,
+                  preferredContact: fields.preferredContact as string,
+              };
+
+              // calls updateUser repo method to replace old user with new one, shows alert if something goes wrong and logs error for mroe details
+              try {
+                  await updateUser(updatedUser);
+                  console.log("Validation successful. Saving changes:", fields);
+                  setIsEditing(false);
+              } catch (error) {
+                  alert("Something went wrong. Please try again.")
+                  console.error(error)
+              }
+            } else {
+                console.log("Validation failed. Errors:", errors);
+            }
+        } else {
+            setIsEditing(true);
+        }
+    };
+
+    const ErrorMessage = ({ fieldName }: { fieldName: string }) => (
+        errors[fieldName] 
+            ? <span style={{color: "red", display: "block", marginTop: "5px"}}>{errors[fieldName]}</span> 
+            : null
+    );
 
     return(
         <main>
             <div className="editProfile">
-                <button type="submit">Edit Profile</button>
+                <button type="submit" onClick={handleSaveEdit}>
+                    {isEditing ? "Save" : "Edit"} Profile
+                </button>
             </div>
 
             <section className="userInfo">
                 <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
                 <div className="userText">
-                        <h1>{userDetails.userName}</h1>
-                        <p>{userDetails.bio}</p>
-                        
+                        <h1>{fields.userName as string}</h1>
+
+                        {isEditing ? (
+                            <textarea
+                                id="bio"
+                                value={fields.bio as string}
+                                onChange={handleChange}
+                            />
+                        ) : (
+                            <p>{fields.bio as string}</p>
+                            
+                        )}
+                        {isEditing && <ErrorMessage fieldName="bio" />}
+
                         <div className="contactInfo">
                         <h4>Contact Information: </h4> 
-                        <p>Email: {userDetails.email} | Phone: {userDetails.phone} | Preferred Method of Contact: {userDetails.preferredContact}</p>
-                    </div>
+
+                        {isEditing ? (
+                            <>
+                                <label><b>Email: </b></label>
+                                <input
+                                    id="email"
+                                    value={fields.email as string}
+                                    onChange={handleChange}
+                                />  
+                                {isEditing && <ErrorMessage fieldName="email" />}
+
+                                <label><b>Phone: </b></label>
+
+                                <input
+                                    id="phone"
+                                    value={fields.phone as string}
+                                    onChange={handleChange}
+                                /> 
+                                {isEditing && <ErrorMessage fieldName="phone" />}
+
+                                <label><b>Preferred Method of Contact: </b></label>
+                                <input
+                                    id="preferredContact"
+                                    value={fields.preferredContact as string}
+                                    onChange={handleChange}
+                                /> 
+                                {isEditing && <ErrorMessage fieldName="preferredContact" />}
+                            </>
+                        ) : (<p>Email: {fields.email as string} | Phone: {fields.phone as string} | Preferred Method of Contact: {fields.preferredContact as string}</p>)                      
+                        }   
+                        </div>
                 </div>
             </section>
 
