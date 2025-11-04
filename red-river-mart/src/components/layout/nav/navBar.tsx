@@ -13,16 +13,13 @@ export default function Nav() {
             <NavLink to="/">Buy</NavLink>
           </li>
           <li>
-            <NavLink to="/sell">Sell</NavLink>
-            </li>
-          <li>
-            <NavLink to="/inbox">Inbox</NavLink>
-          </li>
-          <li>
             <NavLink to="/account">Account</NavLink>
           </li>
            <li>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login">Login</NavLink> 
+          </li>
+           <li>
+            <NavLink to="/forum">Forum</NavLink>
           </li>
         </ul>
       </nav>

@@ -1,15 +1,27 @@
-export interface Message {
+export interface Forum {
   id: number;
-  user: string;
-  text: string;
+  subject?: string;
+  title: string;
+  date: string;
+  description: string;
+  comments?: Comment[];
 }
 
-export interface messageRequest {
+export interface Comment {
   id: number;
-  user: string;
   text: string;
+  user: string; 
 }
 
+export interface ForumPost {
+    onAddForum: (newForum: Forum) => void;
+}
+
+export interface SearchFilter  {
+  searchFilter: string;
+  handleSearchChange: (newValue: string) => void;
+  handleSubmit: () => void;
+};
 
 export interface Item {
   id: number;
@@ -48,10 +60,26 @@ export interface ProductInfo {
   info: string;
 }
 
+export interface User {
+  id: number;
+  userName: string;
+  bio: string;
+  email: string;
+  phone: string;
+  preferredContact: string;
+};
 export interface FormItem {
-    onAddItem: (newItem: Item) => void;
+    onAddItem: (newItem: Omit<Item, 'id'>) => void;
 }
 
 export interface MarketplaceContainerProp {
     path: string;
+}
+
+export interface FieldsType {
+    [key: string]: string | File | null;
+}
+
+export interface ErrorsType {
+    [key: string]: string;
 }
