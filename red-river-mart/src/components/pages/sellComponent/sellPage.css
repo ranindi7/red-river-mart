@@ -66,8 +66,8 @@
 }
 
 .sellPage button[type="submit"]:hover {
-  background-color: #440000;
-  border-color: #440000;
+  background-color: #9c102d;
+  border-color: #9c102d;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
