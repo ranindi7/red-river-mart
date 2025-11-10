@@ -32,7 +32,7 @@ export default function SellPage ({onAddItem}: FormItem) {
     // create a new item object
     const newItem: Omit<Item, 'id'> = {
       name: fields.name as string,
-      category: fields.category as string,
+      category: (fields.category as string).toLowerCase(),
       price: parseFloat(fields.price as string),
       description: fields.description as string,
       src: URL.createObjectURL(fields.file as File),

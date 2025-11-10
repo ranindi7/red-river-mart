@@ -1,35 +1,28 @@
-import type { ProductInfo } from "../../../types";
 import "./productInfo.css";
-import usedMouse from "../../../assets/usedMouse.png";
+import type { Item } from "../../../types";
 
 
-const Info = () => {
-  const product: ProductInfo = {
-    id: 1,name: "Bayle Castillo", title: "Used Mouse", category: "Electronics", price: 15.0, info: "I dont need this mouse anymore selling for $15 OBO",
-  };
+export default function ProductInfo ({ item }: { item: Item }) {
+  const teamsLink = `https://teams.microsoft.com/l/chat/0/0?users=ngunasekera3@rrc.ca`;
 
   return (
-<section className="product">
-  <div className="productImageBox">
-    <img src={usedMouse} alt="Used Mouse" />
-  </div>
+    <section className="product">
+      <div className="productImageBox">
+        <img src={item.src} alt={item.name} />
+      </div>
 
-  <div className="productInfoContainer">
-    <h3>{product.name}</h3>
-    <h2>{product.title}</h2>
-    <h3>{product.category}</h3>
-    <h3>${product.price}</h3>
-    <div className="productInfoBox">
-    <p>{product.info}</p>
-    </div>
+      <div className="productInfoContainer">
+        <h1>{item.name}</h1>
+        <h3>{item.category.charAt(0).toUpperCase() + item.category.slice(1)}</h3>
+        <h3>${item.price.toFixed(2)}</h3>
+        <div className="productInfoBox">
+          <p>{item.description}</p>
+        </div>
 
-    <div className="sendMessage">
-      <input type="text" placeholder="Is this still for sale?" />
-      <button>Send</button>
-    </div>
-  </div>
-</section>
+        <a href={teamsLink} target="_blank" rel="noopener noreferrer">
+          <button className="messageButton">Message on Teams</button>
+        </a>
+      </div>
+    </section>
   );
 };
-
-export default Info;
