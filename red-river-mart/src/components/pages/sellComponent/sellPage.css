@@ -56,9 +56,9 @@
 .sellPage button[type="submit"] {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background-color: #550000;
+  background-color: #9c102d;
   color: #f9f3ed;
-  border: 1px solid #550000;
+  border: 1px solid #9c102d;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -66,8 +66,8 @@
 }
 
 .sellPage button[type="submit"]:hover {
-  background-color: #9c102d;
-  border-color: #9c102d;
+  background-color: #550000;
+  border-color: #550000;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }

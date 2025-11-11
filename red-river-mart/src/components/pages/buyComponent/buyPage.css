@@ -219,6 +219,20 @@
   text-align: center;
 }
 
+.ModalProduct {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(238, 238, 238, 0.10);
+  max-width: 1000px;
+  width: 70%;
+  text-align: center;
+}
+
 
 .ModalClose {
   position: absolute;
@@ -247,14 +261,14 @@
 }
 
 .SellToggle button {
-  background-color: #550000;
+  background-color: #9c102d;
   color: #f9f3ed;
-  border: 1px solid #550000;
+  border: 1px solid #9c102d;
 }
 
 .SellToggle button:hover {
-  background-color: #9c102d;
-  border-color: #9c102d;
+  background-color: #550000;
+  border-color: #550000;
 }
 
 @media (max-width: 1880px) {

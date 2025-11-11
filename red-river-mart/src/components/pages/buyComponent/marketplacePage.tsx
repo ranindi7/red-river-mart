@@ -5,6 +5,7 @@ import ItemPage from "./ItemPage";
 import filterOptionsData from "../../../jsonData/filterOptions.json";
 import type { Item, ActiveFilters, FilterOption } from "../../../types";
 import SellPage from '../sellComponent/sellPage';
+import ProductInfo from '../productInfoComponent/productInfo';
 
 export default function MarketplacePage({ items, onAddItem }: { items: Item[]; onAddItem: (item: Omit<Item, 'id'>) => void }) {
     // state for filter options
@@ -19,6 +20,9 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
         sort: "none",
     });
     
+    // state for active item
+    const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+
     // filter and sort items based on active filters
     const filteredAndSortedItems = items.filter((item) => {
         if (activeFilters.category === "all") {
@@ -43,6 +47,7 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
                 <span>Filters/Sell</span>
             </label>
             
+            {/* mobile filter */}
             <div className="mobileFilter">
                 <FilterItems
                 activeFilters={activeFilters}
@@ -62,8 +67,9 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
                 />
             </div>
 
-            <ItemPage items={filteredAndSortedItems} />
+            <ItemPage items={filteredAndSortedItems} onItemClick={(item) => setSelectedItem(item)}/>
 
+            {/* sell item modal */}
             {showSellModal && (
                 <div className="ModalBackground" onClick={() => setShowSellModal(false)}>
                     <div className="ModalForm" onClick={e => e.stopPropagation()}>
@@ -72,6 +78,16 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
                             onAddItem(item)
                             setShowSellModal(false)
                         }} />
+                    </div>
+                </div>
+            )}
+
+            {/* product listing modal */}
+            {selectedItem && (
+                <div className="ModalBackground" onClick={() => setSelectedItem(null)}>
+                    <div className="ModalProduct" onClick={e => e.stopPropagation()}>
+                        <button className="ModalClose" onClick={() => setSelectedItem(null)}>X</button>
+                        <ProductInfo item={selectedItem} />
                     </div>
                 </div>
             )}

@@ -1,10 +1,8 @@
 import "./signInComponent.css";
-import rrmLogo from '../../../assets/rrmLogo.png'
 
 export default function SignIn() {
     return (
         <section className="signInComponent">
-            <img src={rrmLogo} alt="Red River Mart Logo" className='logo'/>   
             <form>   
                 <h1>Sign In</h1>
                 <div className="emailContainer">

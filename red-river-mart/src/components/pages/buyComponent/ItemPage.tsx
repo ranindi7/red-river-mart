@@ -1,16 +1,18 @@
-import type { Item } from "../../../types";
+import type { ItemPageProps } from "../../../types";
 
-export default function ItemPage({ items }: { items: Item[] }) {
-
+export default function ItemPage({ items, onItemClick }: ItemPageProps) {
   return (
     <section className="ItemPage">
       <div>
         {items.map((item) => (
-          <article key={item.id} className="itemOption">
-            <img src={item.src} alt={item.name} height="100" />
+          <article
+            key={item.id}
+            className="itemOption"
+            onClick={() => onItemClick(item)}
+          >
+            <img src={item.src} alt={item.name} height={100} />
             <h3>{item.name}</h3>
             <p>${item.price.toFixed(2)}</p>
-            {/* <p>{item.category}</p> */}
           </article>
         ))}
       </div>

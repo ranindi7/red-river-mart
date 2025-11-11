@@ -30,7 +30,15 @@ export interface Item {
   price: number;
   description?: string;
   src: string;
+  sellerName?: string;
+  sellerEmail?: string;
 }
+
+export interface ItemPageProps {
+  items: Item[];
+  onItemClick: (item: Item) => void;
+}
+
 
 export interface ActiveFilters {
   category: string;
@@ -49,15 +57,6 @@ export interface FilterItemsProps {
   activeFilters: ActiveFilters;
   setActiveFilters: React.Dispatch<React.SetStateAction<ActiveFilters>>;
   filterOptions: FilterOption[];
-}
-
-export interface ProductInfo {
-  id: number;
-  title: string;
-  name: string;
-  category: string;
-  price: number;
-  info: string;
 }
 
 export interface User {
