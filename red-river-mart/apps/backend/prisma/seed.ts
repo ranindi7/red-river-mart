@@ -10,7 +10,7 @@ async function main() {
         name: item.name,
         category: item.category,
         price: item.price,
-        description: item.description ?? "",
+        description: item.description,
         src: item.src,
         sellerName: item.sellerName ?? "Demo Seller",
         sellerEmail: item.sellerEmail ?? "demo@example.com",
