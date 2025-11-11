@@ -37,12 +37,31 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
 
     return (
         <section className="MarketplacePage">
-            <FilterItems
+            {/* mobile filter toggle */}
+            <input type="checkbox" id="mobileToggle" className="mobileFilterCheck" />
+            <label htmlFor="mobileToggle" className="mobileFilterTrig">
+                <span>Filters/Sell</span>
+            </label>
+            
+            <div className="mobileFilter">
+                <FilterItems
                 activeFilters={activeFilters}
                 setActiveFilters={setActiveFilters}
                 filterOptions={filterOptions}
                 onOpenModal={() => setShowSellModal(true)}
-            />
+                />
+            </div>
+
+            {/* desktop filter */}
+            <div className="desktopFilter">
+                <FilterItems
+                    activeFilters={activeFilters}
+                    setActiveFilters={setActiveFilters}
+                    filterOptions={filterOptions}
+                    onOpenModal={() => setShowSellModal(true)}
+                />
+            </div>
+
             <ItemPage items={filteredAndSortedItems} />
 
             {showSellModal && (
