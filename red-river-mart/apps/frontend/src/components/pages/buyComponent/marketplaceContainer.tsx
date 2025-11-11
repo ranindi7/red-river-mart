@@ -7,7 +7,7 @@ export default function MarketplaceContainer() {
     // add state to hold items, initialized with sample data
     const [items, setItems] = useState<Item[]>([]);
 
-    // Fetch all items on mount
+    // fetch all items on mount
     useEffect(() => {
         const fetchItems = async () => {
             const fetchedItems = await ItemService.fetchItems();
@@ -16,7 +16,7 @@ export default function MarketplaceContainer() {
         fetchItems();
     }, []);
 
-    // Add a new item
+    // add a new item
     const handleAddItem = async (newItemData: Omit<Item, 'id'>) => {    
         const newItem = await ItemService.addItem(newItemData);
         setItems(prevItems => [...prevItems, newItem]);
