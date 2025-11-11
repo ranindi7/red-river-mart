@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MarketplacePage from './marketplacePage';
 import type { Item } from '../../../../../../shared/types/types';
-import { getAllItems, createItem } from '../../../apis/itemRepo';
+import * as ItemService from '../../../service/itemService';
 
 export default function MarketplaceContainer() {
     // add state to hold items, initialized with sample data
-    const [items, setItems] = useState<Item[]>(() => getAllItems());
+    const [items, setItems] = useState<Item[]>([]);
 
-    //  set state function to add a new item
-    const handleAddItem = (newItemData: Omit<Item, 'id'>) => {
-        createItem(newItemData);
-        setItems(getAllItems);
+    // Fetch all items on mount
+    useEffect(() => {
+        const fetchItems = async () => {
+            const fetchedItems = await ItemService.fetchItems();
+            setItems(fetchedItems);
+        };
+        fetchItems();
+    }, []);
+
+    // Add a new item
+    const handleAddItem = async (newItemData: Omit<Item, 'id'>) => {    
+        const newItem = await ItemService.addItem(newItemData);
+        setItems(prevItems => [...prevItems, newItem]);
+        
     };
 
     return (
