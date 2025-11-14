@@ -1,0 +1,72 @@
+.editUserModal {
+    width: 100%;            
+    max-width: 400px;     
+    margin: 0;              
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+}
+
+.editUserModal h2 {
+    text-align:center;
+    width: 100%;        
+    margin: 0 0 1.5rem 0; 
+    color: black;
+}
+
+.editUserModal form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    width: 100%;        
+    gap: 3rem;
+    color: black;
+}
+
+.editUserModal input[type="text"], 
+.editUserModal textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.editUserModal textarea {
+  min-height: 200px;
+}
+.editUserModal button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background-color: #9c102d;
+    color: #f9f3ed;
+    border: 1px solid #9c102d;
+    font-weight: bold;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 1rem;
+}
+
+.editUserModal button[type="submit"]:hover {
+    background-color: #f9f3ed;
+    color: #9c102d;
+    border-color: #9c102d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+.editUserModal .error {
+  color: red;
+  font-size: 1rem;
+  margin-top: 4px;
+  margin-bottom: 0; 
+}
