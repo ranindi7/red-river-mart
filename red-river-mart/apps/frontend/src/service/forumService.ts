@@ -1,4 +1,3 @@
-// frontend/service/forumService.ts
 import * as ForumRepo from "../apis/mockForumRepo";
 import type { Forum } from "@shared/types/types";
 
