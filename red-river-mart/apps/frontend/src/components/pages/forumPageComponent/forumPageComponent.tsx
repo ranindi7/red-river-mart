@@ -1,13 +1,13 @@
 import "./forumPage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Forum, Comment } from "../../../../../../shared/types/types";
 import MakeForum from "../makeForumComponent/makeForumPage";
 import { SearchFilter } from "./searchFilter";
-import { getAllForums, createForum } from "../../../apis/mockForumRepo";
+import * as ForumService from "../../../service/forumService";
 
 export default function ForumPage() {
   // The state for the forums
-  const [forums, setForums] = useState<Forum[]>(getAllForums());
+  const [forums, setForums] = useState<Forum[]>([]);
   // This state tracks the user comment inputs on the forum
   const [commentInputs, setCommentInputs] = useState<{ [key: number]: string }>({});
   // The search input and the current active query search
@@ -20,9 +20,27 @@ export default function ForumPage() {
   // This state tracks which comments are selected on the forum to delete
   const [selectedComments, setSelectedComments] = useState<{ [key: number]: number[] }>({});
 
-  // This adds a new forum on the list
-  const handleAddForum = (newForum: Forum) => {
-    setForums((previous) => [...previous, newForum]);
+  // fetches the list of the forums in the backend and stores it in state to be displayed in the web page
+  useEffect(() => {
+    const fetchForums = async () => {
+      try {
+        const data = await ForumService.fetchForums();
+        setForums(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchForums();
+  }, []);
+
+  // Handles when a forum is added to the backend and upates the new list including the new forum
+  const handleAddForum = async (newForumData: Omit<Forum, "id">) => {
+    try {
+      const newForum = await ForumService.addForum(newForumData);
+      setForums(prev => [...prev, newForum]);
+    } catch (err) {
+      console.error(err);
+    }
   };
   
   // This sets the search query in the input
@@ -162,11 +180,16 @@ return (
                     <div className="ModalForm" onClick={e => e.stopPropagation()}>
                         <button className="ModalClose" onClick={() => setShowModal(false)}>X</button>
                         <MakeForum
-                          onAddForum={(newForumData) => {
-                              const newForum = createForum(newForumData);
-                              handleAddForum(newForum);
-                              setShowModal(false);
-                            }}
+                          onAddForum={async (newForumData) => {
+                            await handleAddForum({
+                              subject: newForumData.subject ?? "No Subject",
+                              title: newForumData.title ?? "Untitled Forum",
+                              description: newForumData.description ?? "No description provided.",
+                              date: new Date().toLocaleDateString(),
+                            });
+
+                            setShowModal(false);
+                          }}
                         />
                     </div>
                 </div>

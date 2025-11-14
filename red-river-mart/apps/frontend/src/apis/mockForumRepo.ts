@@ -1,38 +1,68 @@
 import type { Forum } from "../../../../shared/types/types";
-import { forumData } from "./forumRepo";
 
-let forums: Forum[] = [...forumData];
-let nextId: number = forums.length > 0 ? Math.max(...forums.map(f => f.id)) + 1 : 1;
+type ForumsResponseJSON = { message: string; data: Forum[] };
+type ForumResponseJSON = { message: string; data: Forum };
 
-export function getAllForums(): Forum[] {
-    return [...forums];
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1/forums`;
+
+export async function getAllForums(): Promise<Forum[]> {
+  const response: Response = await fetch(BASE_URL);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch the forums");
+  }
+
+  const json: ForumsResponseJSON = await response.json();
+  return json.data;
 }
 
-export function getForumById(id: number): Forum | undefined {
-    return forums.find(f => f.id === id);
+export async function getForumById(id: number): Promise<Forum> {
+  const response: Response = await fetch(`${BASE_URL}/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch the forum with id ${id}`);
+  }
+
+  const json: ForumResponseJSON = await response.json();
+  return json.data;
 }
 
-export function createForum(newForumData: Omit<Forum, "id" | "date">): Forum {
-    const newForum: Forum = {
-        id: nextId++,
-        date: new Date().toLocaleDateString(),
-        ...newForumData
-    };
-    forums.push(newForum);
-    return newForum;
+export async function createForum(forum: Omit<Forum, "id">): Promise<Forum> {
+  const response: Response = await fetch(BASE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(forum),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create the forum");
+  }
+
+  const json: ForumResponseJSON = await response.json();
+  return json.data;
 }
 
-export function updateForum(updatedForum: Forum): Forum | undefined {
-    const index = forums.findIndex(f => f.id === updatedForum.id);
-    if (index !== -1) {
-        forums[index] = updatedForum;
-        return updatedForum;
-    }
-    return undefined;
+export async function updateForum(forum: Forum): Promise<Forum> {
+  const response: Response = await fetch(`${BASE_URL}/${forum.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(forum),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to update forum with the id ${forum.id}`);
+  }
+
+  const json: ForumResponseJSON = await response.json();
+  return json.data;
 }
 
-export function deleteForum(id: number): boolean {
-    const initialLength = forums.length;
-    forums = forums.filter(f => f.id !== id);
-    return forums.length < initialLength;
+export async function deleteForum(id: number): Promise<void> {
+  const response: Response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to delete forum with the id ${id}`);
+  }
 }
