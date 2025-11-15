@@ -37,7 +37,7 @@ export const updateUserSchema: ObjectSchema = Joi.object({
         "string.max": "Bio cannot exceed 200 characters."
     }),
 
-    email: Joi.string().required().email({ tlds: {allow:false} }).messages({
+    email: Joi.string().email({ tlds: {allow:false} }).messages({
         "string.email": "Please enter a valid email address."
     }),
 
