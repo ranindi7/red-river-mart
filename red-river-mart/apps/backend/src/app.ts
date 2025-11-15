@@ -1,7 +1,10 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
+import setupSwagger from "../config/swagger";
 
+import corsOptions from "../config/cors";
 import userRoutes from "./api/v1/users/routes/userRoutes"; 
 import errorHandler from "./api/v1/users/middleware/errorHandler";
 
@@ -11,6 +14,12 @@ dotenv.config();
 
 app.use(morgan("combined"));
 app.use(express.json());
+
+//cors middlware
+app.use(cors(corsOptions));
+
+// swagger docs
+setupSwagger(app);
 
 // test route
 app.get("/", (_req, res) => {

@@ -1,21 +1,36 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
 import "./userAccountComponent.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Item, User } from "../../../../../../shared/types/types";
 import itemDetails from "../../../jsonData/itemDetails.json"
-import { getUserById, updateUser } from "../../../apis/userRepo";
+import { getUserById, updateUser } from "../../../service/userService";
 import EditUserModal from "../editUserDetailsComponent/editUserDetailsComponent";
 
 export default function UserAccount() {
-    const [user, setUser] = useState<User>(getUserById(2))
+    const [user, setUser] = useState<User | null>(null);
     const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
     const [showModal, setShowModal] = useState(false)
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const fetchedUser = await getUserById(3);
+                setUser(fetchedUser);
+            } catch (error){
+                console.error(error);
+            }
+        };
+        fetchUser();
+    }, []);
 
     const removeWishlistItem = (id: number) => {
         setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
     };
 
     const handleSave = async (updatedUser: Omit<User, 'id'>) => {
+        if (!user) 
+            return;
+        
         const newUser: User = {
             ...user,
             ...updatedUser
@@ -30,6 +45,9 @@ export default function UserAccount() {
             alert("Something went wrong. Please try again.");
         }
     };
+
+    // This hsows a loading state if user is null
+    if (!user) return <p>Loading user...</p>;
 
     return(
         <main>
