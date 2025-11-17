@@ -8,6 +8,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id  Int @id @default(autoincrement())
+  userName  String
+  bio String
+  email String
+  phone String
+  preferredContact  String
+  
 model Forum {
   id          Int      @id @default(autoincrement())
   subject     String

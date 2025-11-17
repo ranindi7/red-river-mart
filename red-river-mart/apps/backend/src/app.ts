@@ -1,11 +1,13 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
+
+import userRoutes from "./api/v1/users/routes/userRoutes"; 
+import errorHandler from "./api/v1/users/middleware/errorHandler";
 import cors from "cors";
 import setupSwagger from "../config/swagger";
 
 import corsOptions from "../config/cors";
-import errorHandler from "./api/v1/forums/middleware/errorHandler";
 import forumRoutes from "./api/v1/forums/routes/forumRoutes";
 
 const app: Express = express();
@@ -27,6 +29,7 @@ app.get("/", (_req, res) => {
 });
 
 // API routes
+app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/forums", forumRoutes); 
 
 // error handler
