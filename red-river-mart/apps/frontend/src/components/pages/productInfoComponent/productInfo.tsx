@@ -3,7 +3,7 @@ import type { Item } from "../../../../../../shared/types/types";
 
 
 export default function ProductInfo ({ item }: { item: Item }) {
-  const teamsLink = `https://teams.microsoft.com/l/chat/0/0?users=ngunasekera3@rrc.ca`;
+  const teamsLink = `https://teams.microsoft.com/l/chat/0/0?users=${item.sellerEmail}`;
 
   return (
     <section className="product">
