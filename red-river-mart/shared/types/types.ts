@@ -14,7 +14,7 @@ export interface Comment {
 }
 
 export interface ForumPost {
-    onAddForum: (newForum: Forum) => void;
+    onAddForum: (newForum: Partial<Forum>) => void;
 }
 
 export interface SearchFilter  {

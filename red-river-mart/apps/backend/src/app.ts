@@ -5,8 +5,8 @@ import cors from "cors";
 import setupSwagger from "../config/swagger";
 
 import corsOptions from "../config/cors";
-import itemRoutes from "./api/v1/items/routes/itemRoutes"; 
-import errorHandler from "./api/v1/items/middleware/errorHandler";
+import errorHandler from "./api/v1/forums/middleware/errorHandler";
+import forumRoutes from "./api/v1/forums/routes/forumRoutes";
 
 const app: Express = express();
 
@@ -27,7 +27,7 @@ app.get("/", (_req, res) => {
 });
 
 // API routes
-app.use("/api/v1/items", itemRoutes);
+app.use("/api/v1/forums", forumRoutes); 
 
 // error handler
 app.use(errorHandler);
