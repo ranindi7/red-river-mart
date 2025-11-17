@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as userService from "../services/userServices";
-import { successResponse } from "../models/responseModel";
+import { successResponse } from "../../models/responseModel";
 
 export const fetchUsers = async(
     _req: Request,
