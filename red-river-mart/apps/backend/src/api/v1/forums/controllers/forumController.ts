@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as forumService from "../services/forumServices";
-import { successResponse } from "../models/responseModel";
+import { successResponse } from "../../models/responseModel";
 
 export const getAllForums = async (
   _req: Request,

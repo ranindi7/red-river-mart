@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as itemService from "../services/itemService";
-import { successResponse } from "../models/responseModel";
+import { successResponse } from "../../models/responseModel";
 
 export const getAllItems = async (
   _req: Request,

@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { forumSeedData } from "./seedData";
 import { userSeedData } from "./seedData";
+import { itemSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -23,6 +24,20 @@ async function main() {
             title: forum.title ?? "No title",
             description: forum.description ?? "No description",
             date: forum.date ?? new Date().toLocaleDateString(),
+        })),
+        skipDuplicates: true,
+    });
+
+    await prisma.item.deleteMany();
+    await prisma.item.createMany({
+        data: itemSeedData.map((item) => ({
+            name: item.name,
+            category: item.category,
+            price: item.price,
+            description: item.description,
+            src: item.src,
+            sellerName: item.sellerName ?? "Demo Seller",
+            sellerEmail: item.sellerEmail ?? "demo@example.com",
         })),
         skipDuplicates: true,
     });
