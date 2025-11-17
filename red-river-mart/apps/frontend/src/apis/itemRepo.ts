@@ -1,39 +1,73 @@
-import type { Item } from "../../../../shared/types/types";
-import { itemData } from "./mockItemRepo"
+import { Item } from "../../../../shared/types/types";
 
-let items: Item[] = [...itemData];
-let nextId: number = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
+type ItemsResponseJSON = { message: string; data: Item[] };
+type ItemResponseJSON = { message: string; data: Item };
 
-export function getAllItems(): Item[] {
-    return [...items]; 
-};
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const ITEM_ENDPOINT = "/items";
 
-export function getItemById(id: number): Item | undefined {
-    return items.find(item => item.id === id)
-};
+export async function fetchItems(): Promise<Item[]> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}`);
 
-export function createItem(newItemData: Omit<Item, 'id'>): Item {
-    const newItem: Item = {
-        id: nextId++,
-        ...newItemData
-    };
-    items.push(newItem);
-    return newItem;
+  if (!response.ok) {
+    throw new Error("Failed to fetch items");
+  }
+
+  const json: ItemsResponseJSON = await response.json();
+  return json.data;
 }
 
-export function updateItem(updatedItem: Item): Item | undefined {
-    const itemIndex = items.findIndex(item => item.id === updatedItem.id);
+export async function getItemById(itemId: number): Promise<Item> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${itemId}`);
 
-    if (itemIndex !== -1) {
-        items[itemIndex] = updatedItem; 
-        return updatedItem;
-    }
-    
-    return undefined;
-};
+  if (!response.ok) {
+    throw new Error(`Failed to fetch item with id ${itemId}`);
+  }
 
-export function deleteItem(id: number): boolean {
-    const initialLength = items.length;
-    items = items.filter(item => item.id !== id);
-    return items.length < initialLength;
-};
+  const json: ItemResponseJSON = await response.json();
+  return json.data;
+}
+
+export async function createItem(item: Omit<Item, "id">): Promise<Item> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}`, {
+    method: "POST",
+    body: JSON.stringify(item),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create item");
+  }
+
+  const json: ItemResponseJSON = await response.json();
+  return json.data;
+}
+
+export async function updateItem(item: Item): Promise<Item> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${item.id}`, {
+    method: "PUT",
+    body: JSON.stringify(item),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to update item with id ${item.id}`);
+  }
+
+  const json: ItemResponseJSON = await response.json();
+  return json.data;
+}
+
+export async function deleteItem(itemId: number): Promise<void> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${itemId}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to delete item with id ${itemId}`);
+  }
+}

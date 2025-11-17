@@ -1,7 +1,6 @@
 import type { ForumPost } from "../../../../../../shared/types/types";
 import "./makeForumPage.css";
 import { useFormInputs } from "../../../hooks/useFormInputs";
-import { createForum } from "../../../apis/mockForumRepo";
 
 function MakeForum({ onAddForum }: ForumPost) {
   // useFormInputs manages form state and validation
@@ -11,22 +10,18 @@ function MakeForum({ onAddForum }: ForumPost) {
     description: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) {
-      return; 
-    }
-    // This calls the createForum from forumRepo to create a new forum
-    const newForum = createForum ({
-      subject: fields.subject as string,
-      title: fields.title as string,
-      description: fields.description as string,
-    });
-    
-    // This calls the  newForum function to add the forum on the list
-    onAddForum(newForum);
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!validate()) return;
+  
+  const newForum = {
+    subject: fields.subject as string,
+    title: fields.title as string,
+    description: fields.description as string,
   };
-
+  
+  onAddForum(newForum);
+};
   return (
     <div className="makeForumPage">
       <h2>Create your Forum</h2>
