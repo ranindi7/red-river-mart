@@ -32,21 +32,29 @@ export const createUserSchema: ObjectSchema = Joi.object({
 })
 
 export const updateUserSchema: ObjectSchema = Joi.object({
-    id: Joi.number().positive().required(),
-    bio: Joi.string().max(200).messages({
+    bio: Joi.string().max(200).required().messages({
+        "any.required": "Bio is required.",
         "string.max": "Bio cannot exceed 200 characters."
     }),
 
-    email: Joi.string().email({ tlds: {allow:false} }).messages({
+    email: Joi.string().email({ tlds: { allow: false }}).required().messages({
+        "any.required": "Email is required.",
         "string.email": "Please enter a valid email address."
     }),
 
     phone: Joi.string()
-    .pattern(/^\d{3}-\d{3}-\d{4}$/)
-    .messages({
-        "string.pattern": "Phone number must be in the format XXX-XXX-XXXX"
+        .pattern(/^\d{3}-\d{3}-\d{4}$/)
+        .required()
+        .messages({
+        "any.required": "Phone number is required.",
+        "string.pattern.base": "Phone number must be in the format XXX-XXX-XXXX"
+    }),
+
+    preferredContact: Joi.string().required().messages({
+        "any.required": "Preferred contact is required."
     })
-});
+}).unknown(true);
+
 
 export const deleteUserSchema: ObjectSchema = Joi.object({
     id: Joi.string().required().messages({

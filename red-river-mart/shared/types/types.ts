@@ -67,6 +67,12 @@ export interface User {
   phone: string;
   preferredContact: string;
 };
+
+export interface EditUser {
+    user: User;
+    onSave: (updatedUser: Omit<User, 'id'>) => void;
+}
+
 export interface FormItem {
     onAddItem: (newItem: Omit<Item, 'id'>) => void;
 }

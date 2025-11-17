@@ -3,74 +3,87 @@ Data repository to handle logic related to user data
 */
 
 import type { User } from "../../../../shared/types/types";
-import { userData } from "./userMockRepo";
 
-// Determines what the next user ID would be to ensure new created users get their own unique ID
-let nextId: number = userData.length > 0 ? Math.max(...userData.map(user => user.id)) + 1 : 1;
+type UsersResponseJSON = { message: string; data: User[] };
+type UserResponseJSON = { message: string; data: User }
+
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const USER_ENDPOINT = "/users";
 
 /* 
 Get all users
 - Returns entire array of users
 */
-export function fetchUsers(): User[] {
-    return userData;
+export async function fetchUsers(): Promise<User[]> {
+    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}`);
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch users");
+    }
+
+    const json: UsersResponseJSON = await response.json();
+    return json.data;
 }
 
 /* Get user by ID 
-- find() searches for user with matching id and returns user object if exists 
 */
-export function getUserById(userId: number): User {
-    const foundUser = userData.find(u => u.id === userId);
+export async function getUserById(userId: number): Promise<User> {
+    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${userId}`);
 
-    if(!foundUser) {
-        throw new Error(`Failed to fetch user with ${userId}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch user with id ${userId}`);
     }
 
-    return foundUser;
+    const json: UserResponseJSON = await response.json();
+    return json.data;
 }
 
 /* Update user info by ID
-- findIndex() searches for array index of user with specified ID
-- Replaces old user with that index with the new user object that is passed in 
-- Returns updated user
 */
-export async function updateUser(user: User) {
-    const foundUserIndex = userData.findIndex(u => u.id === user.id);
+export async function updateUser(user: User): Promise<User> {
+    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${user.id}`, {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers: {
+        "Content-Type": "application/json",
+        },
+    });
 
-    if(foundUserIndex === -1) {
-        throw new Error(`Failed to update user with ${user.id}`);
+    if (!response.ok) {
+        throw new Error(`Failed to update iteuserm with id ${user.id}`);
     }
 
-    userData[foundUserIndex] = user;
-    return userData[foundUserIndex];
+    const json: UserResponseJSON = await response.json();
+    return json.data;
 }
 
 /* Add a new user
-- Omit<User, 'id'> passes all fields of new user except id 
-- new user object created with new id from nextId and the rest of the data that was passed (...newUserData)
-- pushes new user into the userData array and returns it
 */
-export function createUser(newUserData: Omit<User, 'id'>): User {
-    const newUser: User = {
-        id: nextId++,
-        ...newUserData
-    };
-    userData.push(newUser);
-    return newUser;
+export async function createUser(user: Omit<User, "id">): Promise<User> {
+    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}`, {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+        "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to create user");
+    }
+
+    const json: UserResponseJSON = await response.json();
+    return json.data;
 }
 
 /* Delete user by ID
-- Finds index of user with specified ID
-- Splice removes from the array - specified to remove that specific one with 1
-- [0] gives deleted user data which is returned by function
 */
-export async function deleteUser(userId: number) {
-    const foundUserIndex = userData.findIndex(u => u.id === userId);
+export async function deleteUser(userId: number): Promise<void> {
+    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${userId}`, {
+        method: "DELETE",
+    });
 
-    if (foundUserIndex === -1) {
-        throw new Error(`Failed to delete user with ID ${userId}`);
+    if (!response.ok) {
+        throw new Error(`Failed to delete user with id ${userId}`);
     }
-
-    const deletedUser = userData.splice(foundUserIndex, 1)[0];
-    return deletedUser;
 }

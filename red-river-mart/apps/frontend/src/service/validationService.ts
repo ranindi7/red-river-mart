@@ -41,8 +41,8 @@ export function validateForm(fields: FieldsType): ErrorsType {
         if (field === "phone" && typeof value === "string") {
             if (!value.trim()) {
                 errors.phone = "Phone Number is required.";
-            } else if (!/^\d{10}$/.test(value)) {
-                errors.phone = "Phone Number needs to be 10 digits.";
+            } else if (!/^\d{3}-\d{3}-\d{4}$/.test(value)) {
+                errors.phone = "Phone number must be in the format XXX-XXX-XXXX";
             }
             continue; 
         }

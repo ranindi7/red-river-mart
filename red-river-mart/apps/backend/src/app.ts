@@ -1,7 +1,10 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
+import setupSwagger from "../config/swagger";
 
+import corsOptions from "../config/cors";
 import userRoutes from "./api/v1/users/routes/userRoutes"; 
 import errorHandler from "./api/v1/users/middleware/errorHandler";
 import cors from "cors";
