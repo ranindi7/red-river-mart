@@ -23,6 +23,10 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S2(T.A.1): App Outlet Navigation
 - S2(T.A.2): Navigation Interface
 
+### Sprint 3 Team Collaborated Issues
+- S3(T.B.1): Hook Definition(s)
+- S3(T.B.2): Service Definition(s)
+
 
 ### Nambukalu Ranindi Gunasekera
 
@@ -38,6 +42,12 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S2(I.A.2): Editing user profile information
 - S2(I.A.3): Profile wishlist removal
 
+#### Sprint 3
+- S3(I.B.1): Repository definition and integration for users' data
+- S3(I.B.2): Test Data for 10 users
+- S3(I.B.3): Refactored userAccount component to invoke the custom hook, service and repository methods
+- S3(I.B.4): Architectural Layout Document
+
 =======
 
 ### Alex Carlos
@@ -50,6 +60,12 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 #### Sprint 2
 - S2(I.A.2): Uploading product listing feature
 - S2(I.A.3): Filter Feature
+
+#### Sprint 3
+- S3(I.B.1): Repository definition and integration for item data
+- S3(I.B.2): Test Data for 30 items
+- S3(I.B.3): Refactored sellPage and marketplaceContainer component to invoke the custom hook, service and repository methods
+- S3(I.B.4): Architectural Layout Document
 =======
 
 ### Heuone Castillo
@@ -62,3 +78,9 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 #### Sprint 2
 - S2(I.A.2): Message request checkbox feature
 - S2(I.A.3): Conversation removal feature
+
+#### Sprint 3
+- S3(I.B.1): Repository definition and integration for forum data
+- S3(I.B.2): Test Data for 10 forum posts
+- S3(I.B.3): Refactored makeForumPage and forumPageComponent component to invoke the custom hook, service and repository methods
+- S3(I.B.4): Architectural Layout Document
