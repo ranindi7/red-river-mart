@@ -27,6 +27,12 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S3(T.B.1): Hook Definition(s)
 - S3(T.B.2): Service Definition(s)
 
+### Sprint 4 Team Collaborated Issues
+- S4(T.1): Back-end App Initialization
+- S4(T.2): Development SQL Database
+- S4(T.3): Prisma Installation and Client Initialization
+- S4(T.4): Back-end CORS Configuration
+
 
 ### Nambukalu Ranindi Gunasekera
 
@@ -48,6 +54,13 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S3(I.B.3): Refactored userAccount component to invoke the custom hook, service and repository methods
 - S3(I.B.4): Architectural Layout Document
 
+#### Sprint 4
+- S4(I.1): Creating back end user resource endpoints
+- S4(I.2): Creating user model and table in schema and migrating table into Database
+- S4(I.3): Front-end repository sending request to back end when getting user to display and updating user info 
+- S4(I.4): Data persistance in user account when details are changed
+
+
 =======
 
 ### Alex Carlos
@@ -66,6 +79,12 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S3(I.B.2): Test Data for 30 items
 - S3(I.B.3): Refactored sellPage and marketplaceContainer component to invoke the custom hook, service and repository methods
 - S3(I.B.4): Architectural Layout Document
+
+#### Sprint 4
+- S4(I.1): Creating back end item resource endpoints
+- S4(I.2): Creating item model and table in schema and migrating table into Database
+- S4(I.3): Front-end repository sending request to back end
+- S4(I.4): Data persistance in sell page when displaying added products via sell form
 =======
 
 ### Heuone Castillo
@@ -84,3 +103,9 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S3(I.B.2): Test Data for 10 forum posts
 - S3(I.B.3): Refactored makeForumPage and forumPageComponent component to invoke the custom hook, service and repository methods
 - S3(I.B.4): Architectural Layout Document
+
+#### Sprint 4
+- S4(I.1): Creating back end user resource endpoints
+- S4(I.2): Creating forum model and table in schema and migrating table into Database
+- S4(I.3): Front-end repository sending request to back end  
+- S4(I.4): Data persistance when displaying forums including newly created forums
