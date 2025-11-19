@@ -58,6 +58,12 @@ export default function ForumPage() {
     );
   });
 
+  const handleResetSearchSubmit = () => {
+    setSearchInput("");
+    setSearchQuery("");
+
+  }
+
   // This updates the comment input on a forum
   const handleCommentChange = (forumId: number, value: string) => {
     setCommentInputs((previous) => ({ ...previous, [forumId]: value }));
@@ -124,6 +130,7 @@ return (
                         searchFilter={searchInput}
                         handleSearchChange={setSearchInput}
                         handleSubmit={handleSearchSubmit}
+                        handleReset={handleResetSearchSubmit}
                     />
                     <button
                         className="openModalButton"

@@ -52,3 +52,4 @@ main().then(
     console.error(e);
     await prisma.$disconnect();
 });
+

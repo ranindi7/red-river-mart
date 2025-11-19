@@ -1,8 +1,8 @@
 import type { SearchFilter as SearchFilterType } from "../../../../../../shared/types/types";
 
 // This function handles the search input and  the search/submit button
-export function SearchFilter({searchFilter,handleSearchChange,handleSubmit,}
-    : SearchFilterType) {
+export function SearchFilter({ searchFilter, handleSearchChange, handleSubmit, handleReset 
+}: SearchFilterType & { handleReset: () => void }) {
   return (
     <form className="searchForm">
       <input
@@ -21,6 +21,13 @@ export function SearchFilter({searchFilter,handleSearchChange,handleSubmit,}
         }}
       >
         Search
+      </button>
+      <button
+        type="button"
+        className="resetButton"
+        onClick={() => handleReset()}
+      >
+        Reset
       </button>
     </form>
   );
