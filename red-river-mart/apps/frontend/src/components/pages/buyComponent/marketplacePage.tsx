@@ -1,5 +1,5 @@
 import './buyPage.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FilterItems from "./filterPage";
 import ItemPage from "./ItemPage";
 import filterOptionsData from "../../../jsonData/filterOptions.json";
@@ -14,6 +14,18 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
     // state for modal
     const [showSellModal, setShowSellModal] = useState(false);
 
+    // state for search
+    const [searchItem, setSearchItem] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState(searchItem);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setDebouncedSearch(searchItem);
+        }, 500);
+
+        return () => clearTimeout(timeout); 
+    }, [searchItem]);
+
     // state for active filters
     const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
         category: "all",
@@ -24,23 +36,38 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
     const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
     // filter and sort items based on active filters
-    const filteredAndSortedItems = items.filter((item) => {
-        if (activeFilters.category === "all") {
-            return true;
+    const filteredAndSortedItems = items
+    .filter((item) => {
+        // category filter
+        if (activeFilters.category !== "all" && item.category !== activeFilters.category) {
+            return false;
         }
-        return item.category === activeFilters.category;
-    }).sort((a, b) => {
-        if (activeFilters.sort === "priceLowToHigh") {
-            return a.price - b.price;
+
+        // search filter — case-insensitive
+        if (debouncedSearch.trim() !== "" && !item.name.toLowerCase().includes(debouncedSearch.toLowerCase())) {
+            return false;
         }
-        if (activeFilters.sort === "priceHighToLow") {
-            return b.price - a.price;
-        }
+
+        return true;
+    })
+    .sort((a, b) => {
+        if (activeFilters.sort === "priceLowToHigh") return a.price - b.price;
+        if (activeFilters.sort === "priceHighToLow") return b.price - a.price;
         return 0;
     });
 
+
     return (
         <section className="MarketplacePage">
+            {/* search bar */}
+            <input
+                type="text"
+                placeholder="Looking for something specific?"
+                value={searchItem}
+                onChange={(e) => setSearchItem(e.target.value)}
+                className="searchBar"
+            />
+
             {/* mobile filter toggle */}
             <input type="checkbox" id="mobileToggle" className="mobileFilterCheck" />
             <label htmlFor="mobileToggle" className="mobileFilterTrig">
