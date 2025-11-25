@@ -1,0 +1,70 @@
+.product {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.productImageBox {
+  width: 500px;
+  height: 600px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(.5, .5, .5, .5);
+}
+
+.productImageBox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+.productInfoContainer {
+  width: 500px;
+  height: 600px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  box-shadow: 0 2px 5px rgba(.5, .5, .5, .5);
+}
+
+.productInfoContainer p {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #9c102d;
+  line-height: 2;
+}
+
+.productInfoContainer h3 {
+  color: #767676;
+}
+
+.messageButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #9c102d;
+  color: #f9f3ed;
+  border: 1px solid #9c102d;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.messageButton:hover {
+  background-color: #550000;
+  border-color: #550000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
