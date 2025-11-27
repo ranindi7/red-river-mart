@@ -1,8 +1,36 @@
-.signInComponent img {
-  height: 60px;
-  width: auto;
+.signInComponent {
+  min-height: calc(100vh - 280px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: #f8f9fb; 
+}
+/* 
+.signInCard {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
 }
 
+.signInCard p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.signInCard button {
+  width: 100%;
+  margin-top: 1rem;
+} */
+
+
+/* 
 form {
   background-color: #550000;
   display: flex;
@@ -14,9 +42,9 @@ form {
   margin: 150px auto; 
   padding: 60px;    
   color: white;
-}
+} */
 
-.emailContainer,
+/* .emailContainer,
 .passwordContainer {
   display: flex;
   flex-direction: column;
@@ -53,4 +81,4 @@ form {
 
 .loginButtonContainer button:hover {
   background-color: #d3d3d3;
-}
+} */

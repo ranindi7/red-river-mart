@@ -9,6 +9,7 @@ import errorHandler from "./api/v1//middleware/errorHandler";
 import setupSwagger from "../config/swagger";
 import forumRoutes from "./api/v1/forums/routes/forumRoutes";
 import itemRoutes from "./api/v1/items/routes/itemRoutes";
+import { clerkMiddleware } from "@clerk/express";
 
 const app: Express = express();
 
@@ -19,6 +20,8 @@ app.use(express.json());
 
 //add cors middleware
 app.use(cors(corsOptions));
+
+app.use(clerkMiddleware());
 
 // swagger docs
 setupSwagger(app);

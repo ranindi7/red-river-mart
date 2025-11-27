@@ -21,11 +21,11 @@ export const getUserById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const user = await userService.getUserById(Number.parseInt(req.params.id));
+        const user = await userService.getUserById(req.params.id);
         if (user) {
-        res.status(200).json(successResponse(user, "User retrieved successfully"));
+            res.status(200).json(successResponse(user, "User retrieved successfully"));
         } else {
-        res.status(404).json(successResponse(null, "User not found"));
+            res.status(404).json(successResponse(null, "User not found"));
         }
     } catch (error) {
         next(error);
@@ -51,8 +51,9 @@ export const updateUser = async (
     next: NextFunction
     ): Promise<void> => {
     try {
+        console.log("Updating user:", req.params.id, req.body);
         const updatedUser = await userService.updateUser(
-        Number.parseInt(req.params.id),
+        req.params.id,
         req.body
         );
         res.status(200).json(successResponse(updatedUser, "User updated successfully"));
@@ -67,7 +68,7 @@ export const deleteUser = async (
     next: NextFunction
     ): Promise<void> => {
     try {
-        await userService.deleteUser(Number.parseInt(req.params.id));
+        await userService.deleteUser(req.params.id);
         res.status(200).json(successResponse(null, "User deleted successfully"));
     } catch (error) {
         next(error);

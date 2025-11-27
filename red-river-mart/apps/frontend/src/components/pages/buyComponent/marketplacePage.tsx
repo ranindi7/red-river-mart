@@ -6,6 +6,7 @@ import filterOptionsData from "../../../jsonData/filterOptions.json";
 import type { Item, ActiveFilters, FilterOption } from "../../../../../../shared/types/types";
 import SellPage from '../sellComponent/sellPage';
 import ProductInfo from '../productInfoComponent/productInfo';
+import { useUser } from '@clerk/clerk-react';
 
 export default function MarketplacePage({ items, onAddItem }: { items: Item[]; onAddItem: (item: Omit<Item, 'id'>) => void }) {
     // state for filter options
@@ -56,7 +57,10 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
         return 0;
     });
 
+    const { isSignedIn, isLoaded } = useUser();
 
+    if (!isLoaded) return <div>Loading Marketplace...</div>;
+    if (!isSignedIn) return <div>Please sign in to view the marketplace.</div>;
     return (
         <section className="MarketplacePage">
             {/* search bar */}

@@ -1,117 +1,104 @@
-import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png"
-import "./userAccountComponent.css"
+import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png";
+import "./userAccountComponent.css";
 import { useState, useEffect } from "react";
-import type { Item, User } from "../../../../../../shared/types/types";
-import itemDetails from "../../../jsonData/itemDetails.json"
-import { getUserById, updateUser } from "../../../service/userService";
+import type { User } from "../../../../../../shared/types/types";
+import itemDetails from "../../../jsonData/itemDetails.json";
+import { getUserById, updateUser } from "../../../apis/userRepo";
 import EditUserModal from "../editUserDetailsComponent/editUserDetailsComponent";
+import { useUser, useAuth } from "@clerk/clerk-react";
 
 export default function UserAccount() {
-    const [user, setUser] = useState<User | null>(null);
-    const [wishlist, setWishlist] = useState<Item[]>(itemDetails);
-    const [showModal, setShowModal] = useState(false)
+  const { user, isSignedIn } = useUser();
+  const { getToken } = useAuth();
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const fetchedUser = await getUserById(3);
-                setUser(fetchedUser);
-            } catch (error){
-                console.error(error);
-            }
-        };
-        fetchUser();
-    }, []);
+  const [dbUser, setDbUser] = useState<User | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
-    const removeWishlistItem = (id: number) => {
-        setWishlist((wishlistItems) => wishlistItems.filter((item) => item.id !== id));
+  useEffect(() => {
+    if (!isSignedIn) return;
+
+    const load = async () => {
+      const token = await getToken();
+      const backendUser = await getUserById(user.id, token);
+      setDbUser(backendUser);
     };
 
-    const handleSave = async (updatedUser: Omit<User, 'id'>) => {
-        if (!user) 
-            return;
-        
-        const newUser: User = {
-            ...user,
-            ...updatedUser
-        }
-      
-        try {
-            await updateUser(newUser); 
-            setUser(newUser); 
-            setShowModal(false); 
-        } catch (error) {
-            console.error("Failed to update user:", error);
-            alert("Something went wrong. Please try again.");
-        }
-    };
+    load();
+  }, [isSignedIn, user, getToken]);
 
-    // This hsows a loading state if user is null
-    if (!user) return <p>Loading user...</p>;
+  const handleSave = async (updatedData: Omit<User, "id">) => {
+    try {
+      const token = await getToken();
+      const editedUser: User = { id: dbUser!.id, ...updatedData };
+      const updated = await updateUser(editedUser, token);
+      setDbUser(updated);
+      setShowModal(false);
+    } catch (err) {
+      console.error("Failed to update user:", err);
+    }
+  };
 
-    return(
-        <main>
-            <div className="editProfile">
-                <button onClick={() => setShowModal(true)}>
-                   Edit Profile
-                </button>
-            </div>
 
-            <section className="userInfo">
-                <img src={ProfilePicturePlaceholder} alt="Profile Picture" className="profilePicture" />
-                <div className="userText">
-                    <h1>{user.userName}</h1>
-                    <p>{user.bio}</p>
+  // Loading states
+  if (!isSignedIn) return <p>Please sign in to view your account.</p>;
+  if (!dbUser) return <p>Loading user profile...</p>;
 
-                    <div className="contactInfo">
-                        <h4>Contact Information</h4>
-                        <p>Email: {user.email} | Phone: {user.phone} | Preferred Contact: {user.preferredContact}</p>
-                    </div>
+  return (
+    <main>
+      <div className="editProfile">
+        <button onClick={() => setShowModal(true)}>Edit Profile</button>
+      </div>
+
+      <section className="userInfo">
+        <img
+          src={dbUser.profileImage || ProfilePicturePlaceholder}
+          alt="Profile Picture"
+          className="profilePicture"
+        />
+        <div className="userText">
+          <h1>{dbUser.firstName} {dbUser.lastName}</h1>
+          <h3>{dbUser.userName}</h3>
+          <p>{dbUser.bio}</p>
+
+          <div className="contactInfo">
+            <h4>Contact Information</h4>
+            <p>
+              Email: {dbUser.email} | Phone: {dbUser.phone} | Preferred Contact:{" "}
+              {dbUser.preferredContact}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="userContent">
+        <div className="userProducts">
+          <h3>Listed Products</h3>
+          <ul>
+            {itemDetails.slice(0, 3).map((item) => (
+              <li key={item.id} className="productsDisplay">
+                <img src={item.src} alt={item.name} height="100" />
+                <div>
+                  <h4>{item.name}</h4>
+                  <p>Category: {item.category}</p>
+                  <p>Price: ${item.price}</p>
+                  <p>Status: {item.status}</p>
                 </div>
-            </section>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-            <section className="userContent">
-                <div className="userProducts">
-                    <h3>Listed Products</h3>
-                    <ul>
-                        {itemDetails.slice(0,3).map(item => (
-                            <li key={item.id} className="productsDisplay"> 
-                                <img src={item.src} alt={item.name} height="100"/>
-                                <div>
-                                    <h4>{item.name}</h4>
-                                    <p>Category: {item.category}</p>
-                                    <p>Price: ${item.price}</p>
-                                    <p>Status: {item.status}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className="userWishlist">
-                    <h3>Wishlist</h3>
-                    <ul className="wishlistProducts">
-                        {wishlist.slice(0,6).map(item => (
-                            <li key={item.id} className="wishlistDisplay"> 
-                                <img src={item.src} alt={item.name} height="65"/>
-                                <div>
-                                    <h4>{item.name}</h4>
-                                    <button onClick={() => removeWishlistItem(item.id)}>Remove</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
-
-            {showModal && (
-            <div className="ModalBackground" onClick={() => setShowModal(false)}>
-                <div className="ModalForm" onClick={e => e.stopPropagation()}>
-                <button className="ModalClose" onClick={() => setShowModal(false)}>X</button>
-                <EditUserModal user={user} onSave={handleSave} />
-                </div>
-            </div>
-            )}
-        </main>
-    )
+      {showModal && (
+        <div className="ModalBackground" onClick={() => setShowModal(false)}>
+          <div className="ModalForm" onClick={(e) => e.stopPropagation()}>
+            <button className="ModalClose" onClick={() => setShowModal(false)}>
+              X
+            </button>
+            <EditUserModal user={dbUser} onSave={handleSave} />
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }

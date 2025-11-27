@@ -1,21 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 import { forumSeedData } from "./seedData";
-import { userSeedData } from "./seedData";
+// import { userSeedData } from "./seedData";
 import { itemSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
 async function main() { 
-    await prisma.user.deleteMany();
+    // await prisma.user.deleteMany();
     
-    const createManyUsers = await prisma.user.createManyAndReturn(
-        {
-            data: userSeedData,
-            skipDuplicates: true
-        }
-    );
+    // const createManyUsers = await prisma.user.createManyAndReturn(
+    //     {
+    //         data: userSeedData,
+    //         skipDuplicates: true
+    //     }
+    // );
 
-    console.log(`CREATED USERS: ${createManyUsers}`)
+    // console.log(`CREATED USERS: ${createManyUsers}`)
   
     await prisma.forum.deleteMany();
     await prisma.forum.createMany({
