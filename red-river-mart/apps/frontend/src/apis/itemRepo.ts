@@ -6,8 +6,15 @@ type ItemResponseJSON = { message: string; data: Item };
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const ITEM_ENDPOINT = "/items";
 
-export async function fetchItems(): Promise<Item[]> {
-  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}`);
+export async function fetchItems(sessionToken?: string|null): Promise<Item[]> {
+  const response: Response = await fetch(
+    `${BASE_URL}${ITEM_ENDPOINT}`,
+      sessionToken? {
+          headers: {
+              Authorization: `Bearer ${sessionToken}`,
+          } 
+      } : undefined
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch items");
@@ -17,8 +24,15 @@ export async function fetchItems(): Promise<Item[]> {
   return json.data;
 }
 
-export async function getItemById(itemId: number): Promise<Item> {
-  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${itemId}`);
+export async function getItemById(itemId: number, sessionToken?: string|null): Promise<Item> {
+  const response: Response = await fetch(
+    `${BASE_URL}${ITEM_ENDPOINT}/${itemId}`,
+      sessionToken? {
+          headers: {
+              Authorization: `Bearer ${sessionToken}`,
+          } 
+      } : undefined
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to fetch item with id ${itemId}`);
@@ -28,14 +42,18 @@ export async function getItemById(itemId: number): Promise<Item> {
   return json.data;
 }
 
-export async function createItem(item: Omit<Item, "id">): Promise<Item> {
-  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}`, {
-    method: "POST",
-    body: JSON.stringify(item),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export async function createItem(item: Omit<Item, "id">, sessionToken?: string|null): Promise<Item> {
+  const response: Response = await fetch(
+    `${BASE_URL}${ITEM_ENDPOINT}`, 
+    {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to create item");
@@ -45,14 +63,18 @@ export async function createItem(item: Omit<Item, "id">): Promise<Item> {
   return json.data;
 }
 
-export async function updateItem(item: Item): Promise<Item> {
-  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${item.id}`, {
-    method: "PUT",
-    body: JSON.stringify(item),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export async function updateItem(item: Item, sessionToken?: string|null): Promise<Item> {
+  const response: Response = await fetch(
+    `${BASE_URL}${ITEM_ENDPOINT}/${item.id}`, 
+    {
+      method: "PUT",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to update item with id ${item.id}`);
@@ -62,10 +84,15 @@ export async function updateItem(item: Item): Promise<Item> {
   return json.data;
 }
 
-export async function deleteItem(itemId: number): Promise<void> {
-  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${itemId}`, {
-    method: "DELETE",
-  });
+export async function deleteItem(itemId: number,sessionToken?: string|null): Promise<void> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}/${itemId}`, 
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to delete item with id ${itemId}`);

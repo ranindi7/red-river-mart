@@ -60,12 +60,15 @@ export interface FilterItemsProps {
 }
 
 export interface User {
-  id: number;
+  id: string;
+  firstName?: string;
+  lastName?: string;
   userName: string;
   bio: string;
   email: string;
   phone: string;
   preferredContact: string;
+  profileImage?: string;
 };
 
 export interface EditUser {
