@@ -1,30 +1,31 @@
 import ProfilePicturePlaceholder from "../../../assets/ProfilePicPlaceholder.png";
 import "./userAccountComponent.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { User } from "../../../../../../shared/types/types";
 import itemDetails from "../../../jsonData/itemDetails.json";
-import { getUserById, updateUser } from "../../../apis/userRepo";
+import { updateUser } from "../../../apis/userRepo";
 import EditUserModal from "../editUserDetailsComponent/editUserDetailsComponent";
-import { useUser, useAuth } from "@clerk/clerk-react";
+// import { useUser, useAuth } from "@clerk/clerk-react";
+import { getCurrentUser } from "../../../hooks/getCurrentUser";
 
 export default function UserAccount() {
-  const { user, isSignedIn } = useUser();
-  const { getToken } = useAuth();
-
-  const [dbUser, setDbUser] = useState<User | null>(null);
+  // const { user, isSignedIn } = useUser();
+  // const { getToken } = useAuth();
+  const { dbUser, setDbUser, isSignedIn, getToken } = getCurrentUser();
+  // const [dbUser, setDbUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    if (!isSignedIn) return;
+  // useEffect(() => {
+  //   if (!isSignedIn) return;
 
-    const load = async () => {
-      const token = await getToken();
-      const backendUser = await getUserById(user.id, token);
-      setDbUser(backendUser);
-    };
+  //   const load = async () => {
+  //     const token = await getToken();
+  //     const backendUser = await getUserById(user.id, token);
+  //     setDbUser(backendUser);
+  //   };
 
-    load();
-  }, [isSignedIn, user, getToken]);
+  //   load();
+  // }, [isSignedIn, user, getToken]);
 
   const handleSave = async (updatedData: Omit<User, "id">) => {
     try {

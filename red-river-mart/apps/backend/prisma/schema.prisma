@@ -32,8 +32,9 @@ model Item {
   price       Float
   description String
   src         String?
-  sellerName  String?
-  sellerEmail String?
+  
+  sellerId    String
+  seller      User     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -46,4 +47,6 @@ model User {
   phone            String
   preferredContact String
   profileImage     String?
+
+  items            Item[]
 }

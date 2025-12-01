@@ -30,8 +30,7 @@ export interface Item {
   price: number;
   description: string;
   src: string;
-  sellerName?: string;
-  sellerEmail?: string;
+  sellerId: string;
 }
 
 export interface ItemPageProps {

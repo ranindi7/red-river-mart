@@ -24,37 +24,45 @@ export const postItemSchema: ObjectSchema = Joi.object({
     "any.required": "Description is required",
     "string.empty": "Description cannot be empty"
   }),
-  src: Joi.string().required().messages({
+  src: Joi.string().optional().messages({
     "any.required": "Image source is required",
     "string.empty": "Image source cannot be empty"
   }),
-  sellerName: Joi.string().optional(),
-  sellerEmail: Joi.string().email().optional()
+  sellerId: Joi.string().required().messages({
+    "any.required": "Seller Id is required",
+    "string.empty": "Seller Id cannot be empty"
+  })
 });
 
 export const updateItemSchema: ObjectSchema = Joi.object({
-  name: Joi.string().required().messages({
+  id: Joi.string().optional().messages({
+    "any.required": "Item Id is required",
+    "string.empty": "Item Id cannot be empty"
+  }),
+  name: Joi.string().optional().messages({
     "any.required": "Item name is required",
     "string.empty": "Item name cannot be empty"
   }),
-  category: Joi.string().required().messages({
+  category: Joi.string().optional().messages({
     "any.required": "Category is required",
     "string.empty": "Category cannot be empty"
   }),
-  price: Joi.number().required().messages({
+  price: Joi.number().optional().messages({
     "any.required": "Price is required",
     "number.base": "Price must be a number"
   }),
-  description: Joi.string().required().messages({
+  description: Joi.string().optional().messages({
     "any.required": "Description is required",
     "string.empty": "Description cannot be empty"
   }),
-  src: Joi.string().required().messages({
+  src: Joi.string().optional().messages({
     "any.required": "Image source is required",
     "string.empty": "Image source cannot be empty"
   }),
-  sellerName: Joi.string().optional(),
-  sellerEmail: Joi.string().email().optional()
+  sellerId: Joi.string().optional().messages({
+    "any.required": "Seller Id is required",
+    "string.empty": "Seller Id cannot be empty"
+  })
 });
 
 export const deleteItemSchema: ObjectSchema = Joi.object({
