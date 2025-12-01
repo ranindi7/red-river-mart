@@ -31,6 +31,7 @@ router.get(
 router.post(
   "/",
   requireAuth(),
+  findOrCreateUser,
   validateRequest(postItemSchema),
   itemController.createItem
 );
@@ -39,6 +40,7 @@ router.post(
 router.put(
   "/:id",
   requireAuth(),
+  findOrCreateUser,
   validateRequest(updateItemSchema),
   itemController.updateItem
 );

@@ -98,3 +98,22 @@ export async function deleteItem(itemId: number,sessionToken?: string|null): Pro
     throw new Error(`Failed to delete item with id ${itemId}`);
   }
 }
+
+export async function fetchItemsBySeller(sellerId: string, sessionToken?: string | null): Promise<Item[]> {
+  const response: Response = await fetch(`${BASE_URL}${ITEM_ENDPOINT}?sellerId=${sellerId}`,
+    sessionToken
+      ? {
+          headers: {
+            Authorization: `Bearer ${sessionToken}`,
+          },
+        }
+      : undefined
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch seller items");
+  }
+
+  const json: ItemsResponseJSON = await response.json();
+  return json.data;
+}

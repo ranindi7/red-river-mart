@@ -1,8 +1,6 @@
 import { User } from "@prisma/client";
 import prisma from "../../../../../prisma/client"
 import { clerkClient } from "@clerk/express";
-// import { getUserByIdSchema } from "../validations/userValidation";
-
 
 export const getUserById = async(id: string): Promise<User|null> => {
     const user: User | null = await prisma.user.findUnique(
@@ -45,28 +43,6 @@ export const createUser = async( userId: string ): Promise<User> => {
 export const fetchUsers = async(): Promise<User[]> => {
     return prisma.user.findMany()
 };
-
-// export const getUserById = async(id: number): Promise<User | null> => {
-//   const user = await prisma.user.findUnique({
-//     where: { id },
-//   });
-
-//   return user || null;
-// };
-
-// export const createUser = async (userData: {
-//     userName: string;
-//     bio: string;
-//     email: string;
-//     phone: string;
-//     preferredContact: string;
-// }): Promise<User> => {
-//     const newUser: User = await prisma.user.create({
-//         data: { ...userData },
-//     });
-
-//     return newUser;
-// };
 
 export const updateUser = async (
   id: string,

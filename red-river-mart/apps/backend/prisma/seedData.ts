@@ -142,217 +142,241 @@ export const itemSeedData: Omit<Item, "id">[] = [
   {
     name: "USB Flash Drive 32GB",
     category: "electronics",
-    price: 25.0,
-    description: "Brand new USB 32GB flash drive, still in packaging. $25 OBO.",
+    price: 25,
+    description: "Brand new USB 32GB flash drive, still in packaging.",
     src: "/placeholder.png",
-    sellerName: "Ranindi Gunasekera",
-    sellerEmail: "ngunasekera3@rrc.ca"
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
     name: "Wireless Mouse",
     category: "electronics",
     price: 18.5,
-    description: "Lightly used wireless mouse, works perfectly. $18 OBO.",
+    description: "Lightly used wireless mouse, works perfectly.",
     src: "/placeholder.png",
-    sellerName: "Heuone Castillo",
-    sellerEmail: "hcastillo2@rrc.ca"
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
-    name: "Portable Power Bank",
+    name: "Over-Ear Headphones",
     category: "electronics",
-    price: 30.0,
-    description: "Portable power bank, barely used, charging cables included. $30 OBO.",
+    price: 45,
+    description: "Comfortable over-ear headphones with great sound.",
     src: "/placeholder.png",
-    sellerName: "Alex Carlos",
-    sellerEmail: "arcarlos@rrc.ca"
-  },
-  {
-    name: "Headphones",
-    category: "electronics",
-    price: 45.0,
-    description: "Over-ear headphones, lightly used, great sound. $45 OBO.",
-    src: "/placeholder.png"
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
     name: "School Hoodie",
     category: "clothing",
-    price: 35.0,
-    description: "Brand new hoodie, never worn. Perfect for chilly days. $35 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Graphic T-Shirt",
-    category: "clothing",
-    price: 20.0,
-    description: "Lightly worn graphic tee, still looks new. $20 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Baseball Cap",
-    category: "clothing",
-    price: 15.0,
-    description: "Classic cap, lightly used, great condition. $15 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Winter Jacket",
-    category: "clothing",
-    price: 60.0,
-    description: "Warm winter jacket, brand new with tags. $60 OBO.",
-    src: "/placeholder.png"
+    price: 35,
+    description: "Brand new hoodie, never worn.",
+    src: "/placeholder.png",
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
     name: "Math Textbook",
     category: "books",
-    price: 55.0,
-    description: "Math 101 textbook, lightly highlighted, like new. $55 OBO.",
-    src: "/placeholder.png"
+    price: 55,
+    description: "Lightly highlighted Math 101 textbook.",
+    src: "/placeholder.png",
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
-    name: "English Literature Book",
-    category: "books",
-    price: 40.0,
-    description: "Lit textbook, some notes inside but in great shape. $40 OBO.",
-    src: "/placeholder.png"
+    name: "Graphic T-Shirt",
+    category: "clothing",
+    price: 20,
+    description: "Lightly worn graphic tee.",
+    src: "/placeholder.png",
+    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
   },
   {
-    name: "Journal/Planner",
+    name: "Journal / Planner",
     category: "books",
-    price: 15.0,
-    description: "Planner barely used, most pages blank. $15 OBO.",
-    src: "/placeholder.png"
+    price: 15,
+    description: "Planner barely used, most pages blank.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Sketchbook",
     category: "books",
-    price: 12.0,
-    description: "Sketchbook, some doodles inside, mostly blank. $12 OBO.",
-    src: "/placeholder.png"
+    price: 12,
+    description: "Sketchbook with a few doodles inside.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Reusable Water Bottle",
     category: "accessories",
-    price: 10.0,
-    description: "Brand new water bottle, eco-friendly and leak-proof. $10 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Keychain Lanyard",
-    category: "accessories",
-    price: 5.0,
-    description: "Cute lanyard for keys or ID, lightly used. $5 OBO.",
-    src: "/placeholder.png"
+    price: 10,
+    description: "Eco-friendly water bottle, leak-proof.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Backpack",
     category: "accessories",
-    price: 45.0,
-    description: "Sturdy backpack, lightly used, perfect for school or work. $45 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Phone Case",
-    category: "accessories",
-    price: 12.5,
-    description: "Brand new phone case, never used. $12 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Laptop Sleeve",
-    category: "electronics",
-    price: 25.0,
-    description: "Lightly used laptop sleeve, protects your laptop perfectly. $25 OBO.",
-    src: "/placeholder.png"
+    price: 45,
+    description: "Sturdy backpack, great for school or work.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Smartwatch",
     category: "electronics",
-    price: 150.0,
-    description: "Smartwatch, barely used, works like new. $150 OBO.",
-    src: "/placeholder.png"
+    price: 150,
+    description: "Barely used smartwatch, excellent condition.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
-    name: "USB-C Cable",
+    name: "Laptop Sleeve",
     category: "electronics",
-    price: 8.0,
-    description: "Extra USB-C cable, brand new in packaging. $8 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Denim Jeans",
-    category: "clothing",
-    price: 45.0,
-    description: "Denim jeans, lightly worn, still look new. $45 OBO.",
-    src: "/placeholder.png"
+    price: 25,
+    description: "Protective laptop sleeve, lightly used.",
+    src: "/placeholder.png",
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Winter Scarf",
     category: "clothing",
-    price: 22.0,
-    description: "Cozy scarf, lightly used, perfect for winter. $22 OBO.",
-    src: "/placeholder.png"
+    price: 22,
+    description: "Cozy scarf, lightly worn.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
     name: "Gym Shorts",
     category: "clothing",
-    price: 28.0,
-    description: "Comfortable gym shorts, barely worn. $28 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Fleece Joggers",
-    category: "clothing",
-    price: 38.0,
-    description: "Soft fleece joggers, lightly used. $38 OBO.",
-    src: "/placeholder.png"
+    price: 28,
+    description: "Comfortable gym shorts.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
     name: "Science Textbook",
     category: "books",
-    price: 65.0,
-    description: "Science textbook, lightly highlighted, excellent condition. $65 OBO.",
-    src: "/placeholder.png"
+    price: 65,
+    description: "Lightly highlighted science textbook.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
     name: "Fantasy Novel",
     category: "books",
-    price: 18.0,
-    description: "Fun fantasy novel, brand new. $18 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Cookbook",
-    category: "books",
-    price: 25.0,
-    description: "Cookbook lightly used, some notes inside. $25 OBO.",
-    src: "/placeholder.png"
-  },
-  {
-    name: "Digital Stylus",
-    category: "accessories",
-    price: 50.0,
-    description: "Digital stylus for notes or art, barely used. $50 OBO.",
-    src: "/placeholder.png"
+    price: 18,
+    description: "Brand new fantasy novel.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
     name: "Laptop Stand",
     category: "accessories",
-    price: 35.0,
-    description: "Ergonomic laptop stand, lightly used. $35 OBO.",
-    src: "/placeholder.png"
+    price: 35,
+    description: "Ergonomic laptop stand, lightly used.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
-    name: "Sunglasses",
+    name: "Digital Stylus",
     category: "accessories",
-    price: 20.0,
-    description: "Sunglasses, brand new, perfect for sunny days. $20 OBO.",
-    src: "/placeholder.png"
+    price: 50,
+    description: "Stylus for tablets or laptops.",
+    src: "/placeholder.png",
+    sellerId: "user_364qct1NmT0FHF3uJWBLym5Im3B"
   },
   {
-    name: "Notebook",
+    name: "Gaming Keyboard",
+    category: "electronics",
+    price: 80,
+    description: "Mechanical keyboard with RGB lighting.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Monitor Stand",
+    category: "accessories",
+    price: 30,
+    description: "Adjustable metal monitor stand.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Beanie Hat",
+    category: "clothing",
+    price: 18,
+    description: "Warm beanie hat, excellent condition.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Notebook Pack",
     category: "books",
-    price: 8.0,
-    description: "Notebook, mostly blank pages, lightly used. $8 OBO.",
-    src: "/placeholder.png"
+    price: 12,
+    description: "Pack of 3 notebooks, mostly unused.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Phone Tripod",
+    category: "accessories",
+    price: 22,
+    description: "Compact tripod for phones.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Bluetooth Speaker",
+    category: "electronics",
+    price: 40,
+    description: "Portable Bluetooth speaker, loud and clear.",
+    src: "/placeholder.png",
+    sellerId: "user_36FILRB62J4VZrUGNLDjDB8iQG7"
+  },
+  {
+    name: "Running Shoes",
+    category: "clothing",
+    price: 55,
+    description: "Lightweight running shoes, gently used.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
+  },
+  {
+    name: "Textbook Bundle",
+    category: "books",
+    price: 90,
+    description: "Bundle of 3 textbooks, excellent condition.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
+  },
+  {
+    name: "Mini Desk Lamp",
+    category: "electronics",
+    price: 18,
+    description: "USB-powered compact lamp.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
+  },
+  {
+    name: "Baseball Cap",
+    category: "clothing",
+    price: 15,
+    description: "Classic cap, lightly used.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
+  },
+  {
+    name: "Portable Fan",
+    category: "electronics",
+    price: 20,
+    description: "Rechargeable mini fan.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
+  },
+  {
+    name: "Leather Wallet",
+    category: "accessories",
+    price: 25,
+    description: "Minimalist wallet, like new.",
+    src: "/placeholder.png",
+    sellerId: "user_36FP1eRjTduycEX5SEhFBM4dn05"
   }
 ];

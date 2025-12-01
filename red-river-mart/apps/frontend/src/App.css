@@ -18,3 +18,11 @@ Secondary Colors
   background: #F8F9FA;
   padding-top: 100px
 }
+
+.signupRoot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  width: auto;
+}

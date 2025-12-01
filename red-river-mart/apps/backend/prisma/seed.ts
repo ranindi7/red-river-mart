@@ -2,20 +2,31 @@ import { PrismaClient } from "@prisma/client";
 import { forumSeedData } from "./seedData";
 // import { userSeedData } from "./seedData";
 import { itemSeedData } from "./seedData";
+import { clerkClient } from "@clerk/clerk-sdk-node";
 
 const prisma = new PrismaClient();
 
 async function main() { 
-    // await prisma.user.deleteMany();
-    
-    // const createManyUsers = await prisma.user.createManyAndReturn(
-    //     {
-    //         data: userSeedData,
-    //         skipDuplicates: true
-    //     }
-    // );
+    // used clerk to get user data
+    await prisma.user.deleteMany();
+    const clerkUsers = await clerkClient.users.getUserList();
 
-    // console.log(`CREATED USERS: ${createManyUsers}`)
+    const usersToInsert = clerkUsers.map((u) => ({
+        id: u.id,
+        firstName: u.firstName || "",
+        lastName: u.lastName || "",
+        userName: u.username || `${u.firstName ?? ""} ${u.lastName ?? ""}`.trim(),
+        email: u.emailAddresses[0]?.emailAddress ?? "",
+        phone: u.phoneNumbers[0]?.phoneNumber ?? "",
+        bio: "",
+        preferredContact: "email",
+        profileImage: u.imageUrl,
+    }));
+
+    await prisma.user.createMany({
+        data: usersToInsert,
+        skipDuplicates: true,
+    });
   
     await prisma.forum.deleteMany();
     await prisma.forum.createMany({
@@ -36,8 +47,7 @@ async function main() {
             price: item.price,
             description: item.description,
             src: item.src,
-            sellerName: item.sellerName ?? "Demo Seller",
-            sellerEmail: item.sellerEmail ?? "demo@example.com",
+            sellerId: item.sellerId
         })),
         skipDuplicates: true,
     });
