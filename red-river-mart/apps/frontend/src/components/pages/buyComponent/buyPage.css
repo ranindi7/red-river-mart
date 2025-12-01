@@ -1,5 +1,4 @@
 .MarketplacePage {
-  top: 60px;
   display: grid;
   grid-template-columns: 333px 1fr;
   grid-template-rows: auto auto auto;
@@ -16,6 +15,8 @@
   background-color: #f8f9fa;
   position: relative;
   padding-bottom: 4rem;
+  position: relative;
+  margin-top: 30px;
 }
 
 .FilterItems {
@@ -75,7 +76,7 @@
   top: 0;
   left: -100%;
   width: 300px;
-  height: auto;
+  height: 100vh;
   background-color: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   transition: left 0.3s ease;
@@ -353,7 +354,7 @@
   }
 
   .ItemPage div {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 2.5rem;
   }
 
