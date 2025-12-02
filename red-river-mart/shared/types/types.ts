@@ -68,6 +68,7 @@ export interface User {
   phone: string;
   preferredContact: string;
   profileImage?: string;
+  items?: Item[];
 };
 
 export interface EditUser {

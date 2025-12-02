@@ -7,7 +7,9 @@ export const getUserById = async(id: string): Promise<User|null> => {
         {
             where: {
                 id: id
-            }
+            },
+            include: { items: true }
+            
         }
     );
 
