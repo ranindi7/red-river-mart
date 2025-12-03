@@ -48,7 +48,7 @@ export async function createItem(item: Omit<Item, "id">, sessionToken?: string|n
     {
       method: "POST",
       body: JSON.stringify(item),
-      headers: {
+      headers: { 
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionToken}`,
       },
