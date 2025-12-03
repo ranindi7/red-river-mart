@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import type { Forum, Comment } from "../../../../../../shared/types/types";
 import MakeForum from "../makeForumComponent/makeForumPage";
 import { SearchFilter } from "./searchFilter";
-import * as ForumService from "../../../service/forumService";
+import * as ForumService from '../../../apis/mockForumRepo';
+import { getCurrentUser } from "../../../hooks/getCurrentUser";
 
 export default function ForumPage() {
   // The state for the forums
@@ -19,19 +20,21 @@ export default function ForumPage() {
   const [deleteMode, setDeleteMode] = useState<{ [key: number]: boolean }>({});
   // This state tracks which comments are selected on the forum to delete
   const [selectedComments, setSelectedComments] = useState<{ [key: number]: number[] }>({});
-
+  const { dbUser, isSignedIn } = getCurrentUser();
   // fetches the list of the forums in the backend and stores it in state to be displayed in the web page
-  useEffect(() => {
-    const fetchForums = async () => {
-      try {
-        const data = await ForumService.fetchForums();
-        setForums(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchForums();
-  }, []);
+        useEffect(() => {
+            if (!dbUser) return;
+
+            const fetchItems = async () => {
+                const fetchedForums = await ForumService.fetchForums();
+                const filteredForums = fetchedForums.filter(item => item.authorId !== dbUser?.id);
+                setForums(filteredForums);
+            };
+            fetchItems();
+        }, [dbUser]);
+
+        if (!isSignedIn) return <p>Please sign in to view the marketplace.</p>;
+        if (!dbUser) return <p>Loading marketplace...</p>;
 
   // Handles when a forum is added to the backend and upates the new list including the new forum
   const handleAddForum = async (newForumData: Omit<Forum, "id">) => {
@@ -77,7 +80,8 @@ export default function ForumPage() {
     const newComment: Comment = {
       id: Date.now(), // Unique Id for the comment so each comment is its own
       text,
-      user: "Guest", // I made this guest for now because were gonna add in back end logic later on the modules
+      user: "Guest",
+      forumId, // I made this guest for now because were gonna add in back end logic later on the modules
     };
     setForums((previous) =>
       previous.map((forum) =>
@@ -193,6 +197,7 @@ return (
                               title: newForumData.title ?? "Untitled Forum",
                               description: newForumData.description ?? "No description provided.",
                               date: new Date().toLocaleDateString(),
+                              authorId: newForumData.authorId ?? "No author id"
                             });
 
                             setShowModal(false);

@@ -81,60 +81,70 @@ export const forumSeedData: Omit<Forum, "id">[] = [
     title: "Looking for a Roommate",
     date: "2023-11-26",
     description: "I have an extra space for a roommate!",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "jobs",
     title: "Part-Time Developer",
     date: "2024-01-15",
     description: "Looking for a part-time React developer to join a small team.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "events",
     title: "Community Cleanup",
     date: "2024-02-10",
     description: "Join us for a local park cleanup this weekend!",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "housing",
     title: "Apartment Available",
     date: "2024-03-05",
     description: "1-bedroom apartment available for rent in River Heights.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "buy/sell",
     title: "Selling Used Laptop",
     date: "2024-04-12",
     description: "Lightly used MacBook Air for sale, excellent condition.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "community",
     title: "Volunteers Needed",
     date: "2024-05-20",
     description: "Looking for volunteers to help with a food drive event.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "jobs",
     title: "Freelance Designer Wanted",
     date: "2024-06-14",
     description: "Seeking a graphic designer for a short-term branding project.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "housing",
     title: "Sublet Available",
     date: "2024-07-22",
     description: "Fully furnished sublet available from July to September.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "events",
     title: "Coding Workshop",
     date: "2024-08-30",
     description: "Free beginner coding workshop hosted at the community center.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     subject: "buy/sell",
     title: "Furniture Giveaway",
     date: "2024-09-10",
     description: "Giving away a couch and coffee table, must pick up.",
+    authorId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   }
 ];
 
@@ -145,7 +155,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 25,
     description: "Brand new USB 32GB flash drive, still in packaging.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7",
   },
   {
     name: "Wireless Mouse",
@@ -153,7 +163,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 18.5,
     description: "Lightly used wireless mouse, works perfectly.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Over-Ear Headphones",
@@ -161,7 +171,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 45,
     description: "Comfortable over-ear headphones with great sound.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "School Hoodie",
@@ -169,7 +179,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 35,
     description: "Brand new hoodie, never worn.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Math Textbook",
@@ -177,7 +187,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 55,
     description: "Lightly highlighted Math 101 textbook.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Graphic T-Shirt",
@@ -185,7 +195,7 @@ export const itemSeedData: Omit<Item, "id">[] = [
     price: 20,
     description: "Lightly worn graphic tee.",
     src: "/placeholder.png",
-    sellerId: "user_361TVpjxhech92apm49nhl9CfVx"
+    sellerId: "user_364Gt7KRRMMmigAOdy148YBfdz7"
   },
   {
     name: "Journal / Planner",

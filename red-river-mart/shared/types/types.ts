@@ -5,12 +5,14 @@ export interface Forum {
   date: string;
   description: string;
   comments?: Comment[];
+  authorId: string;
 }
 
 export interface Comment {
   id: number;
   text: string;
-  user: string; 
+  user: string;
+  forumId: number;
 }
 
 export interface ForumPost {
@@ -48,7 +50,7 @@ export interface FilterOption {
     id: number;
     name: string;
     category?: string; 
-    sort?: string;     
+    sort?: string;
 }
 
 // vscode fixed this automatically ie. FilterItemsProps

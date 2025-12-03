@@ -16,11 +16,15 @@ export const createForum = async (data: {
   title: string;
   description: string;
   date?: string;
+  authorId: string;
 }): Promise<Forum> => {
   return prisma.forum.create({
     data: {
-      ...data,
+      subject: data.subject,
+      title: data.title,
+      description: data.description,
       date: data.date ?? new Date().toLocaleDateString(),
+      author: { connect: { id: data.authorId } }, 
     },
   });
 };
