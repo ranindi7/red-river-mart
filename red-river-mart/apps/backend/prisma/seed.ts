@@ -39,11 +39,11 @@ async function main() {
         comments: {
           create: [
             {
-              text: "This is a sample comment!",
+              text: "testing sample comment!",
               user: { connect: { id: usersToInsert[0]?.id } },
             },
             {
-              text: "Another example comment.",
+              text: "double testing comment!",
               user: { connect: { id: usersToInsert[1]?.id } },
             },
           ],

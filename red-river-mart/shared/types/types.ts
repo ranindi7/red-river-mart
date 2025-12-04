@@ -11,8 +11,9 @@ export interface Forum {
 export interface Comment {
   id: number;
   text: string;
-  user: string;
+  user?: User;
   forumId: number;
+  userId: string;
 }
 
 export interface ForumPost {
@@ -40,6 +41,10 @@ export interface ItemPageProps {
   onItemClick: (item: Item) => void;
 }
 
+export interface CommentProps {
+  forumId: number;
+  initialComments: Comment[]
+};
 
 export interface ActiveFilters {
   category: string;
