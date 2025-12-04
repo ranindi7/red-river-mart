@@ -38,7 +38,7 @@ export default function SellPage({ onAddItem }: FormItem) {
     }
 
     // create new item
-    const newItem: Omit<Item, "id"> = {
+    const newItem: Omit<Item, "id" | "seller"> = {
       name: fields.name as string,
       category: (fields.category as string).toLowerCase(),
       price: parseFloat(fields.price as string),
@@ -54,7 +54,7 @@ export default function SellPage({ onAddItem }: FormItem) {
     onAddItem(created);
 
     // navigate to home page
-    navigate("/");
+    navigate("/account");
   };
 
   const ErrorMessage = ({ fieldName }: { fieldName: string }) =>

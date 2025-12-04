@@ -138,7 +138,7 @@ export const forumSeedData: Omit<Forum, "id">[] = [
   }
 ];
 
-export const itemSeedData: Omit<Item, "id">[] = [
+export const itemSeedData: Omit<Item, "id" | "seller">[] = [
   {
     name: "USB Flash Drive 32GB",
     category: "electronics",
