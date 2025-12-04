@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { Forum, Comment } from "../../../../../../shared/types/types";
 import MakeForum from "../makeForumComponent/makeForumPage";
 import { SearchFilter } from "./searchFilter";
-import * as ForumService from '../../../apis/mockForumRepo';
+import * as ForumService from '../../../apis/forumRepo';
 import { getCurrentUser } from "../../../hooks/getCurrentUser";
 
 export default function ForumPage() {
