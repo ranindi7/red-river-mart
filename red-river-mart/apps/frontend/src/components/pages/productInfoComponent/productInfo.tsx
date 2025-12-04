@@ -5,7 +5,7 @@ import { getCurrentUser } from "../../../hooks/getCurrentUser";
 
 export default function ProductInfo ({ item }: { item: Item }) {
   const { dbUser, isSignedIn } = getCurrentUser();
-  const teamsLink = `https://teams.microsoft.com/l/chat/0/0?users=${dbUser?.email}`;
+  const teamsLink = `https://teams.microsoft.com/l/chat/0/0?users=${item.seller.email}`;
 
   // Loading states
   if (!isSignedIn) return <p>Please sign in to view the listing.</p>;
@@ -18,7 +18,7 @@ export default function ProductInfo ({ item }: { item: Item }) {
       </div>
 
       <div className="productInfoContainer">
-        <h2>Seller: {dbUser.firstName} {dbUser.lastName}</h2>
+        <h2>Seller: {item.seller.firstName} {item.seller.lastName}</h2>
         <h1>{item.name}</h1>
         <h3>{item.category.charAt(0).toUpperCase() + item.category.slice(1)}</h3>
         <h3>${item.price.toFixed(2)}</h3>

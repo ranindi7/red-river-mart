@@ -42,7 +42,7 @@ export async function getItemById(itemId: number, sessionToken?: string|null): P
   return json.data;
 }
 
-export async function createItem(item: Omit<Item, "id">, sessionToken?: string|null): Promise<Item> {
+export async function createItem(item: Omit<Item, "id" | "seller">, sessionToken?: string|null): Promise<Item> {
   const response: Response = await fetch(
     `${BASE_URL}${ITEM_ENDPOINT}`, 
     {
