@@ -8,23 +8,9 @@ import EditUserModal from "../editUserDetailsComponent/editUserDetailsComponent"
 import { getCurrentUser } from "../../../hooks/getCurrentUser";
 
 export default function UserAccount() {
-  // const { user, isSignedIn } = useUser();
-  // const { getToken } = useAuth();
+
   const { dbUser, setDbUser, isSignedIn, getToken } = getCurrentUser();
-  // const [dbUser, setDbUser] = useState<User | null>(null);
   const [showModal, setShowModal] = useState(false);
-
-  // useEffect(() => {
-  //   if (!isSignedIn) return;
-
-  //   const load = async () => {
-  //     const token = await getToken();
-  //     const backendUser = await getUserById(user.id, token);
-  //     setDbUser(backendUser);
-  //   };
-
-  //   load();
-  // }, [isSignedIn, user, getToken]);
 
   const handleSave = async (updatedData: Omit<User, "id">) => {
     try {
@@ -37,7 +23,6 @@ export default function UserAccount() {
       console.error("Failed to update user:", err);
     }
   };
-
 
   // Loading states
   if (!isSignedIn) return <p>Please sign in to view your account.</p>;
