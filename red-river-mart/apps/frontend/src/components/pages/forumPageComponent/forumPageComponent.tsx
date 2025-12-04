@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { Forum, Comment } from "../../../../../../shared/types/types";
 import MakeForum from "../makeForumComponent/makeForumPage";
 import { SearchFilter } from "./searchFilter";
-import * as ForumService from "../../../service/forumService";
+import * as ForumService from "../../../apis/forumRepo";
 
 export default function ForumPage() {
   // The state for the forums
@@ -24,7 +24,7 @@ export default function ForumPage() {
   useEffect(() => {
     const fetchForums = async () => {
       try {
-        const data = await ForumService.fetchForums();
+        const data = await ForumService.getAllForums();
         setForums(data);
       } catch (error) {
         console.error(error);
@@ -36,7 +36,7 @@ export default function ForumPage() {
   // Handles when a forum is added to the backend and upates the new list including the new forum
   const handleAddForum = async (newForumData: Omit<Forum, "id">) => {
     try {
-      const newForum = await ForumService.addForum(newForumData);
+      const newForum = await ForumService.createForum(newForumData);
       setForums(prev => [...prev, newForum]);
     } catch (err) {
       console.error(err);
