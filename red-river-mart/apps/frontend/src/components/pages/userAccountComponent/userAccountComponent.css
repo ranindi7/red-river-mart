@@ -1,89 +1,116 @@
-.userInfo img {
-  height: 200px;
-  width: auto;
-}
-
-.userProducts ul {
-  list-style: none;      
-  display: flex;          
-  justify-content: flex-start;
-  gap: 20px;   
-  padding: 20px;                       
-}
-
 .userInfo {
   display: flex;
-  align-items: center;           
-  padding: 20px; 
-  border-bottom: 2px solid #9c102d; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 2px solid #9c102d;
+  gap: 25px; 
+  max-width: 800px; 
+  margin: 0 auto; 
 }
 
-.userWishlist {
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
-.userProducts {
-  border-right: 2px solid #9c102d;
-  padding: 20px;
-  padding-right: 5%;
+.userInfo img {
+  height: 180px; 
+  width: 180px; 
 }
 
 .userText {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  gap: 15px;
+  width: 100%; 
+  margin: 0 auto; 
+  max-width: 600px;
 }
 
-.userContent {
-  display: flex;
-  justify-content: space-between;       
-  gap: 20px;                     
+.userText h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.userText h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #666;
+  font-weight: normal;
+}
+
+.userText p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px; 
+  margin: 0 auto;
+}
+
+.contactInfo {
+  margin-top: 20px;
   padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.contactInfo h4 {
+  margin: 0 0 10px 0;
+  color: #9c102d;
+}
+
+.contactInfo p {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .editProfile {
   display: flex;
   justify-content: flex-end;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.userProducts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.userProducts div{
+  display: grid;
+  grid-template-columns: repeat(5, minmax(220px, 1fr));
+  gap: 3rem;
+  justify-items: center;
+}
+
+.userContent {
+  grid-area: items;
+  padding: 2rem;
+  margin: auto;
 }
 
 button {
   background-color: #9c102d;
   color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.userWishlist ul {
-  list-style: none;      
-  display: grid;          
-  grid-template-columns: repeat(3, 1fr); /*https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items*/ 
-  gap: 20px;   
-  padding: 20px;   
-  min-height: 300px;                    
-}
-
-main {
-  margin-top: 120px; 
-}
-
-.userProducts, .userWishlist {
-  flex: 1;
-  min-height: 450px;
-}
-
-/*https://blog.mathieu-leplatre.info/placeholder-for-empty-lists-in-css.html*/
-.wishlistProducts:empty::after { 
-  content: "No Items Available";
-}
-
-.wishlistProducts:empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 150px;
-  color: grey;
-}
-
-label { 
-  padding-left: 10px;
-  padding-right: 5px;
+button:hover {
+  background-color: #7a0d23;
 }

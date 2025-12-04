@@ -60,6 +60,7 @@ export const updateUser = async (
   const updatedUser = await prisma.user.update({
     where: { id },  
     data: { ...userData },
+    include: { items: true }
   });
 
   return updatedUser;
