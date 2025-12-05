@@ -2,12 +2,15 @@ import { Item } from "@prisma/client";
 import prisma from "../../../../../prisma/client";
 
 export const fetchAllItems = async (): Promise<Item[]> => {
-  return prisma.item.findMany();
+  return prisma.item.findMany({
+    include: { seller: true },
+  });
 };
 
 export const getItemById = async (id: number): Promise<Item | null> => {
   const item = await prisma.item.findUnique({
     where: { id },
+    include: { seller: true },
   });
 
   return item || null;
@@ -18,12 +21,18 @@ export const createItem = async (itemData: {
   category: string;
   price: number;
   description: string;
-  src: string;
-  sellerName?: string;
-  sellerEmail?: string;
+  src?: string;
+  sellerId: string;
 }): Promise<Item> => {
-  const newItem: Item = await prisma.item.create({
-    data: { ...itemData },
+  const newItem = await prisma.item.create({
+    data: {
+      name: itemData.name,
+      category: itemData.category,
+      price: itemData.price,
+      description: itemData.description,
+      src: itemData.src,
+      sellerId: itemData.sellerId, 
+    },
   });
 
   return newItem;
@@ -37,8 +46,7 @@ export const updateItem = async (
     price?: number;
     description?: string;
     src?: string;
-    sellerName?: string;
-    sellerEmail?: string;
+    sellerId?: string;
   }
 ): Promise<Item> => {
   const updatedItem = await prisma.item.update({
