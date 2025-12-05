@@ -13,11 +13,13 @@ import { requireAuth } from "@clerk/express";
 const router: Router = express.Router();
 
 router.get("/",
+  requireAuth(),
   findOrCreateUser,
   forumController.getAllForums);
 
 router.get(
   "/:id",
+  requireAuth(),
   findOrCreateUser,
   validateRequest(getForumByIdSchema),
   forumController.getForumById
