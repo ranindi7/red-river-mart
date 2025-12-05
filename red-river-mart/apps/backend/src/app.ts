@@ -9,6 +9,7 @@ import errorHandler from "./api/v1//middleware/errorHandler";
 import setupSwagger from "../config/swagger";
 import forumRoutes from "./api/v1/forums/routes/forumRoutes";
 import itemRoutes from "./api/v1/items/routes/itemRoutes";
+import CommentRoutes from "./api/v1/comments/routes/commentRoutes";
 import { clerkMiddleware } from "@clerk/express";
 
 const app: Express = express();
@@ -35,6 +36,7 @@ app.get("/", (_req, res) => {
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/forums", forumRoutes);
 app.use("/api/v1/items", itemRoutes);
+app.use("/api/v1/comments", CommentRoutes);
 
 // error handler
 app.use(errorHandler);
