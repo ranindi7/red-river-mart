@@ -7,7 +7,9 @@ export const getUserById = async(id: string): Promise<User|null> => {
         {
             where: {
                 id: id
-            }
+            },
+            include: { items: true }
+            
         }
     );
 
@@ -58,6 +60,7 @@ export const updateUser = async (
   const updatedUser = await prisma.user.update({
     where: { id },  
     data: { ...userData },
+    include: { items: true }
   });
 
   return updatedUser;

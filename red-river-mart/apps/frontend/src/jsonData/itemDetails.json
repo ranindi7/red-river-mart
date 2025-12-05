@@ -1,8 +1,0 @@
-[
-  { "id": 1, "name": "USB Flash Drive 32GB", "category": "Electronics", "price": 25.00, "src": "placeholder", "seller": "Ranindi Gunasekera", "status": "sold" },
-  { "id": 2, "name": "Bracelet", "category": "Accessories", "price": 40.00, "src": "placeholder", "seller": "Ranindi Gunasekera", "status": "sold" },
-  { "id": 3, "name": "GAP Hoodie", "category": "Clothing", "price": 10.00, "src": "placeholder", "seller": "Ranindi Gunasekera", "status": "sold" },
-  { "id": 4, "name": "Headphones", "category": "electronics", "price": 45.00, "src": "placeholder", "seller": "XYZ", "status": "listed" },
-  { "id": 5, "name": "School Hoodie", "category": "clothing", "price": 35.00, "src": "placeholder", "seller": "XYZ", "status": "listed" },
-  { "id": 6, "name": "Graphic T-Shirt", "category": "clothing", "price": 20.00, "src": "placeholder", "seller": "XYZ", "status": "listed" }
-]

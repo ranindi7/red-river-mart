@@ -2,16 +2,14 @@ import './buyPage.css';
 import { useState, useEffect } from "react";
 import FilterItems from "./filterPage";
 import ItemPage from "./ItemPage";
-import filterOptionsData from "../../../jsonData/filterOptions.json";
+import { filterData } from '../../../apis/filterRepo';
 import type { Item, ActiveFilters, FilterOption } from "../../../../../../shared/types/types";
 import SellPage from '../sellComponent/sellPage';
 import ProductInfo from '../productInfoComponent/productInfo';
 import { useUser } from '@clerk/clerk-react';
 
 export default function MarketplacePage({ items, onAddItem }: { items: Item[]; onAddItem: (item: Omit<Item, 'id'>) => void }) {
-    // state for filter options
-    const [filterOptions] = useState<FilterOption[]>(filterOptionsData);
-    
+    const [filterOptions] = useState<FilterOption[]>(filterData);
     // state for modal
     const [showSellModal, setShowSellModal] = useState(false);
 

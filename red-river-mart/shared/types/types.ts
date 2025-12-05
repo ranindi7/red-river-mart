@@ -34,6 +34,16 @@ export interface Item {
   description: string;
   src: string;
   sellerId: string;
+
+  seller: {
+    id: string;
+    firstName?: string | null;
+    lastName?: string | null;
+    userName: string;
+    email: string;
+    phone?: string;
+    profileImage?: string | null;
+  };
 }
 
 export interface ItemPageProps {
@@ -75,6 +85,7 @@ export interface User {
   phone: string;
   preferredContact: string;
   profileImage?: string;
+  items?: Item[];
 };
 
 export interface EditUser {

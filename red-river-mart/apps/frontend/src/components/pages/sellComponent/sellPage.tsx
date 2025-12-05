@@ -1,6 +1,6 @@
 import type { Item, FormItem } from "../../../../../../shared/types/types";
 import { useNavigate } from "react-router-dom";
-import filterOptionsData from "../../../jsonData/filterOptions.json";
+import { filterData } from "../../../apis/filterRepo";
 import { useFormInputs } from "../../../hooks/useFormInputs";
 import { useAuth } from "@clerk/clerk-react";
 import { createItem } from "../../../apis/itemRepo";
@@ -38,7 +38,7 @@ export default function SellPage({ onAddItem }: FormItem) {
     }
 
     // create new item
-    const newItem: Omit<Item, "id"> = {
+    const newItem: Omit<Item, "id" | "seller"> = {
       name: fields.name as string,
       category: (fields.category as string).toLowerCase(),
       price: parseFloat(fields.price as string),
@@ -54,7 +54,7 @@ export default function SellPage({ onAddItem }: FormItem) {
     onAddItem(created);
 
     // navigate to home page
-    navigate("/");
+    navigate("/account");
   };
 
   const ErrorMessage = ({ fieldName }: { fieldName: string }) =>
@@ -63,6 +63,8 @@ export default function SellPage({ onAddItem }: FormItem) {
         {errors[fieldName]}
       </span>
     ) : null;
+
+  const categoryOptions = filterData.filter((opt) => opt.category);
 
   return (
     <div>
@@ -91,7 +93,7 @@ export default function SellPage({ onAddItem }: FormItem) {
           <option value="" disabled>
             Select a category
           </option>
-          {filterOptionsData
+          {categoryOptions
             .filter((cat) => cat.id >= 3)
             .map((cat) => (
               <option key={cat.id} value={cat.name}>
