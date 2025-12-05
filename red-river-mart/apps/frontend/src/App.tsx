@@ -1,12 +1,12 @@
 import './App.css'
 import './components/pages/buyComponent/buyPage.css'
 import './components/pages/sellComponent/sellPage.css'
-import UserAccount from "./components/pages/userAccountComponent/userAccountComponent";
+import UserAccount from "./components/pages/userAccountComponent/account";
 import { Routes, Route, useLocation } from "react-router-dom"; 
 import { Layout } from './components/layout/layout';
 import MarketplaceContainer from './components/pages/buyComponent/marketplaceContainer';
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
-import ForumPage from './components/pages/forumPageComponent/forumPageComponent';
+import ForumPage from './components/pages/forumPageComponent/forum';
 
 function App() {
   const location = useLocation();
