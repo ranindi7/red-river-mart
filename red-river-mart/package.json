@@ -23,6 +23,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.58.0",
     "@clerk/types": "^4.50.2",
     "dotenv": "^16.4.7"
   }
