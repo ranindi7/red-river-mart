@@ -6,6 +6,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from './components/layout/layout';
 import MarketplaceContainer from './components/pages/buyComponent/marketplaceContainer';
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import ForumPage from './components/pages/forumPageComponent/forumPageComponent';
 
 function App() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function App() {
           path="forum"
           element={
             <>
-              <SignedIn><UserAccount /></SignedIn>
+              <SignedIn><ForumPage /></SignedIn>
               <SignedOut><SignInButton mode="redirect" /></SignedOut>
             </>
           }
