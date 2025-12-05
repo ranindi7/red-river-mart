@@ -1,116 +1,170 @@
-.userInfo {
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  text-align: center;
-  padding: 40px 20px;
-  border-bottom: 2px solid #9c102d;
-  gap: 25px; 
-  max-width: 800px; 
-  margin: 0 auto; 
-}
-
-.userInfo img {
-  height: 180px; 
-  width: 180px; 
-}
-
-.userText {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%; 
-  margin: 0 auto; 
-  max-width: 600px;
-}
-
-.userText h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.userText h3 {
-  margin: 0;
-  font-size: 1.3rem;
-  color: #666;
-  font-weight: normal;
-}
-
-.userText p {
-  margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 600px; 
+.profileContainer {
+  max-width: 900px;
   margin: 0 auto;
-}
-
-.contactInfo {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 1000px;
-  text-align: center;
-}
-
-.contactInfo h4 {
-  margin: 0 0 10px 0;
-  color: #9c102d;
-}
-
-.contactInfo p {
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1rem;
-  color: #555;
-  max-width: none;
-  white-space: nowrap;
+  padding: 2rem 1.5rem;
 }
 
 .editProfile {
   display: flex;
   justify-content: flex-end;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.userProducts ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.userProducts div{
-  display: grid;
-  grid-template-columns: repeat(5, minmax(220px, 1fr));
-  gap: 3rem;
-  justify-items: center;
-}
-
-.userContent {
-  grid-area: items;
-  padding: 2rem;
-  margin: auto;
+  margin-bottom: 1rem;
 }
 
 button {
   background-color: #9c102d;
   color: white;
-  padding: 12px 24px;
+  padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
+  transition: 0.2s ease;
+  margin: 0.2rem;
 }
 
 button:hover {
   background-color: #7a0d23;
+  transform: translateY(-2px);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.profilePicture {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bio {
+  max-width: 550px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.contactInfo {
+  background: #f8f8f8;
+  padding: 1.2rem;
+  border-radius: 10px;
+  max-width: 550px;
+  width: 100%;
+}
+
+.contactInfo h4 {
+  color: #9c102d;
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  margin: 2rem 0;
+  border: none;
+  height: 2px;
+  background-color: #9c102d;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.userContent {
+  width: 100%;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.productDisplay {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.productDisplay:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.productDisplay img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.productDisplay h4 {
+  margin: 0.7rem 0 0.3rem;
+  font-size: 1rem;
+}
+
+.productDisplay p {
+  color: #9c102d;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ModalBackground {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.ModalForm {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(238, 238, 238, 0.10);
+  max-width: 600px;
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  z-index: 9999;
+}
+
+.ModalProduct {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(238, 238, 238, 0.10);
+  max-width: 1000px;
+  width: 70%;
+  text-align: center;
+}
+
+
+.ModalClose {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
 }
