@@ -109,3 +109,58 @@ This app is going to ensure authenticity by ensuring login is done solely with v
 - S4(I.2): Creating forum model and table in schema and migrating table into Database
 - S4(I.3): Front-end repository sending request to back end  
 - S4(I.4): Data persistance when displaying forums including newly created forums
+
+
+
+### Local Setup Instructions Section
+
+1. Environment Variables (env)
+    - Before starting anything, make sure that you create a .env file in both frontend and backend folder.
+    - Below are the provided environment variables that you will need to put in your .env file.
+    - On line 125, make sure you edit the fields according to your postgresql username, password, port, and database_name
+        - frontend folder
+        VITE_API_BASE_URL=http://localhost:3000/
+        VITE_CLERK_PUBLISHABLE_KEY=pk_test_bG9naWNhbC1zaGVlcC01NS5jbGVyay5hY2NvdW50cy5kZXYk
+        - backend folder
+        DATABASE_URL="postgresql://{username}:{password}@localhost:{port}/{database_name}?schema=public"
+        FRONTEND_URL=http://localhost:5173/
+        CLERK_SECRET_KEY=sk_test_sMMKxc8GFHyX2FseQPBQFbUHhU91d8UXApo9DLqytc
+        CLERK_PUBLISHABLE_KEY=pk_test_bG9naWNhbC1zaGVlcC01NS5jbGVyay5hY2NvdW50cy5kZXYk
+
+2. Installation Instructions
+    - Now that we set up our environment variables we can move on to installing all the necessary packages
+    and dependencies for this project. As this is a monorepository project structure, run these commands.
+        - Make sure you that your in the project root directory before running these commnands.
+            - cd .\red-river-mart\
+        - npm install - This command should install everything for you with ease.
+
+3. PostgresSQL Installation
+    - You will need to have postgresql downloaded onto your machine as this projects uses the postgresql database.
+    - Visit the postgresql website https://www.postgresql.org/download/
+    - Choose your operating system and download the application.
+
+4. Database and Prisma Setup Process
+    - Before running our application, we must set up  our database first and this project uses Prisma,
+    below will be the instruction of setting up Prisma
+    - Prisma should have been installed by running npm install earlier but run it again just incase.
+    - To set up our database and Prisma, we must first go into our backend directory
+    - go into the backend directory, follow the following commands.
+        1. cd apps
+        2. cd backend
+    - After running these commands, you should be on your backend directory, now we can start setting up our Prisma.
+    - Make sure you are in the backend directory when you run the commands.
+        1. npx prisma migrate reset (resets the database and recreates it)
+            - Just in case it asks if you want to reset the migration, answer it with (y)
+        2. npx prisma generate (generates the Prisma client for the backend to communicate to the database.
+        3. npx prisma migrate dev --name init (creates the first initial migration to setup the database.
+        4. npx ts-node prisma/seed.ts (runs the seed.ts file which generates mockdata for the database in postgresql.
+    - After you run these commands, the backend and Prisma should be set up correctly now.
+    - Safely go back into your main project directory. Follow this command.
+        - cd ..
+    - You will have to run the command twice to get to the main directory again.
+    - OPTIONAL, you can run npx prisma studio if you want to see if the Prisma seed worked properly.
+5. Start Application
+    - Now that all set up is complete, we can safely run our application now!
+        - npm run dev
+    - This will start both backend and frontend
+    - The application is now ready to use!
