@@ -13,9 +13,9 @@ model Forum {
   title       String
   description String
   date        String
-  authorId    String
+  authorId    String?
   comments    Comment[]
-  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author      User?      @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
