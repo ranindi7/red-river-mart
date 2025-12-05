@@ -68,3 +68,40 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
 }
+
+.ModalBackground {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.ModalForm {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(238, 238, 238, 0.10);
+  max-width: 600px;
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  z-index: 9999;
+}
+
+.ModalClose {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
+}

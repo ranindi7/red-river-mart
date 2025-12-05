@@ -116,7 +116,7 @@ export default function MarketplacePage({ items, onAddItem }: { items: Item[]; o
                 <div className="ModalBackground" onClick={() => setSelectedItem(null)}>
                     <div className="ModalProduct" onClick={e => e.stopPropagation()}>
                         <button className="ModalClose" onClick={() => setSelectedItem(null)}>X</button>
-                        <ProductInfo item={selectedItem} />
+                        <ProductInfo item={selectedItem} mode="buy" />
                     </div>
                 </div>
             )}
