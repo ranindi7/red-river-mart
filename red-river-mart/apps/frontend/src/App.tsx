@@ -16,7 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* homepage */}
-        <Route path="/" element={<MarketplaceContainer key={location.key} />} />
+        <Route index element={<MarketplaceContainer key={location.key} />} />
 
         <Route path="sign-in/*" element={<SignInPage />} />
         <Route
