@@ -20,10 +20,10 @@ export default function ForumPage() {
 
   // fetches the list of the forums in the backend and stores it in state to be displayed in the web page
   useEffect(() => {
-    if (!dbUser) return;
-
     const fetchForums = async () => {
-      const fetchedForums = await ForumService.fetchForums();
+      const token = await getToken();
+      if (!token) return;
+      const fetchedForums = await ForumService.fetchForums(token);
       setForums(fetchedForums);
     };
     fetchForums();

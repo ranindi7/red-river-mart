@@ -10,7 +10,7 @@ export async function fetchForums(sessionToken?: string | null): Promise<Forum[]
   const response: Response = await fetch(`${BASE_URL}${FORUM_ENDPOINT}`, 
     sessionToken
       ? { headers: { Authorization: `Bearer ${sessionToken}` } }
-      : undefined
+      : {}
   );
 
   if (!response.ok) {
@@ -25,7 +25,7 @@ export async function getForumById(id: number, sessionToken?: string | null): Pr
   const response: Response = await fetch(`${BASE_URL}${FORUM_ENDPOINT}/${id}`, 
     sessionToken
       ? { headers: { Authorization: `Bearer ${sessionToken}` } }
-      : undefined
+      : {}
   );
 
   if (!response.ok) {
