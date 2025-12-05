@@ -7,45 +7,56 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from './components/layout/layout';
 import MarketplaceContainer from './components/pages/buyComponent/marketplaceContainer';
 import ForumPage from './components/pages/forumPageComponent/forumPageComponent';
-import { RedirectToSignIn, SignedIn, SignedOut, SignUp } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignUp } from "@clerk/clerk-react";
 
 function App() {
   const location = useLocation();
-  
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        {/* homepage */}
+        <Route path="/" element={<MarketplaceContainer key={location.key} />} />
+
+        <Route path="sign-in/*" element={<SignInPage />} />
         <Route
-          path="/"
+          path="sign-up"
+          element={
+            <SignUp routing="path" path="/sign-up" appearance={{ elements: { rootBox: "signupRoot" }}} />
+          }
+        />
+
+        <Route
+          path="account"
           element={
             <>
               <SignedIn>
-                <MarketplaceContainer key={location.key}/>
+                <UserAccount />
               </SignedIn>
-
               <SignedOut>
-                <RedirectToSignIn />
+                <SignInPage />
               </SignedOut>
             </>
           }
         />
 
-        <Route path="sign-in/*" element={<SignInPage />} />
-        <Route path="sign-up" element={<SignUp 
-          routing="path" 
-          path="/sign-up"
-          appearance={{
-            elements: {
-              rootBox: "signupRoot",
-            }
-          }}/>} />
+        <Route
+          path="forum"
+          element={
+            <>
+              <SignedIn>
+                <ForumPage />
+              </SignedIn>
+              <SignedOut>
+                <SignInPage />
+              </SignedOut>
+            </>
+          }
+        />
 
-        <Route path="account" element={<UserAccount />} />
-        <Route path="forum" element={<ForumPage />} />
       </Route>
     </Routes>
   );
 }
-
 
 export default App
