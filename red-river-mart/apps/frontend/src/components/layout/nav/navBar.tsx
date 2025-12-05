@@ -1,7 +1,7 @@
 import "./nav.css";
 import rrmLogo from "../../../assets/rrmLogo.png";
 import { NavLink } from "react-router-dom";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 export default function Nav() {
   return (
@@ -15,7 +15,7 @@ export default function Nav() {
                 <nav className="menu">
                   <ul>
                     <li>
-                      <NavLink to="/sign-in">Sign In</NavLink>
+                      <SignInButton mode="redirect" />
                     </li>
                   </ul>
                 </nav>
@@ -38,7 +38,9 @@ export default function Nav() {
                       <NavLink to="/forum">Forum</NavLink>
                     </li>
                     <li>
-                      <UserButton afterSignOutUrl="/sign-in"/>
+                      <UserButton
+                        afterSignOutUrl="https://logical-sheep-55.accounts.dev/sign-in"
+                      />
                     </li>
                   </ul>
                 </nav>
