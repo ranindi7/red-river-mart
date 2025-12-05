@@ -24,23 +24,24 @@ export const createForum = async (data: {
       title: data.title,
       description: data.description,
       date: data.date ?? new Date().toLocaleDateString(),
-      author: { connect: { id: data.authorId } }, 
+      authorId: data.authorId,
     },
   });
 };
 
 export const updateForum = async (
   id: number,
-  data: {
+  forumData: {
     subject?: string;
     title?: string;
     description?: string;
     date?: string;
+    authorId?: string;
   }
 ): Promise<Forum> => {
   return prisma.forum.update({
     where: { id },
-    data,
+    data: { ...forumData },
   });
 };
 

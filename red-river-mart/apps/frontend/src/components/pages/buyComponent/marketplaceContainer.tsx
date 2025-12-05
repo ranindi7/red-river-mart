@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import MarketplacePage from './marketplacePage';
-import type { Item } from '../../../../../../shared/types/types';
-import * as ItemService from '../../../apis/itemRepo';
-import { getCurrentUser } from '../../../hooks/getCurrentUser';
+    import { useState, useEffect } from 'react';
+    import MarketplacePage from './marketplacePage';
+    import type { Item } from '../../../../../../shared/types/types';
+    import * as ItemService from '../../../apis/itemRepo';
+    import { getCurrentUser } from '../../../hooks/getCurrentUser';
 
 export default function MarketplaceContainer() {
     // add state to hold items, initialized with sample data
@@ -22,17 +22,17 @@ export default function MarketplaceContainer() {
         fetchItems();
     }, [dbUser]);
 
-    // Loading states
-    if (!isSignedIn) return <p>Please sign in to view the marketplace.</p>;
-    if (!dbUser) return <p>Loading marketplace...</p>;
+        // Loading states
+        if (!isSignedIn) return <p>Please sign in to view the marketplace.</p>;
+        if (!dbUser) return <p>Loading marketplace...</p>;
 
-    // add a new item
-    const handleAddItem = async (newItemData: Omit<Item, 'id'>) => {    
-        const newItem = await ItemService.createItem(newItemData);
-        setItems(prevItems => [...prevItems, newItem]);
-    };
+        // add a new item
+        const handleAddItem = async (newItemData: Omit<Item, 'id'>) => {    
+            const newItem = await ItemService.createItem(newItemData);
+            setItems(prevItems => [...prevItems, newItem]);
+        };
 
-    return (
-        <MarketplacePage items={items} onAddItem={handleAddItem} />
-    );
-}
+        return (
+            <MarketplacePage items={items} onAddItem={handleAddItem} />
+        );
+    }
