@@ -14,8 +14,15 @@ const USER_ENDPOINT = "/users";
 Get all users
 - Returns entire array of users
 */
-export async function fetchUsers(): Promise<User[]> {
-    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}`);
+export async function fetchUsers(sessionToken?: string|null): Promise<User[]> {
+    const response: Response = await fetch(
+        `${BASE_URL}${USER_ENDPOINT}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`,
+            } 
+      } : undefined
+    );
 
     if (!response.ok) {
         throw new Error("Failed to fetch users");
@@ -27,8 +34,15 @@ export async function fetchUsers(): Promise<User[]> {
 
 /* Get user by ID 
 */
-export async function getUserById(userId: number): Promise<User> {
-    const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${userId}`);
+export async function getUserById(userId: string, sessionToken?: string|null): Promise<User> {
+    const response: Response = await fetch(
+        `${BASE_URL}${USER_ENDPOINT}/${userId}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`,
+            } 
+        } : undefined
+    );
 
     if (!response.ok) {
         throw new Error(`Failed to fetch user with id ${userId}`);
@@ -40,17 +54,20 @@ export async function getUserById(userId: number): Promise<User> {
 
 /* Update user info by ID
 */
-export async function updateUser(user: User): Promise<User> {
+export async function updateUser(user: User, sessionToken?: string|null): Promise<User> {
+    console.log("Updating user in repo:", user);
     const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${user.id}`, {
         method: "PUT",
         body: JSON.stringify(user),
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionToken}`,
         },
     });
 
+    console.log("Update user response status:", response.body);
     if (!response.ok) {
-        throw new Error(`Failed to update iteuserm with id ${user.id}`);
+        throw new Error(`Failed to update user with id ${user.id}`);
     }
 
     const json: UserResponseJSON = await response.json();
@@ -59,12 +76,13 @@ export async function updateUser(user: User): Promise<User> {
 
 /* Add a new user
 */
-export async function createUser(user: Omit<User, "id">): Promise<User> {
+export async function createUser(user: Omit<User, "id">, sessionToken?: string|null): Promise<User> {
     const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionToken}`,
         },
     });
 
@@ -78,9 +96,12 @@ export async function createUser(user: Omit<User, "id">): Promise<User> {
 
 /* Delete user by ID
 */
-export async function deleteUser(userId: number): Promise<void> {
+export async function deleteUser(userId: string, sessionToken?: string|null): Promise<void> {
     const response: Response = await fetch(`${BASE_URL}${USER_ENDPOINT}/${userId}`, {
         method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${sessionToken}`,
+      },
     });
 
     if (!response.ok) {

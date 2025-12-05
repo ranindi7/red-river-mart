@@ -1,55 +1,76 @@
 import { PrismaClient } from "@prisma/client";
-import { forumSeedData } from "./seedData";
-import { userSeedData } from "./seedData";
-import { itemSeedData } from "./seedData";
+import { forumSeedData, itemSeedData } from "./seedData";
+import { clerkClient } from "@clerk/clerk-sdk-node";
 
 const prisma = new PrismaClient();
 
-async function main() { 
-    await prisma.user.deleteMany();
-    
-    const createManyUsers = await prisma.user.createManyAndReturn(
-        {
-            data: userSeedData,
-            skipDuplicates: true
-        }
-    );
+async function main() {
+  const clerkUsers = await clerkClient.users.getUserList();
 
-    console.log(`CREATED USERS: ${createManyUsers}`)
-  
-    await prisma.forum.deleteMany();
-    await prisma.forum.createMany({
-        data: forumSeedData.map((forum) => ({
-            subject: forum.subject ?? "No subject",
-            title: forum.title ?? "No title",
-            description: forum.description ?? "No description",
-            date: forum.date ?? new Date().toLocaleDateString(),
-        })),
-        skipDuplicates: true,
+  const usersToInsert = clerkUsers.map((u) => ({
+    id: u.id,
+    firstName: u.firstName || "",
+    lastName: u.lastName || "",
+    userName: u.username || `${u.firstName ?? ""} ${u.lastName ?? ""}`.trim(),
+    email: u.emailAddresses[0]?.emailAddress ?? "",
+    phone: u.phoneNumbers[0]?.phoneNumber ?? "",
+    bio: "",
+    preferredContact: "email",
+    profileImage: u.imageUrl,
+  }));
+
+  await prisma.comment.deleteMany();
+  await prisma.forum.deleteMany();
+  await prisma.user.deleteMany();
+
+  await prisma.user.createMany({
+    data: usersToInsert,
+    skipDuplicates: true,
+  });
+
+  for (const forum of forumSeedData) {
+    await prisma.forum.create({
+      data: {
+        subject: forum.subject!,
+        title: forum.title,
+        description: forum.description,
+        date: forum.date,
+        author: { connect: { id: forum.authorId } },
+        comments: {
+          create: [
+            {
+              text: "testing sample comment!",
+              user: { connect: { id: usersToInsert[0]?.id } },
+            },
+            {
+              text: "double testing comment!",
+              user: { connect: { id: usersToInsert[1]?.id } },
+            },
+          ],
+        },
+      },
     });
+  }
 
-    await prisma.item.deleteMany();
-    await prisma.item.createMany({
-        data: itemSeedData.map((item) => ({
-            name: item.name,
-            category: item.category,
-            price: item.price,
-            description: item.description,
-            src: item.src,
-            sellerName: item.sellerName ?? "Demo Seller",
-            sellerEmail: item.sellerEmail ?? "demo@example.com",
-        })),
-        skipDuplicates: true,
-    });
-};
+  await prisma.item.createMany({
+    data: itemSeedData.map((item) => ({
+      name: item.name,
+      category: item.category,
+      price: item.price,
+      description: item.description,
+      src: item.src,
+      sellerId: item.sellerId,
+    })),
+    skipDuplicates: true,
+  });
+}
 
-main().then(
-    async() => {
-        await prisma.$disconnect()
-        console.log("Seeding complete!");
-    }
-).catch(async (e) => {
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+    console.log("Seeding complete!");
+  })
+  .catch(async (e) => {
     console.error(e);
     await prisma.$disconnect();
-});
-
+  });

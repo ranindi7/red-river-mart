@@ -28,34 +28,33 @@ export default function EditUserModal({ user, onSave }: EditUser) {
   }
 
   return (
-   <div className="editUserModal">
-      <form onSubmit={handleSubmit}>
+   <div>
+      <form onSubmit={handleSubmit} className="editUserModal">
         <h2>Edit Your Profile</h2>
         <div>
-          <label>Username:</label>
+          <label><b>Username:</b></label>
           <p>{user.userName}</p>
         </div>
 
         <div>
-          <label>Bio:</label>
+          <label><b>Bio:</b></label>
           <textarea id="bio" value={fields.bio as string} onChange={handleChange} />
           {errors.bio && <p className="error">{errors.bio}</p>}
         </div>
 
         <div>
-          <label>Email:</label>
-          <input id="email" value={fields.email as string} onChange={handleChange} />
-          {errors.email && <p className="error">{errors.email}</p>}
+          <label><b>Email:</b></label>
+          <p>{user.email}</p>
         </div>
 
         <div>
-          <label>Phone:</label>
+          <label><b>Phone:</b></label>
           <input id="phone" value={fields.phone as string} onChange={handleChange} />
           {errors.phone && <p className="error">{errors.phone}</p>}
         </div>
 
         <div>
-          <label>Preferred Contact:</label>
+          <label><b>Preferred Contact:</b></label>
           <input
             id="preferredContact"
             value={fields.preferredContact as string}

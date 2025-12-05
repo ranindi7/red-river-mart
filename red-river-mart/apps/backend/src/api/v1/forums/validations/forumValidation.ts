@@ -20,24 +20,21 @@ export const createForumSchema: ObjectSchema = Joi.object({
     "any.required": "Description is required",
     "string.empty": "Description cannot be empty",
   }),
-  date: Joi.string().optional()
+  date: Joi.string().optional(),
+  
+  authorId: Joi.string().required().messages({
+    "any.required": "Author Id is required",
+    "string.empty": "Author Id cannot be empty"
+  })
 });
 
 export const updateForumSchema: ObjectSchema = Joi.object({
   id: Joi.number().optional(),
-  subject: Joi.string().required().messages({
-    "any.required": "Subject is required",
-    "string.empty": "Subject cannot be empty"
-  }),
-  title: Joi.string().required().messages({
-    "any.required": "Title is required",
-    "string.empty": "Title cannot be empty"
-  }),
-  description: Joi.string().required().messages({
-    "any.required": "Description is required",
-    "string.empty": "Description cannot be empty",
-  }),
-  date: Joi.string().optional()
+  subject: Joi.string().optional(),
+  title: Joi.string().optional(),
+  description: Joi.string().optional(),
+  date: Joi.string().optional(),
+  authorId: Joi.string().optional(),
 });
 
 export const deleteForumSchema: ObjectSchema = Joi.object({
