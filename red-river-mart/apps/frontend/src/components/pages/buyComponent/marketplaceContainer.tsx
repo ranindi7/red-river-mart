@@ -7,16 +7,15 @@ import { getCurrentUser } from '../../../hooks/getCurrentUser';
 export default function MarketplaceContainer() {
     // add state to hold items, initialized with sample data
     const [items, setItems] = useState<Item[]>([]);
-    const { dbUser, isSignedIn } = getCurrentUser();
-    
-    // const userId = dbUser!.id;
+    const { dbUser, isSignedIn, getToken } = getCurrentUser();
     
     // fetch all items on mount
     useEffect(() => {
         if (!dbUser) return;
 
         const fetchItems = async () => {
-            const fetchedItems = await ItemService.fetchItems();
+            const token = await getToken()
+            const fetchedItems = await ItemService.fetchItems(token);
             const filteredItems = fetchedItems.filter(item => item.sellerId !== dbUser?.id);
             setItems(filteredItems);
         };
