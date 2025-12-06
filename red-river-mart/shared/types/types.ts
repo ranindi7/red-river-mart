@@ -6,6 +6,12 @@ export interface Forum {
   description: string;
   comments?: Comment[];
   authorId: string;
+
+  author?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+  };
 }
 
 export interface Comment {

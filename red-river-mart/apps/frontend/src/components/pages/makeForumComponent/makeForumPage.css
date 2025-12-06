@@ -1,19 +1,18 @@
 .makeForumPage {
-    width: 100%;            
-    max-width: 400px;     
-    margin: 0;              
-    padding: 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  min-height: 800px;
+  margin: auto;
+  padding: 2.5rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  justify-content: center;
 }
 
 .makeForumPage h2 {
-    text-align:right;
     width: 100%;        
     margin: 0 0 1.5rem 0; 
 }
