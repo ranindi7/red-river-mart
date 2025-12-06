@@ -91,6 +91,7 @@ export default function ForumPage() {
           <div key={forum.id} className="forumPost">
             <h3>{forum.title}</h3>
             {forum.subject && <p className="subject">{forum.subject}</p>}
+            <p className="subject">Posted by: {forum.author?.firstName ?? "Unknown"} {forum.author?.lastName ?? ""}</p>
             <p className="description">{forum.description}</p>
             {forum.date && <p className="date">{forum.date}</p>}
 

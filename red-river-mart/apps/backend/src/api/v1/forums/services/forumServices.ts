@@ -2,12 +2,15 @@ import prisma from "../../../../../prisma/client";
 import type { Forum } from "@prisma/client";
 
 export const getAllForums = async (): Promise<Forum[]> => {
-  return prisma.forum.findMany();
+  return prisma.forum.findMany({
+    include: { author: true, comments: true }
+  });
 };
 
 export const getForumById = async (id: number): Promise<Forum | null> => {
   return prisma.forum.findUnique({
     where: { id },
+    include: { author: true, comments: true },
   });
 };
 

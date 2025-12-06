@@ -1,9 +1,12 @@
 .forumPageContainer {
     display: grid;
     grid-template-columns: 1fr 3fr;
+    gap: 25px;
     min-height: 100vh;
     width: 100%;
     padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
     box-sizing: border-box;
     background-color: #f8f9fa;
 }
@@ -11,11 +14,14 @@
 .forumSidebar {
     display: flex;
     flex-direction: column;
-    background: #f8f9fa;
-    border-radius: 10px;
     gap: 20px;
-    height: fit-content;
-    padding-right: 15px;
+}
+
+.forumContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .forumSearchBox {
@@ -71,13 +77,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.forumContent {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-left: auto;
-}
 
 .forumPost {
     background-color: #f8f9fa;
@@ -245,4 +244,95 @@
     word-break: break-word;
     overflow-wrap: break-word;
     white-space: pre-wrap;
+}
+
+@media (max-width: 1100px) {
+    .forumPageContainer {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (max-width: 950px) {
+    .forumPageContainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .forumSidebar {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .forumContent {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .forumSearchBox,
+    .openModalButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .forumPageContainer {
+        padding: 60px 10px 20px 10px;
+        gap: 15px;
+    }
+
+    .forumPost {
+        padding: 15px;
+    }
+
+    .forumPost h3 {
+        font-size: 1.1rem;
+    }
+
+    .forumPost p.description {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .openModalButton,
+    .searchButton,
+    .resetButton {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .commentInputSection textarea {
+        width: 180px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .commentButtons button,
+    .commentInputSection button {
+        height: 32px;
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    .ModalForm {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .commentRow {
+        flex-direction: column;
+    }
+
+    .commentButtons,
+    .commentInputSection {
+        position: static;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .commentInputSection textarea {
+        width: 100%;
+    }
 }
